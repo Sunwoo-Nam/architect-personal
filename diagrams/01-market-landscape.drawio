@@ -127,7 +127,7 @@
         </mxCell>
 
         <!-- Solution -->
-        <mxCell id="solution" value="&lt;b&gt;AI Web Agent 해결&lt;/b&gt;&#xa;음성 명령 (~100 WPM) | 자동 웹 조작 | Generative UI | On-Device 처리" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;fontColor=#2e7d32;strokeColor=#a5d6a7;fontSize=11;align=center;" vertex="1" parent="1">
+        <mxCell id="solution" value="&lt;b&gt;AI Web Agent 해결&lt;/b&gt;&#xa;음성 명령 (~100 WPM) | 자동 웹 조작 | Generative UI | On-Device 하네스" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;fontColor=#2e7d32;strokeColor=#a5d6a7;fontSize=11;align=center;" vertex="1" parent="1">
           <mxGeometry x="1100" y="350" width="440" height="60" as="geometry"/>
         </mxCell>
 
@@ -177,38 +177,63 @@
           <mxGeometry x="60" y="720" width="680" height="35" as="geometry"/>
         </mxCell>
 
-        <!-- Section 5: On-Device vs Cloud -->
+        <!-- Section 5: AI Web Agent 웹 콘텐츠 시장 영향 -->
         <mxCell id="section5_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;arcSize=8;" vertex="1" parent="1">
           <mxGeometry x="790" y="470" width="780" height="380" as="geometry"/>
         </mxCell>
-        <mxCell id="section5_title" value="On-Device vs Cloud 비교" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=14;fontStyle=1;fontColor=#1a1a2e;" vertex="1" parent="1">
-          <mxGeometry x="1030" y="480" width="300" height="30" as="geometry"/>
+        <mxCell id="section5_title" value="AI Web Agent가 웹 콘텐츠 시장에 미치는 영향" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=14;fontStyle=1;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="930" y="480" width="500" height="30" as="geometry"/>
         </mxCell>
 
-        <!-- Cloud -->
-        <mxCell id="cloud_box" value="&lt;b&gt;☁️ Cloud 기반&lt;/b&gt;&#xa;&#xa;• 지연: 200-500ms&#xa;• 프라이버시: 서버 전송 필요&#xa;• 비용: API 호출당 과금&#xa;  (2억대 × 호출 = 막대한 비용)&#xa;• 가용성: 네트워크 의존" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;fontColor=#e65100;strokeColor=#ffcc80;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="820" y="530" width="240" height="160" as="geometry"/>
+        <!-- User Impact -->
+        <mxCell id="user_impact" value="&lt;b&gt;사용자 측면&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontStyle=1;fontColor=#1565c0;" vertex="1" parent="1">
+          <mxGeometry x="820" y="520" width="240" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="user_stat1" value="AI 상호작용 시 구매 전환율&#xa;&lt;b&gt;4배 증가&lt;/b&gt; (3.1% → 12.3%)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;fontColor=#1565c0;strokeColor=#90caf9;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="820" y="550" width="240" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="user_stat2" value="AI 보조 시 구매 완료 속도&#xa;&lt;b&gt;47% 단축&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;fontColor=#1565c0;strokeColor=#90caf9;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="820" y="600" width="240" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="user_stat3" value="AI 기반 웹 트래픽 유입&#xa;&lt;b&gt;10배+ 증가&lt;/b&gt; (2024.07~2025.02)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;fontColor=#1565c0;strokeColor=#90caf9;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="820" y="650" width="240" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="user_stat4" value="소비자 60%가 AI 도구로&#xa;구매 리서치 수행" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;fontColor=#1565c0;strokeColor=#90caf9;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="820" y="700" width="240" height="45" as="geometry"/>
         </mxCell>
 
-        <!-- VS -->
-        <mxCell id="vs_label" value="VS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=18;fontStyle=1;fontColor=#666666;" vertex="1" parent="1">
-          <mxGeometry x="1070" y="580" width="60" height="40" as="geometry"/>
+        <!-- Business Impact -->
+        <mxCell id="biz_impact" value="&lt;b&gt;비즈니스 측면&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontStyle=1;fontColor=#2e7d32;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="520" width="240" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="biz_stat1" value="Agentic Commerce&#xa;&lt;b&gt;$3~5T 재배분&lt;/b&gt; (2030, McKinsey)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;fontColor=#2e7d32;strokeColor=#a5d6a7;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="550" width="240" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="biz_stat2" value="AI Agent 도입 기업&#xa;평균 ROI &lt;b&gt;171%&lt;/b&gt; (미국 192%)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;fontColor=#2e7d32;strokeColor=#a5d6a7;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="600" width="240" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="biz_stat3" value="운영 효율 &lt;b&gt;55% 향상&lt;/b&gt;&#xa;비용 &lt;b&gt;35% 절감&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;fontColor=#2e7d32;strokeColor=#a5d6a7;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="650" width="240" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="biz_stat4" value="Black Friday AI 트래픽&#xa;전년 대비 &lt;b&gt;805% 증가&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;fontColor=#2e7d32;strokeColor=#a5d6a7;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="700" width="240" height="45" as="geometry"/>
         </mxCell>
 
-        <!-- On-Device -->
-        <mxCell id="ondevice_box" value="&lt;b&gt;📱 On-Device&lt;/b&gt;&#xa;&#xa;• 지연: &lt;100ms (로컬 추론)&#xa;• 프라이버시: 디바이스 내 처리&#xa;• 비용: 초기 최적화 후 추가 없음&#xa;• 가용성: 오프라인 동작 가능&#xa;• NPU/GPU 활용" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;fontColor=#2e7d32;strokeColor=#a5d6a7;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="1140" y="530" width="240" height="160" as="geometry"/>
+        <!-- Web Ecosystem Change -->
+        <mxCell id="eco_impact" value="&lt;b&gt;웹 에코시스템 변화&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontStyle=1;fontColor=#6a1b9a;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="520" width="210" height="25" as="geometry"/>
         </mxCell>
-
-        <!-- Market size callouts -->
-        <mxCell id="market1" value="On-Device AI 시장&#xa;CAGR 27.8% → $75.5B (2033)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;fontColor=#1565c0;strokeColor=#90caf9;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="820" y="710" width="240" height="40" as="geometry"/>
+        <mxCell id="eco_stat1" value="LLM 봇 크롤링 빈도&#xa;Googlebot 대비 &lt;b&gt;3.6배&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;fontColor=#6a1b9a;strokeColor=#ce93d8;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="550" width="210" height="45" as="geometry"/>
         </mxCell>
-        <mxCell id="market2" value="Edge AI 시장&#xa;CAGR 21.7% → $118.7B (2033)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;fontColor=#1565c0;strokeColor=#90caf9;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="1080" y="710" width="240" height="40" as="geometry"/>
+        <mxCell id="eco_stat2" value="WCAG 준수 사이트&#xa;트래픽 &lt;b&gt;23%&lt;/b&gt; 증가" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;fontColor=#6a1b9a;strokeColor=#ce93d8;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="600" width="210" height="45" as="geometry"/>
         </mxCell>
-        <mxCell id="market3" value="Gartner: 2027년 태스크 특화 SLM&#xa;범용 LLM 대비 3배 사용 증가" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;fontColor=#6a1b9a;strokeColor=#ce93d8;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="1340" y="710" width="210" height="40" as="geometry"/>
+        <mxCell id="eco_stat3" value="뉴스 퍼블리셔 79%&#xa;AI 학습 봇 차단" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;fontColor=#6a1b9a;strokeColor=#ce93d8;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="650" width="210" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="eco_stat4" value="콘텐츠 발견: 검색 순위 →&#xa;AI 합성·요약 모델로 전환" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;fontColor=#6a1b9a;strokeColor=#ce93d8;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="700" width="210" height="45" as="geometry"/>
         </mxCell>
 
       </root>
