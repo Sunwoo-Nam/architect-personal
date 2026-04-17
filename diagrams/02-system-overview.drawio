@@ -1,210 +1,190 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mxfile host="app.diagrams.net" modified="2026-04-18T00:00:00.000Z" agent="draw.io" version="24.0.0" type="device">
   <diagram id="system-overview" name="시스템 구성 개요">
-    <mxGraphModel dx="1422" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1000" math="0" shadow="0">
+    <mxGraphModel dx="1422" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0"/>
         <mxCell id="1" parent="0"/>
 
         <!-- Title -->
         <mxCell id="title" value="Tizen TV AI Web Agent — 시스템 구성 개요" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;fontColor=#1a1a2e;" vertex="1" parent="1">
-          <mxGeometry x="300" y="15" width="800" height="40" as="geometry"/>
+          <mxGeometry x="200" y="10" width="800" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- ============ Cloud (외부, 상단) ============ -->
+        <mxCell id="cloud_boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e8fd;strokeColor=#7c3aed;strokeWidth=2;arcSize=8;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
+          <mxGeometry x="30" y="60" width="1140" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="cloud_label" value="Cloud" style="text;html=1;strokeColor=none;fillColor=#7c3aed;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=1;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="60" width="80" height="28" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="cloud_llm" value="&lt;b&gt;Cloud LLM API&lt;/b&gt;&#xa;자연어 이해 · 멀티스텝 플래닝 · 웹 콘텐츠 분석 · 액션 생성" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7c3aed;fontColor=#ffffff;strokeColor=none;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="50" y="95" width="400" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="cloud_search" value="&lt;b&gt;Web Search API&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9c27b0;fontColor=#ffffff;strokeColor=none;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="470" y="95" width="160" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="cloud_account" value="&lt;b&gt;Samsung Account&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9c27b0;fontColor=#ffffff;strokeColor=none;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="650" y="95" width="160" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="cloud_etc" value="&lt;b&gt;기타 Cloud Services&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9c27b0;fontColor=#ffffff;strokeColor=none;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="830" y="95" width="160" height="50" as="geometry"/>
         </mxCell>
 
         <!-- ============ TV Device Boundary ============ -->
-        <mxCell id="tv_boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#1a73e8;strokeWidth=2;arcSize=4;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
-          <mxGeometry x="30" y="70" width="1000" height="880" as="geometry"/>
+        <mxCell id="tv_boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#1a73e8;strokeWidth=2;arcSize=3;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
+          <mxGeometry x="30" y="190" width="1140" height="880" as="geometry"/>
         </mxCell>
-        <mxCell id="tv_label" value="📺 Tizen TV Device (On-Device)" style="text;html=1;strokeColor=none;fillColor=#1a73e8;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=1;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="30" y="70" width="280" height="30" as="geometry"/>
-        </mxCell>
-
-        <!-- ============ User Input Layer ============ -->
-        <mxCell id="input_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#90caf9;arcSize=10;" vertex="1" parent="1">
-          <mxGeometry x="60" y="120" width="280" height="140" as="geometry"/>
-        </mxCell>
-        <mxCell id="input_title" value="사용자 입력" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontStyle=1;fontColor=#1565c0;" vertex="1" parent="1">
-          <mxGeometry x="140" y="125" width="120" height="25" as="geometry"/>
-        </mxCell>
-        <mxCell id="voice_input" value="🎤 Voice Input&#xa;(STT)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a73e8;fontColor=#ffffff;strokeColor=none;fontSize=11;align=center;" vertex="1" parent="1">
-          <mxGeometry x="80" y="160" width="110" height="50" as="geometry"/>
-        </mxCell>
-        <mxCell id="remote_input" value="🎮 Remote&#xa;(D-pad)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a73e8;fontColor=#ffffff;strokeColor=none;fontSize=11;align=center;" vertex="1" parent="1">
-          <mxGeometry x="210" y="160" width="110" height="50" as="geometry"/>
+        <mxCell id="tv_label" value="Tizen TV Device (On-Device)" style="text;html=1;strokeColor=none;fillColor=#1a73e8;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=1;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="190" width="250" height="28" as="geometry"/>
         </mxCell>
 
-        <!-- ============ Agent Harness (Core) ============ -->
-        <mxCell id="harness_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#ffcc80;arcSize=6;" vertex="1" parent="1">
-          <mxGeometry x="60" y="290" width="940" height="220" as="geometry"/>
-        </mxCell>
-        <mxCell id="harness_title" value="⚙️ Agent Harness (On-Device Core)" style="text;html=1;strokeColor=none;fillColor=#e65100;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=1;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="60" y="290" width="300" height="28" as="geometry"/>
+        <!-- ============ Main Agent (On-Device) ============ -->
+        <mxCell id="main_agent" value="&lt;b&gt;Main Agent&lt;/b&gt; (On-Device)&#xa;Bixby / Claw 등 TV 메인 AI 에이전트" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ff6f00;fontColor=#ffffff;strokeColor=none;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="660" y="240" width="300" height="50" as="geometry"/>
         </mxCell>
 
-        <!-- Intent Parser -->
-        <mxCell id="intent_parser" value="&lt;b&gt;Intent Parser&lt;/b&gt;&#xa;자연어 → 구조화된 의도" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#e65100;strokeColor=#ffcc80;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="80" y="335" width="160" height="55" as="geometry"/>
+        <!-- ============ Input Sources ============ -->
+        <mxCell id="voice_input" value="Voice Input&#xa;(STT)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a73e8;fontColor=#ffffff;strokeColor=none;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="60" y="240" width="120" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="remote_input" value="Remote&#xa;(D-pad)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a73e8;fontColor=#ffffff;strokeColor=none;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="200" y="240" width="120" height="50" as="geometry"/>
         </mxCell>
 
-        <!-- Workflow Orchestrator -->
+        <!-- ============ Agent Harness ============ -->
+        <mxCell id="harness_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#ffcc80;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="60" y="330" width="900" height="250" as="geometry"/>
+        </mxCell>
+        <mxCell id="harness_title" value="AI Web Agent Harness (On-Device)" style="text;html=1;strokeColor=none;fillColor=#e65100;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=1;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="330" width="300" height="26" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="intent_parser" value="&lt;b&gt;Intent Parser&lt;/b&gt;&#xa;자연어 / A2A 태스크&#xa;→ 구조화된 의도" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#e65100;strokeColor=#ffcc80;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="80" y="375" width="170" height="55" as="geometry"/>
+        </mxCell>
+
         <mxCell id="workflow" value="&lt;b&gt;Workflow Orchestrator&lt;/b&gt;&#xa;멀티스텝 작업 플래닝&#xa;상태 머신 기반 실행" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#e65100;strokeColor=#ffcc80;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="270" y="335" width="190" height="55" as="geometry"/>
+          <mxGeometry x="270" y="375" width="190" height="55" as="geometry"/>
         </mxCell>
 
-        <!-- Action Executor -->
-        <mxCell id="action_exec" value="&lt;b&gt;Action Executor&lt;/b&gt;&#xa;Browser Control&#xa;(CDP 기반 웹 조작)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#e65100;strokeColor=#ffcc80;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="490" y="335" width="170" height="55" as="geometry"/>
+        <mxCell id="context_mgr" value="&lt;b&gt;Context Manager&lt;/b&gt;&#xa;대화 이력, 세션&#xa;사용자 선호도" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#e65100;strokeColor=#ffcc80;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="480" y="375" width="160" height="55" as="geometry"/>
         </mxCell>
 
-        <!-- Context Manager -->
-        <mxCell id="context_mgr" value="&lt;b&gt;Context Manager&lt;/b&gt;&#xa;대화 이력, 세션,&#xa;사용자 선호도 관리" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#e65100;strokeColor=#ffcc80;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="690" y="335" width="160" height="55" as="geometry"/>
+        <mxCell id="action_exec" value="&lt;b&gt;Action Executor&lt;/b&gt;&#xa;CDP 명령 생성 및 전달&#xa;웹 페이지 상태 수집 (DOM, 스크린샷)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#e65100;strokeColor=#ffcc80;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="80" y="450" width="270" height="55" as="geometry"/>
         </mxCell>
 
-        <!-- Safety Filter -->
-        <mxCell id="safety" value="&lt;b&gt;Safety Filter&lt;/b&gt;&#xa;PII 마스킹 · Human-in-the-Loop · 민감 정보 필터" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;fontColor=#c62828;strokeColor=#ef9a9a;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="80" y="420" width="280" height="45" as="geometry"/>
+        <mxCell id="safety" value="&lt;b&gt;Safety / Privacy Filter&lt;/b&gt;&#xa;PII 마스킹 · Human-in-the-Loop" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;fontColor=#c62828;strokeColor=#ef9a9a;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="370" y="450" width="270" height="55" as="geometry"/>
         </mxCell>
 
         <!-- Model Abstraction Layer -->
-        <mxCell id="mal" value="&lt;b&gt;Model Abstraction Layer&lt;/b&gt;&#xa;통합 모델 인터페이스 · 라우팅 (복잡도/네트워크/프라이버시) · 폴백 · 캐싱" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;fontColor=#6a1b9a;strokeColor=#ce93d8;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="390" y="420" width="460" height="45" as="geometry"/>
+        <mxCell id="mal" value="&lt;b&gt;Model Abstraction Layer&lt;/b&gt;&#xa;통합 모델 인터페이스 · 라우팅 · 폴백 · 캐싱" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;fontColor=#6a1b9a;strokeColor=#ce93d8;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="660" y="375" width="280" height="55" as="geometry"/>
         </mxCell>
 
-        <!-- Arrows within harness -->
-        <mxCell id="arr_ip_wf" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#e65100;strokeWidth=1.5;" edge="1" parent="1" source="intent_parser" target="workflow">
-          <mxGeometry relative="1" as="geometry"/>
+        <!-- On-Device SLM -->
+        <mxCell id="ondevice_slm" value="&lt;b&gt;On-Device SLM&lt;/b&gt; (Optional)&#xa;간단한 의도 분류&#xa;오프라인 폴백" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#616161;strokeColor=#bdbdbd;fontSize=10;align=center;dashed=1;dashPattern=5 3;" vertex="1" parent="1">
+          <mxGeometry x="660" y="450" width="280" height="55" as="geometry"/>
         </mxCell>
-        <mxCell id="arr_wf_ae" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#e65100;strokeWidth=1.5;" edge="1" parent="1" source="workflow" target="action_exec">
+
+        <!-- Internal arrows -->
+        <mxCell id="arr_ip_wf" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#e65100;strokeWidth=1.5;" edge="1" parent="1" source="intent_parser" target="workflow">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
         <mxCell id="arr_wf_ctx" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#e65100;strokeWidth=1.5;" edge="1" parent="1" source="workflow" target="context_mgr">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-
-        <!-- ============ Headless Browser ============ -->
-        <mxCell id="headless_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#a5d6a7;arcSize=8;" vertex="1" parent="1">
-          <mxGeometry x="60" y="540" width="440" height="180" as="geometry"/>
-        </mxCell>
-        <mxCell id="headless_title" value="🌐 Headless Browser" style="text;html=1;strokeColor=none;fillColor=#2e7d32;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontStyle=1;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="60" y="540" width="180" height="26" as="geometry"/>
+        <mxCell id="arr_wf_ae" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#e65100;strokeWidth=1.5;" edge="1" parent="1" source="workflow" target="action_exec">
+          <mxGeometry relative="1" as="geometry"/>
         </mxCell>
 
-        <mxCell id="dom_parser" value="&lt;b&gt;DOM Parser&lt;/b&gt;&#xa;페이지 구조 분석&#xa;인터랙터블 요소 식별" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#2e7d32;strokeColor=#a5d6a7;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="80" y="580" width="170" height="55" as="geometry"/>
+        <!-- ============ Chromium Web Engine ============ -->
+        <mxCell id="chromium_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#2e7d32;strokeWidth=2;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="60" y="620" width="640" height="220" as="geometry"/>
         </mxCell>
-        <mxCell id="content_analyzer" value="&lt;b&gt;Content Analyzer&lt;/b&gt;&#xa;시맨틱 분석&#xa;(상품, 폼, 기사 등)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#2e7d32;strokeColor=#a5d6a7;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="270" y="580" width="170" height="55" as="geometry"/>
-        </mxCell>
-        <mxCell id="action_bridge" value="&lt;b&gt;Action Bridge&lt;/b&gt;&#xa;CDP 기반 브라우저 액션 실행&#xa;(클릭, 입력, 스크롤, 네비게이션)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#2e7d32;strokeColor=#a5d6a7;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="80" y="650" width="360" height="50" as="geometry"/>
+        <mxCell id="chromium_title" value="Chromium Web Engine" style="text;html=1;strokeColor=none;fillColor=#2e7d32;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=1;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="620" width="220" height="26" as="geometry"/>
         </mxCell>
 
-        <!-- ============ Generative UI ============ -->
-        <mxCell id="genui_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#90caf9;arcSize=8;" vertex="1" parent="1">
-          <mxGeometry x="530" y="540" width="470" height="180" as="geometry"/>
-        </mxCell>
-        <mxCell id="genui_title" value="🎨 Generative UI Engine" style="text;html=1;strokeColor=none;fillColor=#1565c0;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontStyle=1;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="530" y="540" width="200" height="26" as="geometry"/>
+        <!-- CDP Interface -->
+        <mxCell id="cdp_interface" value="&lt;b&gt;CDP (Chrome DevTools Protocol)&lt;/b&gt;&#xa;DOM 접근 · JavaScript 실행 · 네트워크 제어 · 페이지 캡처" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e6c9;fontColor=#1b5e20;strokeColor=#a5d6a7;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="80" y="660" width="600" height="40" as="geometry"/>
         </mxCell>
 
-        <mxCell id="template_engine" value="&lt;b&gt;Template Engine&lt;/b&gt;&#xa;카드/리스트/그리드&#xa;동적 생성" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#1565c0;strokeColor=#90caf9;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="550" y="580" width="130" height="55" as="geometry"/>
+        <!-- Browser Sessions -->
+        <mxCell id="session_label" value="Browser Sessions" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontStyle=1;fontColor=#2e7d32;" vertex="1" parent="1">
+          <mxGeometry x="80" y="710" width="150" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="layout_opt" value="&lt;b&gt;Layout Optimizer&lt;/b&gt;&#xa;10-feet UI 최적화&#xa;대화면 레이아웃" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#1565c0;strokeColor=#90caf9;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="700" y="580" width="130" height="55" as="geometry"/>
+
+        <mxCell id="headed_browser" value="&lt;b&gt;TV Browser&lt;/b&gt;&#xa;(Headed)&#xa;기존 TV 브라우저" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#2e7d32;strokeColor=#a5d6a7;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="80" y="735" width="180" height="80" as="geometry"/>
         </mxCell>
-        <mxCell id="focus_mgr" value="&lt;b&gt;Focus Manager&lt;/b&gt;&#xa;D-pad 네비게이션&#xa;포커스 구조 자동 생성" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#1565c0;strokeColor=#90caf9;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="850" y="580" width="130" height="55" as="geometry"/>
+
+        <mxCell id="webapp_session" value="&lt;b&gt;Web Apps&lt;/b&gt;&#xa;(Headed)&#xa;Tizen 웹앱" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#2e7d32;strokeColor=#a5d6a7;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="280" y="735" width="180" height="80" as="geometry"/>
         </mxCell>
-        <mxCell id="render_out" value="&lt;b&gt;Render Output&lt;/b&gt;&#xa;Web Components 기반 TV 최적화 UI 렌더링" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#1565c0;strokeColor=#90caf9;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="550" y="650" width="430" height="50" as="geometry"/>
+
+        <mxCell id="headless_session" value="&lt;b&gt;Headless Session&lt;/b&gt;&#xa;백그라운드 웹 로딩&#xa;자동화 작업 실행" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#2e7d32;strokeColor=#a5d6a7;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="480" y="735" width="190" height="80" as="geometry"/>
         </mxCell>
 
         <!-- ============ Local Storage ============ -->
-        <mxCell id="storage_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#bdbdbd;arcSize=10;" vertex="1" parent="1">
-          <mxGeometry x="60" y="750" width="940" height="80" as="geometry"/>
+        <mxCell id="storage_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#bdbdbd;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="730" y="620" width="430" height="220" as="geometry"/>
         </mxCell>
-        <mxCell id="storage_title" value="💾 Local Storage" style="text;html=1;strokeColor=none;fillColor=#616161;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontStyle=1;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="60" y="750" width="140" height="24" as="geometry"/>
+        <mxCell id="storage_title" value="Local Storage" style="text;html=1;strokeColor=none;fillColor=#616161;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontStyle=1;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="620" width="130" height="24" as="geometry"/>
         </mxCell>
-        <mxCell id="store1" value="IndexedDB&#xa;(세션/캐시)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#616161;strokeColor=#bdbdbd;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="80" y="785" width="140" height="35" as="geometry"/>
+        <mxCell id="store1" value="세션 / 캐시&#xa;(IndexedDB)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#616161;strokeColor=#bdbdbd;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="750" y="660" width="130" height="40" as="geometry"/>
         </mxCell>
-        <mxCell id="store2" value="Encrypted Storage&#xa;(자격증명/선호도)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#616161;strokeColor=#bdbdbd;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="240" y="785" width="160" height="35" as="geometry"/>
+        <mxCell id="store2" value="LLM 응답 캐시" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#616161;strokeColor=#bdbdbd;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="900" y="660" width="130" height="40" as="geometry"/>
         </mxCell>
-        <mxCell id="store3" value="Model Response Cache&#xa;(LLM 응답 캐시)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#616161;strokeColor=#bdbdbd;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="420" y="785" width="160" height="35" as="geometry"/>
+        <mxCell id="store3" value="워크플로우 상태" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#616161;strokeColor=#bdbdbd;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="750" y="715" width="130" height="40" as="geometry"/>
         </mxCell>
-        <mxCell id="store4" value="Workflow State&#xa;(작업 상태 저장)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#616161;strokeColor=#bdbdbd;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="600" y="785" width="140" height="35" as="geometry"/>
+        <mxCell id="store4" value="사용자 프로필&#xa;/ 선호도" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#616161;strokeColor=#bdbdbd;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="900" y="715" width="130" height="40" as="geometry"/>
         </mxCell>
-        <mxCell id="store5" value="User Profile&#xa;(개인화 데이터)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#616161;strokeColor=#bdbdbd;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="760" y="785" width="140" height="35" as="geometry"/>
-        </mxCell>
-
-        <!-- ============ Display Output ============ -->
-        <mxCell id="display_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#90caf9;arcSize=10;" vertex="1" parent="1">
-          <mxGeometry x="60" y="860" width="940" height="75" as="geometry"/>
-        </mxCell>
-        <mxCell id="display" value="📺 TV Display Output — Generative UI 렌더링 결과 + 에이전트 상태 피드백 + 원본 웹 전환" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontStyle=1;fontColor=#1565c0;" vertex="1" parent="1">
-          <mxGeometry x="80" y="875" width="900" height="40" as="geometry"/>
+        <mxCell id="store5" value="Encrypted Storage (자격증명)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#616161;strokeColor=#bdbdbd;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="750" y="770" width="280" height="40" as="geometry"/>
         </mxCell>
 
-        <!-- ============ Cloud Boundary ============ -->
-        <mxCell id="cloud_boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#7c3aed;strokeWidth=2;arcSize=6;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
-          <mxGeometry x="1070" y="70" width="300" height="680" as="geometry"/>
-        </mxCell>
-        <mxCell id="cloud_label" value="☁️ Cloud" style="text;html=1;strokeColor=none;fillColor=#7c3aed;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=1;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="1070" y="70" width="100" height="30" as="geometry"/>
+        <!-- ============ Generative UI (간소화) ============ -->
+        <mxCell id="genui" value="&lt;b&gt;Generative UI Engine&lt;/b&gt; (scope 외) — 웹 콘텐츠를 TV 최적화 UI로 동적 변환" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;fontColor=#1565c0;strokeColor=#90caf9;fontSize=10;align=center;dashed=1;dashPattern=5 3;" vertex="1" parent="1">
+          <mxGeometry x="60" y="870" width="640" height="40" as="geometry"/>
         </mxCell>
 
-        <!-- Cloud LLM -->
-        <mxCell id="cloud_llm" value="&lt;b&gt;Cloud LLM API&lt;/b&gt;&#xa;&#xa;• 복잡한 자연어 이해&#xa;• 멀티스텝 플래닝&#xa;• 웹 콘텐츠 분석&#xa;• 코드/액션 생성" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7c3aed;fontColor=#ffffff;strokeColor=none;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="1100" y="120" width="240" height="120" as="geometry"/>
-        </mxCell>
-
-        <!-- Cloud Services -->
-        <mxCell id="cloud_stt" value="&lt;b&gt;STT / TTS Service&lt;/b&gt;&#xa;(음성 인식 / 합성)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9c27b0;fontColor=#ffffff;strokeColor=none;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="1100" y="270" width="240" height="50" as="geometry"/>
-        </mxCell>
-
-        <mxCell id="cloud_search" value="&lt;b&gt;Web Search API&lt;/b&gt;&#xa;(검색 쿼리 보강)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9c27b0;fontColor=#ffffff;strokeColor=none;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="1100" y="340" width="240" height="50" as="geometry"/>
-        </mxCell>
-
-        <mxCell id="cloud_user" value="&lt;b&gt;User Account Service&lt;/b&gt;&#xa;(Samsung Account 연동)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9c27b0;fontColor=#ffffff;strokeColor=none;fontSize=10;align=center;" vertex="1" parent="1">
-          <mxGeometry x="1100" y="410" width="240" height="50" as="geometry"/>
-        </mxCell>
-
-        <!-- Optional On-Device SLM -->
-        <mxCell id="ondevice_slm" value="&lt;b&gt;On-Device SLM&lt;/b&gt;&#xa;(Optional)&#xa;&#xa;• 간단한 의도 분류&#xa;• 캐시 기반 응답&#xa;• 오프라인 기본 동작" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#616161;strokeColor=#bdbdbd;fontSize=10;align=left;spacingLeft=10;dashed=1;dashPattern=5 3;" vertex="1" parent="1">
-          <mxGeometry x="1100" y="510" width="240" height="110" as="geometry"/>
-        </mxCell>
-        <mxCell id="slm_note" value="* 모델 위치는 Model Abstraction Layer가&#xa;  자동으로 라우팅" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontStyle=2;fontColor=#666666;" vertex="1" parent="1">
-          <mxGeometry x="1100" y="630" width="240" height="30" as="geometry"/>
+        <!-- ============ Display ============ -->
+        <mxCell id="display" value="TV Display" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a73e8;fontColor=#ffffff;strokeColor=none;fontSize=12;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="60" y="940" width="1100" height="40" as="geometry"/>
         </mxCell>
 
         <!-- ============ Connecting Arrows ============ -->
 
-        <!-- Voice → Agent Harness -->
-        <mxCell id="arr_voice_harness" value="음성 명령" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1a73e8;strokeWidth=2;fontColor=#1a73e8;fontSize=9;" edge="1" parent="1" source="voice_input" target="intent_parser">
+        <!-- Voice/Remote → Agent -->
+        <mxCell id="arr_voice" value="음성 명령" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1a73e8;strokeWidth=2;fontColor=#1a73e8;fontSize=9;" edge="1" parent="1" source="voice_input" target="intent_parser">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="arr_remote" value="키 입력" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1a73e8;strokeWidth=2;fontColor=#1a73e8;fontSize=9;" edge="1" parent="1" source="remote_input" target="intent_parser">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
 
-        <!-- Remote → Agent Harness -->
-        <mxCell id="arr_remote_harness" value="키 이벤트" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1a73e8;strokeWidth=2;fontColor=#1a73e8;fontSize=9;" edge="1" parent="1" source="remote_input" target="intent_parser">
+        <!-- Main Agent → Agent Harness (A2A) -->
+        <mxCell id="arr_a2a" value="A2A 태스크 위임" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#ff6f00;strokeWidth=2;fontColor=#ff6f00;fontSize=10;fontStyle=1;" edge="1" parent="1" source="main_agent" target="workflow">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
 
-        <!-- Action Executor → Headless Browser -->
-        <mxCell id="arr_ae_headless" value="브라우저 제어" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#2e7d32;strokeWidth=2;fontColor=#2e7d32;fontSize=9;" edge="1" parent="1" source="action_exec" target="dom_parser">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
-
-        <!-- Headless → Generative UI -->
-        <mxCell id="arr_headless_genui" value="콘텐츠 데이터" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1565c0;strokeWidth=2;fontColor=#1565c0;fontSize=9;" edge="1" parent="1" source="content_analyzer" target="template_engine">
+        <!-- Agent Action Executor → Chromium CDP -->
+        <mxCell id="arr_agent_cdp" value="CDP 명령 / 상태 수집" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#2e7d32;strokeWidth=2.5;fontColor=#2e7d32;fontSize=10;fontStyle=1;" edge="1" parent="1" source="action_exec" target="cdp_interface">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
 
@@ -218,47 +198,79 @@
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
 
-        <!-- Generative UI → Display -->
-        <mxCell id="arr_genui_display" value="렌더링" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1565c0;strokeWidth=2;fontColor=#1565c0;fontSize=9;" edge="1" parent="1" source="render_out" target="display">
+        <!-- Chromium → GenUI -->
+        <mxCell id="arr_chromium_genui" value="웹 콘텐츠" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1565c0;strokeWidth=1.5;fontColor=#1565c0;fontSize=9;" edge="1" parent="1" source="chromium_bg" target="genui">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
 
-        <!-- ============ Data Flow Legend ============ -->
-        <mxCell id="legend_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;arcSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1070" y="770" width="300" height="180" as="geometry"/>
+        <!-- GenUI → Display -->
+        <mxCell id="arr_genui_display" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1565c0;strokeWidth=1.5;" edge="1" parent="1" source="genui" target="display">
+          <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="legend_title" value="범례 (Legend)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
-          <mxGeometry x="1170" y="775" width="100" height="25" as="geometry"/>
+
+        <!-- Headed → Display (직접 렌더링) -->
+        <mxCell id="arr_headed_display" value="직접 렌더링" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#2e7d32;strokeWidth=1.5;fontColor=#2e7d32;fontSize=9;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" source="headed_browser" target="display">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="45" y="795"/>
+              <mxPoint x="45" y="960"/>
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="leg1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#ffcc80;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1090" y="810" width="20" height="15" as="geometry"/>
+
+        <!-- Context Manager → Storage -->
+        <mxCell id="arr_ctx_storage" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#9e9e9e;strokeWidth=1.5;" edge="1" parent="1" source="context_mgr" target="storage_bg">
+          <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="leg1_t" value="Agent Harness (에이전트 코어)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#333333;" vertex="1" parent="1">
-          <mxGeometry x="1120" y="805" width="230" height="20" as="geometry"/>
+
+        <!-- ============ Legend ============ -->
+        <mxCell id="legend_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="730" y="870" width="430" height="110" as="geometry"/>
         </mxCell>
-        <mxCell id="leg2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#a5d6a7;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1090" y="835" width="20" height="15" as="geometry"/>
+        <mxCell id="legend_title" value="범례" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="745" y="873" width="60" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="leg2_t" value="Headless Browser (백그라운드 웹 처리)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#333333;" vertex="1" parent="1">
-          <mxGeometry x="1120" y="830" width="230" height="20" as="geometry"/>
+
+        <mxCell id="leg1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#ffcc80;" vertex="1" parent="1">
+          <mxGeometry x="745" y="900" width="16" height="12" as="geometry"/>
         </mxCell>
-        <mxCell id="leg3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#90caf9;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1090" y="860" width="20" height="15" as="geometry"/>
+        <mxCell id="leg1_t" value="Agent Harness (에이전트 코어)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="768" y="895" width="180" height="18" as="geometry"/>
         </mxCell>
-        <mxCell id="leg3_t" value="Generative UI (TV 최적화 UI 생성)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#333333;" vertex="1" parent="1">
-          <mxGeometry x="1120" y="855" width="230" height="20" as="geometry"/>
+
+        <mxCell id="leg2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#2e7d32;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="745" y="920" width="16" height="12" as="geometry"/>
         </mxCell>
-        <mxCell id="leg4" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#ce93d8;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1090" y="885" width="20" height="15" as="geometry"/>
+        <mxCell id="leg2_t" value="Chromium — Browser / WebApp / Headless" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="768" y="915" width="220" height="18" as="geometry"/>
         </mxCell>
-        <mxCell id="leg4_t" value="Model Abstraction Layer (모델 라우팅)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#333333;" vertex="1" parent="1">
-          <mxGeometry x="1120" y="880" width="230" height="20" as="geometry"/>
+
+        <mxCell id="leg3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ff6f00;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="745" y="940" width="16" height="12" as="geometry"/>
         </mxCell>
-        <mxCell id="leg5" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#7c3aed;strokeColor=none;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1090" y="910" width="20" height="15" as="geometry"/>
+        <mxCell id="leg3_t" value="Main Agent → A2A 태스크 위임" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="768" y="935" width="180" height="18" as="geometry"/>
         </mxCell>
-        <mxCell id="leg5_t" value="Cloud Services (외부 클라우드 서비스)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#333333;" vertex="1" parent="1">
-          <mxGeometry x="1120" y="905" width="230" height="20" as="geometry"/>
+
+        <mxCell id="leg4" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#ce93d8;" vertex="1" parent="1">
+          <mxGeometry x="745" y="960" width="16" height="12" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg4_t" value="MAL — 모델 라우팅 (Cloud / On-Device)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="768" y="955" width="220" height="18" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="leg5" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#7c3aed;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="980" y="900" width="16" height="12" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg5_t" value="Cloud Services" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="1003" y="895" width="100" height="18" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="leg6" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#90caf9;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="980" y="920" width="16" height="12" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg6_t" value="GenUI Engine (scope 외)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="1003" y="915" width="140" height="18" as="geometry"/>
         </mxCell>
 
       </root>
