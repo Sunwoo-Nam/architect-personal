@@ -496,17 +496,7 @@
 
 ---
 
-### FR-050 에이전트 활성화 메커니즘
-
-- **Statement** *(Event-driven)*:
-  - *EN*: When the user triggers the designated activation input (e.g., dedicated remote control button or wake word), the system shall transition to an active listening state and clearly signal readiness to the user.
-  - *KO*: 사용자가 지정된 활성화 입력(전용 리모컨 버튼 또는 웨이크워드 등)을 입력하면, 시스템은 활성 청취 상태로 전환하고 사용자에게 준비 완료를 명확하게 알려야 한다.
-- **Source**: 일반 시청자 (3.4.1), UX · Design Team (3.2.6)
-- **Priority**: **Must**
-
----
-
-### FR-051 비자동화 대체 경로 동등성
+### FR-050 비자동화 대체 경로 동등성
 
 - **Statement** *(Ubiquitous)*:
   - *EN*: The system shall ensure that all tasks executable by the agent are also reachable through a non-automated, manual interaction path that does not require the agent to be active.
@@ -516,7 +506,7 @@
 
 ---
 
-### FR-052 반복 구매·자동 구독 고지 및 철회 경로
+### FR-051 반복 구매·자동 구독 고지 및 철회 경로
 
 - **Statement** *(Event-driven)*:
   - *EN*: Before enrolling the user in any recurring purchase or subscription, the system shall clearly display the recurrence terms (amount, frequency, next billing date) and shall provide a persistent cancellation path that remains accessible after enrollment.
@@ -526,7 +516,7 @@
 
 ---
 
-### FR-053 에이전트 행동 이유 설명 (Explainability)
+### FR-052 에이전트 행동 이유 설명 (Explainability)
 
 - **Statement** *(Event-driven)*:
   - *EN*: When the user requests an explanation of an agent action, the system shall provide a concise, human-readable rationale describing why that action was taken.
@@ -589,7 +579,6 @@
 | FR-047 | 토큰 사용량·응답 지연·비용 계측 및 노출 | 3.2.8, 3.2.2 | Should |
 | FR-048 | 에이전트 실행 환경 시뮬레이션 모드 | 3.2.8, 3.2.7 | Should |
 | FR-049 | 기능 영역별 Mock / Stub 인터페이스 제공 | 3.2.8 | Should |
-| FR-050 | 에이전트 활성화 메커니즘 | 3.4.1, 3.2.6 | Must |
-| FR-051 | 비자동화 대체 경로 동등성 | 3.5 | Must |
-| FR-052 | 반복 구매·자동 구독 고지 및 철회 경로 | 3.5 | Must |
-| FR-053 | 에이전트 행동 이유 설명 (Explainability) | 3.2.6, 3.4.3 | Should |
+| FR-050 | 비자동화 대체 경로 동등성 | 3.5 | Must |
+| FR-051 | 반복 구매·자동 구독 고지 및 철회 경로 | 3.5 | Must |
+| FR-052 | 에이전트 행동 이유 설명 (Explainability) | 3.2.6, 3.4.3 | Should |
