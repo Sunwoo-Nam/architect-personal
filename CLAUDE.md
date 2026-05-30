@@ -22,7 +22,7 @@ docs/
   01-background-and-purpose.md   ✅ 작성 완료
   02-project-overview.md         ✅ 작성 완료
   03-stakeholders.md             ✅ 작성 완료
-  04-constraints.md              ✅ 작성 완료 (TC/OC/CN/RC 26건)
+  04-constraints.md              ✅ 작성 완료 (TC/OC/CN 13건; 규제·법률은 5장 NFR/FR에서 직접 표현)
   05-requirements/
     00-overview.md               ✅ 작성 완료 (※ 일부 내용 outdated, 별도 정리 예정)
     01-functional/
