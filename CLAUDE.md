@@ -22,27 +22,21 @@ docs/
   01-background-and-purpose.md   ✅ 작성 완료
   02-project-overview.md         ✅ 작성 완료
   03-stakeholders.md             ✅ 작성 완료
-  04-requirements/
-    00-overview.md               ✅ 작성 완료
+  04-constraints.md              ✅ 작성 완료 (TC/OC/CN/RC 26건)
+  05-requirements/
+    00-overview.md               ✅ 작성 완료 (※ 일부 내용 outdated, 별도 정리 예정)
     01-functional/
-      00-overview.md             ✅ 작성 완료 (FR 규약)
-      01-vui.md                  ✅ 작성 완료 (FR-VUI-001~013)
-      02-agt.md                  ⬜ 미작성 (Agent Core)
-      03-brw.md                  ⬜ 미작성 (Browser Control)
-      04-cnt.md                  ⬜ 미작성 (Content Pipeline)
-      05-mdl.md                  ⬜ 미작성 (Model Abstraction)
-      06-wfl.md                  ⬜ 미작성 (Workflow/Quick Action)
-      07-hil.md                  ⬜ 미작성 (Human-in-the-Loop)
-      08-gnui.md                 ⬜ 미작성 (Generative UI)
-      09-prv.md                  ⬜ 미작성 (Privacy & Retention)
-    02-non-functional/           ⬜ 미작성 사이클
-  05-quality-attributes.md       ⬜ 미작성
-  06-solution-strategy.md        ⬜ 미작성
-  07-views/                      ⬜ 미작성
-  08-decisions/                  ⬜ 미작성 (ADR)
-  09-atam.md                     ⬜ 미작성
-  10-risks.md                    ⬜ 미작성
-  11-roadmap.md                  ⬜ 미작성
+      00-overview.md             ✅ 작성 완료 (※ area code 가정, outdated)
+      draft.md                   ✅ 작성 완료 (FR-001~050, area 코드 미배정)
+    02-non-functional/
+      draft.md                   ✅ 작성 완료 (NFR-001~030, area 코드 미배정)
+  06-quality-attributes.md       🟡 Utility Tree만 작성 (QA 시나리오·트레이드오프 미작성)
+  07-solution-strategy.md        ⬜ 미작성
+  08-views/                      ⬜ 미작성
+  09-decisions/                  ⬜ 미작성 (ADR)
+  10-atam.md                     ⬜ 미작성
+  11-risks.md                    ⬜ 미작성
+  12-roadmap.md                  ⬜ 미작성
 diagrams/
   01-market-landscape.drawio     ✅
   02-system-overview.drawio      ✅
@@ -65,7 +59,7 @@ diagrams/
 - FR ID: `FR-{AREA}-{NNN}` (예: `FR-VUI-001`, `FR-AGT-001`)
 - NFR ID: `NFR-{QA}-{NNN}` (예: `NFR-LAT-001`, `NFR-AVL-001`)
 - ADR ID: `ADR-{NNN}` (예: `ADR-001`)
-- View 파일: `docs/07-views/{view-type}.md`
+- View 파일: `docs/08-views/{view-type}.md`
 
 ### QA 약어 (NFR ID에 사용)
 | 약어 | Quality Attribute |
@@ -128,7 +122,7 @@ diagrams/
 
 ## 5. ADR 스키마
 
-`docs/08-decisions/ADR-NNN-{title}.md`:
+`docs/09-decisions/ADR-NNN-{title}.md`:
 
 ```markdown
 # ADR-NNN: {제목}
