@@ -176,17 +176,157 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 본 절은 향후 작성될 항목의 목차다.
 
-- **6.7 QA 시나리오 카탈로그 (예정)** — [H, H] 11개 leaf를 SEI 6-part 형식으로 풀어 쓰고, ATAM 워크숍 입력으로 사용.
-- **6.8 QA 간 트레이드오프 (예정)** — 충돌 지점 식별. 예:
+- **6.6 QA 시나리오 카탈로그** — [H, H] 10개 leaf를 SEI 6-part 형식으로 풀어 쓰고, ATAM 워크숍 입력으로 사용. *(본 사이클 작성, 아래 6.6 참조)*
+- **6.7 QA 간 트레이드오프 (예정)** — 충돌 지점 식별. 예:
   - Performance (Quick Action 1초) ↔ Security (모든 입력 검증)
   - Functional Quality (태스크 성공률) ↔ Privacy (PII 마스킹으로 인한 컨텍스트 손실)
   - Performance (메모리 예산) ↔ Modifiability (모듈화 오버헤드)
   - Accessibility (비자동화 동등 경로) ↔ Performance (단일 자동화 경로 집중 최적화)
-- **6.9 Open Questions (예정)** — 본 장 내부 미결 사항. 5장 Open Questions 7개와 별개로 관리.
+- **6.8 Open Questions (예정)** — 본 장 내부 미결 사항. 5장 Open Questions 7개와 별개로 관리.
 
 ---
 
-## 6.6 참고 자료 (References)
+## 6.6 QA 시나리오 카탈로그
+
+본 절은 6.3.1의 [H, H] 10개 leaf를 SEI 6-part 형식(Source / Stimulus / Artifact / Environment / Response / Response Measure)으로 풀어 쓴다. 각 시나리오는 5장 NFR을 정량 기준으로 인용하며, 8장(Views)·9장(ADR)·10장(ATAM)의 직접 입력으로 사용된다.
+
+표기:
+- **Mapped NFR**: 본 시나리오를 정량화하는 NFR ID
+- **Mapped QA leaf**: 6.2.2 Utility Tree 상의 위치 (Quality Attribute — 정련)
+
+---
+
+### QAS-001 단순 명령 1초 이내 응답 (Quick Action)
+
+- **Source**: 사용자 (End User)
+- **Stimulus**: 사용자가 단순 명령(채널 변경, 날씨 조회 등 Quick Action 후보)의 발화를 종료함
+- **Artifact**: Quick Action 라우터, 의도 분류기, 외부 의존 컴포넌트(TV 채널 제어, 정보 조회 API 등)
+- **Environment**: 정상 운영 상태, 정상 네트워크 조건, TV가 활성 시청 중
+- **Response**: 시스템이 의도를 식별하고, 에이전트 루프를 우회하여 결과를 표시하거나 동작을 완료함
+- **Response Measure**: P95 ≤ **1.0초** (정상 네트워크 조건)
+- **Mapped NFR**: NFR-001
+- **Mapped QA leaf**: Performance — 응답성 (Quick Action 경로) [H, H]
+
+---
+
+### QAS-002 슬립 복귀 1초 이내 가용
+
+- **Source**: TV 플랫폼 (전원 상태 변화 이벤트)
+- **Stimulus**: TV가 슬립 모드에서 복귀함
+- **Artifact**: 에이전트 하네스, 모델 추상화 계층, 세션 상태 저장소
+- **Environment**: 슬립 복귀 직후, 정상 네트워크, 사용자가 직후 명령 시도 가능 상태
+- **Response**: 에이전트 하네스가 초기화되어 명령을 수락 가능한 상태가 됨
+- **Response Measure**: ≤ **1.0초**
+- **Mapped NFR**: NFR-005
+- **Mapped QA leaf**: Performance — 응답성 [H, H]
+
+---
+
+### QAS-003 복잡 태스크 카테고리별 End-to-end 완료 시간
+
+- **Source**: 사용자 (End User)
+- **Stimulus**: 사용자가 복잡한 태스크(검색·예약·구매 등)를 요청함
+- **Artifact**: 에이전트 루프 전체, 모델 라우팅, 도구 호출 파이프라인, Generative UI 렌더러
+- **Environment**: 정상 네트워크, Cloud LLM API 정상 응답, HITL 대기 시간은 측정에서 제외
+- **Response**: 시스템이 태스크를 완료하고 결과를 사용자에게 표시함
+- **Response Measure**: 시나리오 카테고리별 P95 — **TBD** (정보 조회·예약·구매 트랜잭션 각각, NFR-030 참조)
+- **Mapped NFR**: NFR-030
+- **Mapped QA leaf**: Performance — 응답성 [H, H]
+
+---
+
+### QAS-004 메모리 풋프린트 라인업별 예산 준수
+
+- **Source**: 시스템 운영 자체 (자원 점유)
+- **Stimulus**: 에이전트가 일반적인 태스크를 수행 중임
+- **Artifact**: 에이전트 하네스 + 모델 추상화 계층 + Generative UI 렌더러
+- **Environment**: 라인업별 메모리 예산(Mid-tier 기준), Main Agent·GenUI Renderer·기존 앱과 공존
+- **Response**: 시스템이 메모리를 점유하며 동작
+- **Response Measure**: Mid-tier 라인업 기준 합산 상주 메모리 ≤ **TBD MB** (NFR-006 참조)
+- **Mapped NFR**: NFR-006
+- **Mapped QA leaf**: Performance — 자원 효율 [H, H]
+
+---
+
+### QAS-005 세션당 토큰 비용 예산 준수
+
+- **Source**: 사용자 (1개 태스크 세션 요청 발생)
+- **Stimulus**: 사용자가 1개 태스크 세션(요청 ~ 완료)을 수행함
+- **Artifact**: 모델 추상화 계층, 컨텍스트 압축기, 모델 라우터(small/large), 응답 캐시
+- **Environment**: 정상 운영, 외부 Cloud LLM API 가용, 베타 사용 데이터 수집 환경
+- **Response**: 시스템이 LLM API를 호출하여 토큰을 소비함
+- **Response Measure**: 세션 평균 ≤ **TBD tokens**, P95 ≤ **TBD tokens** (NFR-008 참조)
+- **Mapped NFR**: NFR-008
+- **Mapped QA leaf**: Performance — 자원 효율 [H, H]
+
+---
+
+### QAS-006 에이전트 오류의 상위 시스템 격리
+
+- **Source**: 에이전트 하네스 내부 결함 (crash, 무한 루프, OOM 등)
+- **Stimulus**: 에이전트 하네스에 복구 불가능한 오류가 발생함
+- **Artifact**: 격리 경계 (프로세스/샌드박스), 호스트 시스템(Main Agent · Generative UI Renderer), 폴백 핸들러
+- **Environment**: 운영 환경, 오류 발생 빈도 측정 기간 내
+- **Response**: 시스템이 오류를 격리하고, 호스트 시스템은 정상 동작을 유지함
+- **Response Measure**: 호스트 시스템 가용성 ≥ **99.95%** (에이전트 오류 1000건 발생 시에도 유지, NFR-009 참조)
+- **Mapped NFR**: NFR-009
+- **Mapped QA leaf**: Availability — 격리성 [H, H]
+
+---
+
+### QAS-007 프롬프트 인젝션 탐지
+
+- **Source**: 외부 웹 콘텐츠 (악의적·비정상 페이지)
+- **Stimulus**: 인젝션 패턴이 포함된 외부 웹 콘텐츠를 에이전트가 처리함
+- **Artifact**: 입력 검증 파이프라인, 모델 호출 전처리기, 외부 콘텐츠 신뢰 모델
+- **Environment**: 정상 운영 + 합의된 벤치마크 셋(OWASP LLM01 외) 평가 환경
+- **Response**: 시스템이 해당 명령을 무시하고 사용자에게 통지함
+- **Response Measure**: 탐지율·오탐률 — **TBD (ADR-XXX)** (NFR-014 참조)
+- **Mapped NFR**: NFR-014
+- **Mapped QA leaf**: Security — 공격 표면 방어 [H, H]
+
+---
+
+### QAS-008 의도 해석 정확도
+
+- **Source**: 사용자 (외부 ASR이 전사한 발화)
+- **Stimulus**: 시스템이 외부 ASR로부터 전사된 사용자 발화를 입력으로 수신함
+- **Artifact**: 의도 해석 컴포넌트 (NLU; LLM 기반 또는 하이브리드), 의도 분류 결과 스키마
+- **Environment**: 표준 시나리오 벤치마크 환경, 본 시스템에 도착한 시점에 발화는 이미 전사 완료 상태
+- **Response**: 시스템이 사용자 의도를 분류·해석함
+- **Response Measure**: 표준 시나리오 벤치마크에서 의도 분류 정확도 ≥ **90%** (NFR-020 참조)
+- **Mapped NFR**: NFR-020
+- **Mapped QA leaf**: Functional Quality — 의도 정확도 [H, H]
+
+---
+
+### QAS-009 태스크 완료 성공률
+
+- **Source**: 사용자 (End User)
+- **Stimulus**: 사용자가 표준 시나리오(검색·예약·구매 등)에 해당하는 태스크를 요청함
+- **Artifact**: 에이전트 루프 전체 (계획 · 도구 호출 · HITL 게이트 · 결과 합성)
+- **Environment**: Top-100 시나리오 벤치마크 환경, 정상 외부 서비스 가용
+- **Response**: 시스템이 태스크를 수행하여 완료함
+- **Response Measure**: 성공률 ≥ **80%**, 부분 완료 + 성공 합산 ≥ **90%** (NFR-021 참조)
+- **Mapped NFR**: NFR-021
+- **Mapped QA leaf**: Functional Quality — 수행 정확도 [H, H]
+
+---
+
+### QAS-010 시뮬레이션 모드 커버리지·재현 결정성
+
+- **Source**: QA 엔지니어 (또는 CI 시스템)
+- **Stimulus**: 자동화 회귀 테스트 스위트를 실행함
+- **Artifact**: 시뮬레이션 환경, 외부 의존 Mock/Stub, 결정적 시드·고정 컨텍스트 인프라
+- **Environment**: 시뮬레이션 모드 활성, 실제 외부 서비스·사용자 데이터 차단
+- **Response**: 시스템이 시뮬레이션 환경에서 표준 시나리오를 결정적으로 재현함
+- **Response Measure**: Top-100 시나리오 시뮬레이션 커버리지 ≥ **80%**, 재현 결정성(동일 입력 → 동일 출력) ≥ **95%** (NFR-025 참조)
+- **Mapped NFR**: NFR-025
+- **Mapped QA leaf**: Testability — 결정적 재현 [H, H]
+
+---
+
+## 6.7 참고 자료 (References)
 
 1. Bass, Clements, Kazman. *Software Architecture in Practice* (4th ed.) — Quality Attribute Scenarios, Utility Tree.
 2. SEI / Kazman et al. *ATAM: Method for Architecture Evaluation* (CMU/SEI-2000-TR-004).
