@@ -6,6 +6,13 @@
 > **Category** 필드는 Quality Attribute 분류(LAT/AVL/RES/SEC/PRV/MNT/TST/ACC/QLT/OBS)를 가리킨다.
 > **Measure Basis** 필드는 각 수치의 도출 근거를 별도로 기록한다(작성 예정).
 
+> **범위 조정 (2026-06-04)**: FR draft 정비에 연동한 변경. ID는 결번으로 둔다.
+> - **NFR-016(프로필 간 데이터 격리) 삭제** — 멀티프로필(FR-026~028)이 현재 범위에서 제외되어 근거가 소멸.
+> - **NFR-012 확장** — 구 FR-032(권한 최소화/Least Privilege)를 SEC "경계 통제" 품질로 흡수.
+> - **NFR-006·011·029 재연결** — 구 `FR-024` 대신 제약 `TC-004`(라인업별 HW 스펙 차이)에 앵커링.
+> - **NFR-024·026 자립화** — 구 FR-047(Mock/Stub)이 testability 품질로 재분류·삭제됨에 따라, 두 NFR은 대응 FR 없이 개발팀 Concern(3.2.8)에 직접 앵커링.
+> - **NFR-022·023 자립화** — 구 FR-019(Gen UI 접근성)·FR-039(인터페이스 하위 호환)가 각각 접근성·compatibility 품질로 재분류·삭제됨에 따라 자립화. NFR-022는 제약 CN-002, NFR-023은 인터페이스 FR(038·041)이 보조.
+
 ---
 
 ### NFR-001 간단한 명령의 End-to-end 응답 시간
@@ -92,7 +99,7 @@
 - **Measure**: Mid-tier 라인업 기준 ≤ **TBD MB (ADR-XXX)**
 - **Measure Basis**: TBD — VD 상품화 담당자 + Tizen Platform Team의 라인업별 메모리 예산 합의 후 확정.
 - **Rationale**: 본 시스템이 Main Agent·GenUI Renderer·기존 앱과 한정된 메모리 예산 안에서 공존해야 라인업 탑재가 가능. 라인업별 차등 적용 필요.
-- **Related FR**: `FR-024`
+- **Related Constraint**: `TC-004` (라인업별 HW 스펙 차이)
 - **Source**: Tizen Platform Team (3.2.3), VD 상품화 담당자 (3.2.2)
 - **Status**: Draft
 
@@ -167,22 +174,22 @@
 - **Measure**: 동일 등급 내 SKU 간 응답 시간 편차 ≤ **15%**, 성공률 편차 ≤ **5%**
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: 상품화 담당자의 라인업 관리 일관성 요구. 동일 등급 내 SKU별 경험 분산은 CS 비용과 브랜드 리스크를 증가시킴.
-- **Related FR**: `FR-024`
+- **Related Constraint**: `TC-004` (라인업별 HW 스펙 차이)
 - **Source**: VD 상품화 담당자 (3.2.2)
 - **Status**: Draft
 
 ---
 
-### NFR-012 Web Runtime 샌드박스 경계 준수
+### NFR-012 Web Runtime 샌드박스 경계 준수 및 권한 최소화 (Least Privilege)
 
 - **Category**: SEC
-- **Statement**: 시스템은 Web Runtime 샌드박스 경계를 위반하지 않으며, 허가된 권한 범위를 벗어난 시스템 자원에 접근하지 않아야 한다.
-- **Stimulus**: 시스템이 동작 중임 (정상 및 비정상 입력 포함)
-- **Response**: 시스템이 시스템 자원에 접근을 시도함
-- **Measure**: 샌드박스 위반 시도 = **0건** (정적 분석 + 런타임 모니터링), Tizen Web Runtime CTS 통과
+- **Statement**: 시스템은 Web Runtime 샌드박스 경계를 위반하지 않으며, 허가된 권한 범위를 벗어난 시스템 자원에 접근하지 않아야 한다. 또한 현재 태스크에 필요한 **최소한의 브라우저·시스템 API 권한만** 요청·행사하고, 더 이상 필요하지 않은 권한은 즉시 해제해야 한다 (Least Privilege).
+- **Stimulus**: 시스템이 동작 중임 (정상 및 비정상 입력 포함), 태스크가 권한을 요구함
+- **Response**: 시스템이 시스템 자원에 접근을 시도하고, 태스크에 필요한 최소 권한만 보유함
+- **Measure**: 샌드박스 위반 시도 = **0건** (정적 분석 + 런타임 모니터링), Tizen Web Runtime CTS 통과, **태스크 종료 후 불필요 권한 잔존 = 0건**
 - **Measure Basis**: *(작성 예정)*
-- **Rationale**: 사용자가 직접 관찰할 수 없는 아키텍처 제약. 위반 시 Tizen Platform Team의 거버넌스 게이트 통과 불가.
-- **Related FR**: `FR-032`
+- **Rationale**: 사용자가 직접 관찰할 수 없는 횡단 보안 제약. 위반 시 Tizen Platform Team의 거버넌스 게이트 통과 불가. 권한 최소화는 공격 표면과 오용 시 피해 범위를 동시에 축소하므로 같은 "경계 통제" 품질로 묶어 관리한다. *(구 FR-032에서 재분류)*
+- **Related Constraint**: `OC-004` (보안 게이트)
 - **Source**: Tizen Platform Team (3.2.3), Security & Privacy Team (3.2.5)
 - **Status**: Draft
 
@@ -229,21 +236,6 @@
 - **Rationale**: 외부 호출 인터페이스가 노출되는 순간 공격 표면이 됨. 인증 없는 호출 허용은 사용자 데이터·자격증명 노출로 직결.
 - **Related FR**: `FR-040`
 - **Source**: 외부 Agent 플랫폼 통합 개발자 (3.3.3), Security & Privacy Team (3.2.5)
-- **Status**: Draft
-
----
-
-### NFR-016 프로필 간 데이터 격리 강도
-
-- **Category**: SEC
-- **Statement**: 활성 프로필이 다른 프로필의 이력, 자격증명 등에 접근할 수 없어야 한다.
-- **Stimulus**: 활성 프로필 사용자가 시스템에 임의의 요청을 보냄
-- **Response**: 시스템이 다른 프로필의 데이터에 접근하지 못함
-- **Measure**: Cross-profile 데이터 노출 사고 = **0건** (정기 침투 테스트 기준)
-- **Measure Basis**: *(작성 예정)*
-- **Rationale**: 가족 공유 환경의 프라이버시 보장. 격리 실패는 자녀 보호 위반 및 규제(PIPA·GDPR) 리스크로 직결.
-- **Related FR**: `FR-028`
-- **Source**: 가족 공유 사용자 (3.4.4), Security & Privacy Team (3.2.5)
 - **Status**: Draft
 
 ---
@@ -332,7 +324,7 @@
 - **Measure**: WCAG 2.2 AA 자동 검사 도구(axe-core 등) 위반 = **0건** (Generative UI 포함 전체 컴포넌트), 수동 검수 통과
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: 글로벌 출시의 hard requirement이자 EU 접근성법·한국 장차법·ADA의 명문 요건. 자동 검사만으로는 부족하므로 수동 검수 병행.
-- **Related FR**: `FR-019`
+- **Related FR**: *(설계 품질 — 직접 대응 FR 없음; 구 FR-019 흡수, 제약 CN-002 / 컴플라이언스 매트릭스 #9)*
 - **Source**: 접근성 요구 사용자 (3.4.3), 규제 · 법률 기관 (3.5)
 - **Status**: Draft
 
@@ -347,7 +339,7 @@
 - **Measure**: 이전 메이저 버전 지원 기간 ≥ **12개월** (또는 다음 메이저 릴리스 + 6개월 중 더 긴 쪽)
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: 외부 Agent 플랫폼 통합 개발자가 본 시스템의 버전 변경에 따라 자기 통합 코드를 마이그레이션할 시간이 필요. 너무 짧으면 통합 자체를 포기.
-- **Related FR**: `FR-039`
+- **Related FR**: *(설계 품질 — 직접 대응 FR 없음; 구 FR-039 흡수. 버전 식별자 부여는 FR-038·041이 포함)*
 - **Source**: 외부 Agent 플랫폼 통합 개발자 (3.3.3), Tizen Platform Team (3.2.3)
 - **Status**: Draft
 
@@ -362,7 +354,7 @@
 - **Measure**: 정적 분석 도구(예: dependency graph) 기준 영역 간 비공개 심볼 참조 = **0건**
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: 개발팀의 영역별 독립 개발·테스트 요구. 결합도 높으면 한 영역 변경이 전체 회귀 테스트를 강제하여 개발 속도가 저하됨.
-- **Related FR**: `FR-047`
+- **Related FR**: *(설계 품질 — 직접 대응 FR 없음; 개발팀 Concern 3.2.8)*
 - **Source**: AI Web Agent 개발팀 (3.2.8)
 - **Status**: Draft
 
@@ -392,7 +384,7 @@
 - **Measure**: 단위 테스트 외부 의존성(네트워크·디스크·시스템 호출) 비율 = **0%**, Mock 커버리지 ≥ **95%**
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: 단위 테스트의 격리성은 CI 안정성과 빌드 속도에 직결. 외부 의존이 남으면 flaky test가 발생하여 신뢰가 무너짐.
-- **Related FR**: `FR-047`
+- **Related FR**: *(설계 품질 — 직접 대응 FR 없음; 구 FR-047 흡수, 개발팀 Concern 3.2.8)*
 - **Source**: AI Web Agent 개발팀 (3.2.8)
 - **Status**: Draft
 
@@ -437,7 +429,8 @@
 - **Measure**: Mid-tier 라인업 기준 누적 ≤ **TBD MB (ADR-XXX)**
 - **Measure Basis**: TBD — VD 상품화 담당자 + Tizen Platform Team의 라인업별 디스크 예산 합의 후 확정.
 - **Rationale**: 메모리(NFR-006)와 별개로 영구 저장소도 라인업의 고정 자원. 이력·트레이스가 무제한 누적되면 다른 앱 가용성을 침해.
-- **Related FR**: `FR-024`, `FR-025`, `FR-031`, `FR-044`
+- **Related FR**: `FR-025`, `FR-031`, `FR-044`
+- **Related Constraint**: `TC-004` (라인업별 HW 스펙 차이)
 - **Source**: VD 상품화 담당자 (3.2.2), Tizen Platform Team (3.2.3)
 - **Status**: Draft
 
@@ -470,30 +463,29 @@
 | NFR-003 | 진행 상황 표시 업데이트 주기 | LAT | FR-008 | 3.4.1 |
 | NFR-004 | 외부 Skill 호출 인터페이스 응답 시간 | LAT | FR-038, FR-040 | 3.3.3 |
 | NFR-005 | 슬립 복귀 후 에이전트 가용 시간 | LAT | FR-036 | 3.2.3, 3.4.1 |
-| NFR-006 | 메모리 풋프린트 한도 | RES | FR-024 | 3.2.3, 3.2.2 |
+| NFR-006 | 메모리 풋프린트 한도 | RES | TC-004 | 3.2.3, 3.2.2 |
 | NFR-007 | CPU 점유율 한도 | RES | FR-010 | 3.2.3, 3.4.1 |
 | NFR-008 | 세션당 토큰 비용 예산 | RES | FR-045 | 3.2.2, 3.2.8 |
 | NFR-009 | 에이전트 오류의 상위 시스템 영향 격리 | AVL | FR-037 | 3.2.3 |
 | NFR-010 | 네트워크 끊김 후 재개 성공률 | AVL | FR-011 | 3.4.1 |
-| NFR-011 | 라인업별 기능 동등성 | AVL | FR-024 | 3.2.2 |
-| NFR-012 | Web Runtime 샌드박스 경계 준수 | SEC | FR-032 | 3.2.3, 3.2.5 |
+| NFR-011 | 라인업별 기능 동등성 | AVL | TC-004 | 3.2.2 |
+| NFR-012 | Web Runtime 샌드박스 경계 준수 및 권한 최소화 | SEC | OC-004 | 3.2.3, 3.2.5 |
 | NFR-013 | 자격증명 저장 암호화 강도 | SEC | FR-030 | 3.2.5 |
 | NFR-014 | 프롬프트 인젝션 탐지율 | SEC | FR-033 | 3.2.5 |
 | NFR-015 | 외부 호출자 인증 강도 | SEC | FR-040 | 3.3.3, 3.2.5 |
-| NFR-016 | 프로필 간 데이터 격리 강도 | SEC | FR-028 | 3.4.4, 3.2.5 |
 | NFR-017 | PII 데이터 기본 보존 기간 | PRV | FR-031, FR-034 | 3.2.5, 3.5 |
 | NFR-018 | 클라우드 전송 데이터의 최소화 | PRV | FR-030, FR-035 | 3.2.5, 3.5 |
 | NFR-019 | 데이터 주체 권리 행사 응답 시간 | PRV | FR-034 | 3.5 |
 | NFR-020 | 의도 파악 정확도 | QLT | FR-001 | 3.4.1 |
 | NFR-021 | 태스크 완료 성공률 | QLT | FR-003, FR-004 | 3.4.1 |
-| NFR-022 | WCAG 2.2 AA 준수 | ACC | FR-019 | 3.4.3, 3.5 |
-| NFR-023 | 공개 인터페이스 하위 호환성 유지 기간 | MNT | FR-039 | 3.3.3, 3.2.3 |
-| NFR-024 | 모듈 결합도 | MNT | FR-047 | 3.2.8 |
+| NFR-022 | WCAG 2.2 AA 준수 | ACC | — (구 FR-019 흡수, CN-002) | 3.4.3, 3.5 |
+| NFR-023 | 공개 인터페이스 하위 호환성 유지 기간 | MNT | — (구 FR-039 흡수) | 3.3.3, 3.2.3 |
+| NFR-024 | 모듈 결합도 | MNT | — | 3.2.8 |
 | NFR-025 | 시뮬레이션 모드 시나리오 커버리지 | TST | FR-046 | 3.2.7, 3.2.8 |
-| NFR-026 | Mock 인터페이스 적용 범위 | TST | FR-047 | 3.2.8 |
+| NFR-026 | Mock 인터페이스 적용 범위 | TST | — (구 FR-047 흡수) | 3.2.8 |
 | NFR-027 | 에이전트 트레이스 보존 기간 | OBS | FR-044 | 3.2.8 |
 | NFR-028 | HITL 응답 후 태스크 재개 시간 | LAT | FR-005, FR-006 | 3.4.1, 3.2.6 |
-| NFR-029 | 영구 저장소 풋프린트 한도 | RES | FR-024, FR-025, FR-031, FR-044 | 3.2.2, 3.2.3 |
+| NFR-029 | 영구 저장소 풋프린트 한도 | RES | FR-025, FR-031, FR-044, TC-004 | 3.2.2, 3.2.3 |
 | NFR-030 | 복잡한 태스크 End-to-end 완료 시간 | LAT | FR-003, FR-004 | 3.4.1 |
 
 ---

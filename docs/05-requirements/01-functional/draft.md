@@ -4,6 +4,13 @@
 > 모듈 배정·전체 카드 작성은 별도 단계에서 진행한다.
 > 각 FR의 **Source** 필드는 직접 Concern을 제기한 Stakeholder를 가리킨다.
 
+> **범위 조정 (2026-06-04)**: 아래 FR을 삭제·재분류했다. ID는 재배정하지 않고 **결번**으로 둔다.
+> - **삭제** — FR-002(입력 중재: 상위 플랫폼 입력 레이어 책임, 본 시스템은 전사 발화를 입력으로 받음), FR-015·016·017(페이지 인식·시맨틱 역할·앱 구조정보: 외부 관찰 기능이 아닌 *내부 메커니즘* → 7장 Solution Strategy / Component View로 이관), FR-020(Gen UI 원본 요소 보존: full-page 재구성 스코프 미정 → Gen UI Open Question으로 보류), FR-023(사용자 권한 부분허용·범위설정: 현재 범위 외), FR-024(라인업·지역별 조건부 활성화: 현재 범위 외, 라인업 차등은 TC-004 제약 + NFR 예산으로 표현), FR-026·027·028(멀티프로필: 단일 시스템 다중 프로필은 현재 범위 외).
+> - **NFR 재분류** — FR-032(권한 최소화/Least Privilege)는 횡단 보안 품질 속성이므로 **NFR-012**(SEC, 경계 통제)에 흡수. FR-047(Mock/Stub 인터페이스)은 제품 기능이 아닌 테스트 가능성(testability) 품질이므로 삭제 — 이미 **NFR-026**(TST, Mock 적용 범위)·**NFR-024**(MNT, 모듈 결합도)가 소유.
+> - **삭제** — FR-048(비자동화 대체 경로 동등성)은 명확한 법적 구속력이 없는 원칙(C등급)이므로 완전 삭제. 관련 기능 보존(직접 조작 인수·원본 페이지 표시·실패 폴백)은 FR-009·FR-014·FR-022가 이미 담당.
+> - **흡수** — FR-049(반복 구매·구독 고지·해지)는 FR-006(비가역 동작 확인)의 특수 케이스이므로 FR-006의 Acceptance Criteria로 접음. 규제 의무의 법령·구속력·실현 매핑은 [컴플라이언스 매트릭스](../04-compliance-matrix.md)가 단일 진실원으로 관리한다.
+> - **제약·NFR 중복 제거** — FR-018(Gen UI 디자인 시스템 준수)·FR-019(Gen UI 접근성 메타데이터)는 *준수(conformance)* 요건으로, 각각 제약 **CN-001**·**CN-002**(+ 품질 **NFR-022** WCAG)가 이미 동일하게 규정하므로 삭제. FR-039(공개 인터페이스 버전·하위 호환)는 compatibility 품질이므로 삭제 — **NFR-023**(하위 호환 유지기간)이 소유하고, 버전 식별자 부여는 FR-038·041(versioned 인터페이스)이 포함.
+
 ---
 
 ### FR-001 사용자 의도 해석
@@ -12,16 +19,6 @@
   - *EN*: When the system receives a transcribed user utterance from the external speech recognition system, the system shall interpret the user's intent and plan an appropriate task accordingly.
   - *KO*: 시스템이 외부 음성 인식 시스템으로부터 전사된 사용자 발화를 수신하면, 시스템은 사용자의 의도를 해석하고 그에 적합한 태스크를 계획해야 한다.
 - **Source**: 일반 시청자 (3.4.1)
-- **Priority**: **Must**
-
----
-
-### FR-002 입력 조율 — 리모컨·음성 충돌 방지
-
-- **Statement** *(Unwanted behavior)*:
-  - *EN*: If remote control input and voice input are received simultaneously, the system shall arbitrate priority and suppress conflicting control signals.
-  - *KO*: 리모컨 입력과 음성 입력이 동시에 발생하면, 시스템은 우선순위를 조율하고 충돌하는 제어 신호를 억제해야 한다.
-- **Source**: UX · Design Team (3.2.6)
 - **Priority**: **Must**
 
 ---
@@ -36,11 +33,11 @@
 
 ---
 
-### FR-004 End-to-end 트랜잭션 자동 완료
+### FR-004 End-to-end 태스크 자동 완료
 
 - **Statement** *(Event-driven)*:
-  - *EN*: When the user requests a transactional task (e.g., purchase, reservation), the system shall execute all required steps through to completion without requiring manual page navigation.
-  - *KO*: 사용자가 구매·예약 등 트랜잭션 태스크를 요청하면, 시스템은 사용자가 직접 페이지를 조작하지 않고도 완료까지 모든 단계를 자동으로 수행해야 한다.
+  - *EN*: When the user requests a task that commits an external action (e.g., purchase, reservation), the system shall execute all required steps through to completion without requiring manual page navigation.
+  - *KO*: 사용자가 외부에 변경을 확정(commit)하는 태스크(구매·예약 등)를 요청하면, 시스템은 사용자가 직접 페이지를 조작하지 않고도 완료까지 모든 단계를 자동으로 수행해야 한다.
 - **Source**: 일반 시청자 (3.4.1)
 - **Priority**: **Must**
 
@@ -63,6 +60,10 @@
   - *KO*: 결제·삭제·구독 등 되돌릴 수 없는 동작을 실행하기 전에, 시스템은 사용자가 명시적으로 승인해야 하는 확인 단계를 제시해야 한다.
 - **Source**: 고령 사용자 (3.4.2), 규제 · 법률 기관 (3.5)
 - **Priority**: **Must**
+- **Acceptance Criteria**:
+  1. 결제·구독 등 외부 동작을 사용자 대신 확정하기 전에 확인 단계를 제시하며, 명시적 승인 없이는 실행하지 않는다.
+  2. *(반복 결제·구독)* 확정 전에 반복 조건(금액·주기·다음 결제일)을 함께 고지한다. *(구 FR-049 / 컴플라이언스 매트릭스 #7)*
+  3. *(반복 결제·구독)* 가입 후 해지 수단으로 사용자를 안내·연결한다 (해지 기능 자체는 해당 서비스가 소유). *(구 FR-049)*
 
 ---
 
@@ -146,66 +147,6 @@
 
 ---
 
-### FR-015 웹 페이지 현재 상태 인식
-
-- **Statement** *(Ubiquitous)*:
-  - *EN*: The system shall perceive the current state of a web page — including the layout, the presence and availability of interactive elements, and dynamic changes to page content — to determine what actions are possible at any given moment during task execution.
-  - *KO*: 시스템은 태스크 실행 중 언제든지 가능한 동작을 결정할 수 있도록, 웹 페이지의 현재 상태(레이아웃, 상호작용 가능한 요소의 존재와 활성 여부, 페이지 콘텐츠의 동적 변화 포함)를 인식해야 한다.
-- **Source**: Web Engine Team (3.2.4)
-- **Priority**: **Must**
-
----
-
-### FR-016 페이지 요소의 시맨틱 역할 인식
-
-- **Statement** *(Ubiquitous)*:
-  - *EN*: The system shall identify the semantic role and purpose of page elements (e.g., input field, submit button, navigation link, product listing) to accurately plan the sequence of steps required to complete a task.
-  - *KO*: 시스템은 태스크 완료에 필요한 단계 순서를 정확하게 계획하기 위해, 페이지 요소의 시맨틱 역할과 목적(예: 입력 필드, 제출 버튼, 네비게이션 링크, 상품 목록)을 식별해야 한다.
-- **Source**: Tizen Web App 개발자 (3.3.1)
-- **Priority**: **Must**
-
----
-
-### FR-017 앱 제공 구조화 정보를 통한 페이지 이해 향상
-
-- **Statement** *(Optional feature)*:
-  - *EN*: Where an app provides structured information about its content or UI (e.g., semantic annotations, manifest metadata), the system shall incorporate that information to improve the accuracy of page comprehension.
-  - *KO*: 앱이 콘텐츠 또는 UI에 대한 구조화된 정보(시맨틱 어노테이션, manifest 메타데이터 등)를 제공하는 경우, 시스템은 해당 정보를 활용하여 페이지 이해 정확도를 향상시켜야 한다.
-- **Source**: Tizen Web App 개발자 (3.3.1)
-- **Priority**: **Should**
-
----
-
-### FR-018 Generative UI 출력 시 디자인 시스템 준수
-
-- **Statement** *(Ubiquitous)*:
-  - *EN*: The system shall render all Generative UI components in accordance with the Tizen TV design system tokens, including typography, color, focus states, and motion guidelines.
-  - *KO*: 시스템은 모든 Generative UI 컴포넌트를 Tizen TV 디자인 시스템 토큰(타이포그래피, 색상, 포커스 상태, 모션 가이드라인)에 따라 렌더링해야 한다.
-- **Source**: UX · Design Team (3.2.6)
-- **Priority**: **Must**
-
----
-
-### FR-019 Generative UI 접근성 메타데이터 포함
-
-- **Statement** *(Ubiquitous)*:
-  - *EN*: The system shall include complete accessibility attributes (role, label, description, state) in every Generative UI component it renders.
-  - *KO*: 시스템은 렌더링하는 모든 Generative UI 컴포넌트에 완전한 접근성 속성(role, label, description, state)을 포함해야 한다.
-- **Source**: 접근성 요구 사용자 (3.4.3)
-- **Priority**: **Must**
-
----
-
-### FR-020 원본 페이지 핵심 요소 재구성 시 보존
-
-- **Statement** *(Event-driven)*:
-  - *EN*: When the system reconstructs a web page as Generative UI, it shall preserve the original page's designated elements (brand identity, payment paths, advertising slots) as defined in the rendering policy.
-  - *KO*: 시스템이 웹 페이지를 Generative UI로 재구성할 때, 렌더링 정책에 정의된 원본 페이지의 지정 요소(브랜드, 결제 경로, 광고 슬롯)를 보존해야 한다.
-- **Source**: Tizen Web App 개발자 (3.3.1)
-- **Priority**: **Should**
-
----
-
 ### FR-021 AI 생성 콘텐츠 표시 (출처 및 생성 여부 명시)
 
 - **Statement** *(Ubiquitous)*:
@@ -226,26 +167,6 @@
 
 ---
 
-### FR-023 사용자 에이전트 권한 범위 설정
-
-- **Statement** *(Optional feature)*:
-  - *EN*: Where the user has configured agent permission boundaries, the system shall enforce those constraints (e.g., purchase spending limit, site allowlist/blocklist, permitted task types) across all agent actions.
-  - *KO*: 사용자가 에이전트 권한 범위를 설정한 경우, 시스템은 모든 에이전트 동작에 해당 제약(구매 한도, 사이트 허용/차단 목록, 허용 태스크 유형)을 적용해야 한다.
-- **Source**: 일반 시청자 (3.4.1)
-- **Priority**: **Should**
-
----
-
-### FR-024 기능 조건부 활성화 (라인업·지역별)
-
-- **Statement** *(Optional feature)*:
-  - *EN*: Where device tier or regional configuration is set, the system shall activate only the agent features supported for that configuration and disable unsupported features gracefully.
-  - *KO*: 디바이스 등급 또는 지역 구성이 설정된 경우, 시스템은 해당 구성에서 지원되는 에이전트 기능만 활성화하고, 지원되지 않는 기능을 graceful하게 비활성화해야 한다.
-- **Source**: VD 상품화 담당자 (3.2.2)
-- **Priority**: **Must**
-
----
-
 ### FR-025 사용자 히스토리·선호 누적 및 활용
 
 - **Statement** *(Ubiquitous)*:
@@ -253,36 +174,6 @@
   - *KO*: 시스템은 사용자의 브라우저 이력, 과거 에이전트 요청, 태스크 결과를 누적하고, 이를 이후 태스크의 정확도 향상 및 사용자 입력 감소에 활용해야 한다.
 - **Source**: 일반 시청자 (3.4.1)
 - **Priority**: **Should**
-
----
-
-### FR-026 활성 프로필 컨텍스트 전환
-
-- **Statement** *(Event-driven)*:
-  - *EN*: When the system receives a profile identifier from the external speaker identification system, the system shall switch to the corresponding user profile context before processing the request.
-  - *KO*: 시스템이 외부 화자 식별 시스템으로부터 프로필 식별자를 수신하면, 시스템은 요청을 처리하기 전에 해당 사용자 프로필 컨텍스트로 전환해야 한다.
-- **Source**: 가족 공유 사용자 (3.4.4)
-- **Priority**: **Should**
-
----
-
-### FR-027 프로필별 콘텐츠 필터링
-
-- **Statement** *(State-driven)*:
-  - *EN*: While a restricted profile (e.g., child profile) is active, the system shall apply age-appropriate content restrictions to all agent-retrieved and displayed content.
-  - *KO*: 제한 프로필(예: 자녀 프로필)이 활성화된 상태에서, 시스템은 에이전트가 검색·표시하는 모든 콘텐츠에 연령 적합성 제한을 적용해야 한다.
-- **Source**: 가족 공유 사용자 (3.4.4)
-- **Priority**: **Should**
-
----
-
-### FR-028 이력 데이터 프로필 격리
-
-- **Statement** *(Ubiquitous)*:
-  - *EN*: The system shall store the user's agent interaction history, browsing history, and task history per user profile, and prevent any cross-profile data exposure.
-  - *KO*: 시스템은 사용자의 에이전트 상호작용 이력, 브라우저 이력, 태스크 이력을 사용자 프로필 단위로 저장하고, 프로필 간 데이터 노출을 방지해야 한다.
-- **Source**: 가족 공유 사용자 (3.4.4)
-- **Priority**: **Must**
 
 ---
 
@@ -311,16 +202,6 @@
 - **Statement** *(Ubiquitous)*:
   - *EN*: The system shall classify all data that may contain PII (voice transcripts, DOM snapshots, screen content) and enforce the configured retention period, automatically deleting data upon expiry.
   - *KO*: 시스템은 잠재적 PII가 포함될 수 있는 모든 데이터(음성 전사, DOM 스냅샷, 화면 콘텐츠)를 분류하고, 설정된 보존 기간을 적용하며 만료 시 자동 삭제해야 한다.
-- **Source**: Security & Privacy Team (3.2.5)
-- **Priority**: **Must**
-
----
-
-### FR-032 에이전트 권한 최소화 (Least Privilege)
-
-- **Statement** *(Ubiquitous)*:
-  - *EN*: The system shall request and exercise only the minimum set of browser and system API permissions required for the current task, releasing permissions when no longer needed.
-  - *KO*: 시스템은 현재 태스크에 필요한 최소한의 브라우저 및 시스템 API 권한만을 요청하고 행사하며, 더 이상 필요하지 않은 권한은 해제해야 한다.
 - **Source**: Security & Privacy Team (3.2.5)
 - **Priority**: **Must**
 
@@ -381,16 +262,6 @@
 - **Statement** *(Ubiquitous)*:
   - *EN*: The system shall expose a versioned, standard callable interface (MCP tool spec or OpenAPI schema) that allows external agent platforms to register and invoke this agent as a Skill or Sub-Agent.
   - *KO*: 시스템은 외부 에이전트 플랫폼이 본 시스템을 Skill 또는 Sub-Agent로 등록하고 호출할 수 있도록 버전 관리된 표준 호출 인터페이스(MCP tool spec 또는 OpenAPI 스키마)를 노출해야 한다.
-- **Source**: 외부 Agent 플랫폼 통합 개발자 (3.3.3), Tizen Platform Team (3.2.3)
-- **Priority**: **Should**
-
----
-
-### FR-039 공개 인터페이스 버전 관리 및 하위 호환성 보장
-
-- **Statement** *(Ubiquitous)*:
-  - *EN*: The system shall assign version identifiers to all public interfaces and maintain backward compatibility for at least one prior major version.
-  - *KO*: 시스템은 모든 공개 인터페이스에 버전 식별자를 부여하고, 최소 이전 메이저 버전과의 하위 호환성을 유지해야 한다.
 - **Source**: 외부 Agent 플랫폼 통합 개발자 (3.3.3), Tizen Platform Team (3.2.3)
 - **Priority**: **Should**
 
@@ -466,36 +337,6 @@
 
 ---
 
-### FR-047 기능 영역별 Mock / Stub 인터페이스 제공
-
-- **Statement** *(Ubiquitous)*:
-  - *EN*: The system shall provide mock and stub interfaces at each functional boundary (VUI, agent core, browser control, model abstraction) to enable isolated unit and integration testing.
-  - *KO*: 시스템은 각 기능 경계(VUI, 에이전트 코어, 브라우저 제어, 모델 추상화)에 Mock 및 Stub 인터페이스를 제공하여 격리된 단위·통합 테스트를 가능하게 해야 한다.
-- **Source**: AI Web Agent 개발팀 (3.2.8)
-- **Priority**: **Should**
-
----
-
-### FR-048 비자동화 대체 경로 동등성
-
-- **Statement** *(Ubiquitous)*:
-  - *EN*: The system shall ensure that all tasks executable by the agent are also reachable through a non-automated, manual interaction path that does not require the agent to be active.
-  - *KO*: 에이전트가 수행할 수 있는 모든 태스크는 에이전트가 활성화되지 않은 상태에서도 수동 상호작용 경로를 통해 접근 가능해야 한다.
-- **Source**: 규제 · 법률 기관 (3.5)
-- **Priority**: **Must**
-
----
-
-### FR-049 반복 구매·자동 구독 고지 및 철회 경로
-
-- **Statement** *(Event-driven)*:
-  - *EN*: Before enrolling the user in any recurring purchase or subscription, the system shall clearly display the recurrence terms (amount, frequency, next billing date) and shall provide a persistent cancellation path that remains accessible after enrollment.
-  - *KO*: 반복 구매 또는 구독 서비스에 사용자를 등록하기 전에, 시스템은 반복 조건(금액, 주기, 다음 결제일)을 명확히 표시해야 하며, 등록 이후에도 지속적으로 접근 가능한 해지 경로를 제공해야 한다.
-- **Source**: 규제 · 법률 기관 (3.5)
-- **Priority**: **Must**
-
----
-
 ### FR-050 에이전트 행동 이유 설명 (Explainability)
 
 - **Statement** *(Event-driven)*:
@@ -511,9 +352,8 @@
 | 번호 | 제목 | Source | Priority |
 |------|------|--------|----------|
 | FR-001 | 사용자 의도 해석 | 3.4.1 | Must |
-| FR-002 | 입력 조율 — 리모컨·음성 충돌 방지 | 3.2.6 | Must |
 | FR-003 | 멀티도메인 태스크 실행 | 3.4.1 | Must |
-| FR-004 | End-to-end 트랜잭션 자동 완료 | 3.4.1 | Must |
+| FR-004 | End-to-end 태스크 자동 완료 | 3.4.1 | Must |
 | FR-005 | Human-in-the-Loop 확인 요청 | 3.4.1 | Must |
 | FR-006 | 비가역 동작 전 명시적 확인 단계 | 3.4.2, 3.5 | Must |
 | FR-007 | 에이전트 동작 취소 및 재시도 | 3.4.1, 3.2.6 | Must |
@@ -524,31 +364,18 @@
 | FR-012 | Headless 실행 모드 | 3.4.1 | Should |
 | FR-013 | 로그인 및 인증 장벽 처리 (자동 또는 HITL) | 3.4.1 | Must |
 | FR-014 | Headless 처리 결과를 Headed 모드로 전환 | 3.4.1 | Should |
-| FR-015 | 웹 페이지 현재 상태 인식 | 3.2.4 | Must |
-| FR-016 | 페이지 요소의 시맨틱 역할 인식 | 3.3.1 | Must |
-| FR-017 | 앱 제공 구조화 정보를 통한 페이지 이해 향상 | 3.3.1 | Should |
-| FR-018 | Generative UI 출력 시 디자인 시스템 준수 | 3.2.6 | Must |
-| FR-019 | Generative UI 접근성 메타데이터 포함 | 3.4.3 | Must |
-| FR-020 | 원본 페이지 핵심 요소 재구성 시 보존 | 3.3.1 | Should |
 | FR-021 | AI 생성 콘텐츠 표시 (출처 및 생성 여부 명시) | 3.5 | Must |
 | FR-022 | 에이전트 실패 시 폴백 경로 제공 | 3.2.6, 3.2.3 | Must |
-| FR-023 | 사용자 에이전트 권한 범위 설정 | 3.4.1 | Should |
-| FR-024 | 기능 조건부 활성화 (라인업·지역별) | 3.2.2 | Must |
 | FR-025 | 사용자 히스토리·선호 누적 및 활용 | 3.4.1 | Should |
-| FR-026 | 활성 프로필 컨텍스트 전환 | 3.4.4 | Should |
-| FR-027 | 프로필별 콘텐츠 필터링 | 3.4.4 | Should |
-| FR-028 | 이력 데이터 프로필 격리 | 3.4.4 | Must |
 | FR-029 | UI 표시 옵션 설정 (텍스트 크기·대비·응답 속도) | 3.4.2 | Should |
 | FR-030 | 자격증명 안전 저장 및 사용 | 3.2.5 | Must |
 | FR-031 | PII 데이터 처리 및 보존 기간 제어 | 3.2.5 | Must |
-| FR-032 | 에이전트 권한 최소화 (Least Privilege) | 3.2.5 | Must |
 | FR-033 | 프롬프트 인젝션 탐지 및 방어 | 3.2.5 | Must |
 | FR-034 | 개인정보 동의 수집 및 데이터 주체 권리 행사 | 3.5 | Must |
 | FR-035 | 데이터 처리 방식 사용자 고지 (온디바이스 vs 클라우드) | 3.5 | Must |
 | FR-036 | 시스템 전원 상태 변화에 따른 에이전트 생명주기 관리 | 3.2.3 | Must |
 | FR-037 | 에이전트 오류 격리 및 상위 시스템 보호 | 3.2.3 | Must |
 | FR-038 | MCP / OpenAPI 기반 Skill 등록 인터페이스 제공 | 3.3.3, 3.2.3 | Should |
-| FR-039 | 공개 인터페이스 버전 관리 및 하위 호환성 보장 | 3.3.3, 3.2.3 | Should |
 | FR-040 | 외부 호출자 인증 및 권한 검증 | 3.3.3 | Should |
 | FR-041 | 표준화된 실행 결과 반환 스키마 | 3.3.3 | Should |
 | FR-042 | 에이전트 신원 식별 정보 제공 (Agent-ID) | 3.3.2 | Should |
@@ -556,7 +383,4 @@
 | FR-044 | 에이전트 루프 실행 트레이스 기록 | 3.2.8 | Should |
 | FR-045 | 토큰 사용량·응답 지연·비용 계측 및 노출 | 3.2.8, 3.2.2 | Should |
 | FR-046 | 에이전트 실행 환경 시뮬레이션 모드 | 3.2.8, 3.2.7 | Should |
-| FR-047 | 기능 영역별 Mock / Stub 인터페이스 제공 | 3.2.8 | Should |
-| FR-048 | 비자동화 대체 경로 동등성 | 3.5 | Must |
-| FR-049 | 반복 구매·자동 구독 고지 및 철회 경로 | 3.5 | Must |
 | FR-050 | 에이전트 행동 이유 설명 (Explainability) | 3.2.6, 3.4.3 | Should |
