@@ -63,7 +63,7 @@
 
 ### TC-004 라인업별 HW 스펙 차이 (메모리·CPU·NPU)
 
-- **Description**: Samsung TV는 동일 시점에 여러 라인업(Premium / Mid / Entry)이 동시에 출시되며, 라인업별 메모리·CPU·NPU 스펙이 서로 다르다. 본 시스템은 단일 빌드가 모든 라인업에서 동작 가능함을 1차 목표로 하며, 단일 절대 한도가 아니라 **라인업별 예산 프로파일**(메모리·CPU·저장소)을 따르는 방식이 강제된다.
+- **Description**: Samsung TV는 동일 시점에 여러 라인업(Premium / Mid / Entry)이 동시에 출시되며, 라인업별 메모리·CPU·NPU 스펙이 서로 다르다. 본 시스템은 단일 빌드가 모든 라인업에서 동작 가능함을 1차 목표로 하며, 자원 예산(메모리·CPU·저장소)은 **가장 제약이 큰 라인업을 기준으로 한 전 라인업 공통 상한**을 적용한다.
 - **Source**: VD 상품화 담당자 (3.2.2), Tizen Platform Team (3.2.3)
 - **Impact**: NFR-006 (메모리), NFR-007 (CPU), NFR-011 (라인업 동등성), NFR-029 (저장소), Deployment View, Resource Budget View
 - **Status**: Fixed

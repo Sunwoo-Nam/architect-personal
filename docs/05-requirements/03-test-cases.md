@@ -235,15 +235,15 @@
 - **InputSpec + Procedure**: 슬립 복귀 이벤트를 발생시키고, 복귀 시점~에이전트가 명령 수락 가능 상태가 되기까지의 시간을 20회 측정한다.
 - **Output Spec**: 가용 상태 도달 시간 ≤ 1초.
 
-### TC-NFR-06 — NFR-006 메모리 풋프린트 한도 (Mid-tier)
-- **Test Feature**: 하네스+MAL+GenUI 렌더러 합산 상주 메모리
-- **Pre-Condition**: Mid-tier 라인업 기기, 일반 태스크 수행 중
-- **InputSpec + Procedure**: 대표 태스크를 수행하며 세 컴포넌트의 합산 RSS를 일정 시간 샘플링한다.
-- **Output Spec**: 합산 상주 메모리 ≤ 확정 예산(MB) — 기준값 TBD(ADR), 측정·비교 절차는 본 TC로 고정.
+### TC-NFR-06 — NFR-006 메모리 풋프린트 한도
+- **Test Feature**: 하네스+MAL+GenUI 렌더러 합산 peak 메모리
+- **Pre-Condition**: 최저 사양 라인업 기기, 일반 태스크 수행 중
+- **InputSpec + Procedure**: 대표 태스크를 수행하며 세 컴포넌트 합산 메모리를 일정 시간 샘플링하여 peak를 측정한다.
+- **Output Spec**: 합산 peak 메모리 ≤ **50MB** (전 라인업 공통).
 
 ### TC-NFR-07 — NFR-007 CPU 점유율 한도
 - **Test Feature**: 백그라운드 에이전트의 CPU 점유와 영상 품질 영향
-- **Pre-Condition**: Mid-tier 기기, VOD 재생 중 + 에이전트 백그라운드 태스크 수행
+- **Pre-Condition**: VOD 재생 중 + 에이전트 백그라운드 태스크 수행 (전 라인업 공통 기준)
 - **InputSpec + Procedure**: VOD 재생과 동시에 에이전트 태스크를 백그라운드 실행하며 평균 CPU 점유율과 영상 프레임 드롭을 측정한다.
 - **Output Spec**: 백그라운드 평균 CPU 점유율 ≤ 15%, 영상 프레임 드롭 0건.
 
@@ -265,11 +265,11 @@
 - **InputSpec + Procedure**: 태스크 실행 중 네트워크를 끊고 30초 이내 재연결하는 시나리오를 100회 반복하며 재개 성공 여부를 집계한다.
 - **Output Spec**: 30초 이내 재연결 시 체크포인트 재개 성공률 ≥ 90%.
 
-### TC-NFR-11 — NFR-011 라인업별 기능 동등성
-- **Test Feature**: 동일 등급 SKU 간 응답 시간·성공률 편차
+### TC-NFR-11 — NFR-011 라인업 내 SKU 간 태스크 성공률 동등성
+- **Test Feature**: 동일 등급 SKU(개별 판매 모델) 간 태스크 성공률 편차
 - **Pre-Condition**: 동일 등급의 서로 다른 SKU 2종 이상
-- **InputSpec + Procedure**: 동일 표준 태스크 셋을 각 SKU에서 실행하고 응답 시간·성공률을 비교한다.
-- **Output Spec**: SKU 간 응답 시간 편차 ≤ 15%, 성공률 편차 ≤ 5%.
+- **InputSpec + Procedure**: 동일 표준 태스크 셋을 각 SKU에서 실행하고 태스크 성공률을 비교한다.
+- **Output Spec**: SKU 간 태스크 성공률 편차 ≤ 5%.
 
 ### TC-NFR-12 — NFR-012 Web Runtime 샌드박스 경계 준수 및 권한 최소화
 - **Test Feature**: 샌드박스 경계 위반 시도 부재 + 태스크 종료 후 불필요 권한 해제
@@ -371,9 +371,9 @@
 
 ### TC-NFR-29 — NFR-029 영구 저장소 풋프린트 한도
 - **Test Feature**: 영구 저장소 누적 사용량
-- **Pre-Condition**: Mid-tier 라인업 기기, 일정 기간 운영 데이터 축적
+- **Pre-Condition**: 일정 기간 운영 데이터 축적 (전 라인업 공통 기준)
 - **InputSpec + Procedure**: 대표 사용 패턴으로 일정 기간 운영하며 이력·캐시·로컬 모델·트레이스의 누적 디스크 사용량을 측정한다.
-- **Output Spec**: 누적 영구 저장소 사용량 ≤ 확정 예산(MB) — 기준값 TBD(ADR), 측정 절차는 본 TC로 고정.
+- **Output Spec**: 누적 영구 저장소 사용량 ≤ 확정 예산(MB) (전 라인업 공통) — 기준값 TBD(ADR), 측정 절차는 본 TC로 고정.
 
 ### TC-NFR-30 — NFR-030 복잡한 태스크 End-to-end 완료 시간
 - **Test Feature**: 시나리오 카테고리별 태스크 완료 시간(HITL 대기 제외)

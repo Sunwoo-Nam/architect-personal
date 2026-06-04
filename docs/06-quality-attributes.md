@@ -46,21 +46,18 @@ Utility (Tizen TV AI Web Agent의 효용)
 │   │   └── 복잡 태스크 카테고리별 완료 시간 한도               [H, H]  → NFR-030
 │   │
 │   └── 자원 효율 (Resource Efficiency)
-│       ├── 메모리 풋프린트 라인업별 예산 준수                  [H, H]  → NFR-006
+│       ├── 메모리 peak ≤ 50MB 준수 (전 라인업 공통)            [H, H]  → NFR-006
 │       ├── 백그라운드 CPU ≤ 15%, 영상 프레임 드롭 없음          [H, M]  → NFR-007
 │       ├── 세션당 토큰 비용 예산 준수                           [H, H]  → NFR-008
-│       └── 영구 저장소 라인업별 예산 준수                       [M, M]  → NFR-029
+│       └── 영구 저장소 예산 준수 (전 라인업 공통)               [M, M]  → NFR-029
 │
 ├── Availability (가용성·복원력)
 │   │
 │   ├── 격리성 (Isolation)
 │   │   └── 에이전트 오류의 상위 시스템 영향 격리 (≥99.95%)     [H, H]  → NFR-009
 │   │
-│   ├── 복원력 (Resilience)
-│   │   └── 네트워크 끊김 후 30초 내 재개 성공률 ≥90%           [H, M]  → NFR-010
-│   │
-│   └── 동등성 (Consistency)
-│       └── 동일 등급 라인업 SKU 간 응답·성공률 편차 ≤15%/5%    [M, M]  → NFR-011
+│   └── 복원력 (Resilience)
+│       └── 네트워크 끊김 후 30초 내 재개 성공률 ≥90%           [H, M]  → NFR-010
 │
 ├── Security (보안)
 │   │
@@ -98,6 +95,11 @@ Utility (Tizen TV AI Web Agent의 효용)
 │   └── 표준 준수
 │       └── WCAG 2.2 AA 위반 = 0 (Generative UI 포함)            [H, M]  → NFR-022
 │
+├── Compatibility (라인업 호환성)
+│   │
+│   └── 라인업 일관성 (Consistency across SKUs)
+│       └── 동일 등급 SKU 간 태스크 성공률 편차 ≤5%             [M, M]  → NFR-011
+│
 ├── Modifiability (유지보수성·진화성)
 │   │
 │   ├── 인터페이스 안정성
@@ -133,7 +135,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 | 단순 명령 1초 이내 응답 (Quick Action) | Performance — 응답성 | NFR-001 | 에이전트 루프 우회 경로 설계 (Quick Action 라우터) |
 | 슬립 복귀 1초 이내 가용 | Performance — 응답성 | NFR-005 | Warm-start / pre-warming 전략, 하네스 생명주기 |
 | 복잡 태스크 카테고리별 완료 시간 한도 | Performance — 응답성 | NFR-030 | 시나리오별 모델·도구 선택 정책, 병렬 도구 호출 |
-| 메모리 풋프린트 라인업별 예산 준수 | Performance — 자원 효율 | NFR-006 | 모델 추상화 전략, 라인업별 기능 차등 |
+| 메모리 peak ≤ 50MB (전 라인업 공통) | Performance — 자원 효율 | NFR-006 | 모델 추상화 전략, 메모리 풋프린트 최적화 |
 | 세션당 토큰 비용 예산 준수 | Performance — 자원 효율 | NFR-008 | 컨텍스트 압축, 모델 라우팅(small/large), 캐싱 |
 | 에이전트 오류의 상위 시스템 격리 (≥99.95%) | Availability — 격리성 | NFR-009 | 프로세스 격리·샌드박스 경계, 폴백 전략 |
 | 프롬프트 인젝션 탐지 (벤치마크 기반) | Security — 공격 표면 방어 | NFR-014 | 입력 검증 파이프라인, 외부 콘텐츠 신뢰 모델 |
@@ -153,7 +155,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 표준 도구·관행으로 달성하며, 본 장 우선순위는 낮지만 12장(로드맵)·운영 단계에서 챙겨야 할 항목.
 
-- NFR-003 진행 표시 / NFR-004 Skill 라우팅 / NFR-011 라인업 동등성 / NFR-019 데이터 주체 권리
+- NFR-003 진행 표시 / NFR-004 Skill 라우팅 / NFR-011 SKU 성공률 동등성 / NFR-019 데이터 주체 권리
 - NFR-023 인터페이스 호환성 / NFR-024 모듈 결합도 / NFR-026 Mock / NFR-027 트레이스 / NFR-028 HITL 재개 / NFR-029 저장소
 
 ---
@@ -234,14 +236,14 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 ---
 
-### QAS-004 메모리 풋프린트 라인업별 예산 준수
+### QAS-004 메모리 풋프린트 예산 준수 (전 라인업 공통)
 
 - **Source**: 시스템 운영 자체 (자원 점유)
 - **Stimulus**: 에이전트가 일반적인 태스크를 수행 중임
 - **Artifact**: 에이전트 하네스 + 모델 추상화 계층 + Generative UI 렌더러
-- **Environment**: 라인업별 메모리 예산(Mid-tier 기준), Main Agent·GenUI Renderer·기존 앱과 공존
+- **Environment**: 전 라인업 공통 메모리 예산, Main Agent·GenUI Renderer·기존 앱과 공존
 - **Response**: 시스템이 메모리를 점유하며 동작
-- **Response Measure**: Mid-tier 라인업 기준 합산 상주 메모리 ≤ **TBD MB** (NFR-006 참조)
+- **Response Measure**: 합산 peak 메모리 ≤ **50 MB** (전 라인업 공통, NFR-006 참조)
 - **Mapped NFR**: NFR-006
 - **Mapped QA leaf**: Performance — 자원 효율 [H, H]
 

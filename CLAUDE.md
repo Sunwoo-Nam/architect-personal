@@ -68,10 +68,12 @@ diagrams/
 | 약어 | Quality Attribute |
 |------|-------------------|
 | LAT | Latency / Performance |
+| RES | Resource Efficiency |
 | AVL | Availability |
 | SCL | Scalability |
 | SEC | Security |
 | PRV | Privacy |
+| CMP | Compatibility |
 | MNT | Maintainability |
 | TST | Testability |
 | EXT | Extensibility |

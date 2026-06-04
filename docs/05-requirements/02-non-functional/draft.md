@@ -3,7 +3,7 @@
 > Area 코드 미배정 초안. Stakeholder Concern 기반 전수 도출.
 > 각 NFR은 SEI 스타일(Stimulus / Response / Measure)로 정량화한다.
 > 수치 근거가 불충분한 항목은 `TBD (ADR-XXX)`로 표시한다.
-> **Category** 필드는 Quality Attribute 전체 명칭(Latency / Performance, Resource Efficiency, Availability, Security, Privacy, Quality / Accuracy, Accessibility, Maintainability, Testability, Observability)을 사용한다.
+> **Category** 필드는 Quality Attribute 전체 명칭(Latency / Performance, Resource Efficiency, Availability, Security, Privacy, Quality / Accuracy, Compatibility, Accessibility, Maintainability, Testability, Observability)을 사용한다.
 > **Measure Basis** 필드는 각 수치의 도출 근거를 별도로 기록한다(작성 예정).
 
 > **정비 이력**: FR draft 정비에 연동하여 NFR을 정리했다 — NFR-016(프로필 격리)은 멀티프로필 범위 제외로 삭제(결번 유지), NFR-012는 권한 최소화 품질을 흡수, NFR-006·011·029는 제약 TC-004(라인업별 HW)에 앵커링, NFR-022·023·024·026은 대응 FR 없이 자립(접근성·호환성·테스트 가능성 품질). 상세 이력은 git 참조.
@@ -85,17 +85,17 @@
 
 ---
 
-### NFR-006 메모리 풋프린트 한도 (Mid-tier 기준)
+### NFR-006 메모리 풋프린트 한도
 
 - **Category**: Resource Efficiency
-- **Statement**: 에이전트 하네스 + 모델 추상화 계층 + Generative UI 렌더러의 합산 상주 메모리 사용량이 라인업별 예산 내에 있어야 한다.
+- **Statement**: 에이전트 하네스 + 모델 추상화 계층 + Generative UI 렌더러의 합산 **peak 메모리** 사용량이 고정 상한 이내여야 하며, 이 한도는 전 라인업(Premium/Mid/Entry)에 공통 적용된다.
 - **Stimulus**: 에이전트가 일반적인 태스크를 수행 중임
 - **Response**: 시스템이 메모리를 점유함
-- **Measure**: Mid-tier 라인업 기준 ≤ **TBD MB (ADR-XXX)**
-- **Measure Basis**: TBD — VD 상품화 담당자 + Tizen Platform Team의 라인업별 메모리 예산 합의 후 확정.
-- **Rationale**: 본 시스템이 Main Agent·GenUI Renderer·기존 앱과 한정된 메모리 예산 안에서 공존해야 라인업 탑재가 가능. 라인업별 차등 적용 필요.
+- **Measure**: 합산 peak 메모리 ≤ **50 MB** (전 라인업 공통)
+- **Measure Basis**: VD 상품화 담당자 요구사항.
+- **Rationale**: 본 시스템이 Main Agent·GenUI Renderer·기존 앱과 한정된 메모리 예산 안에서 공존해야 라인업 탑재가 가능. 가장 제약이 큰 라인업에서도 동작하도록 단일 상한을 전 라인업 공통으로 적용한다.
 - **Related Constraint**: `TC-004` (라인업별 HW 스펙 차이)
-- **Source**: Tizen Platform Team (3.2.3), VD 상품화 담당자 (3.2.2)
+- **Source**: VD 상품화 담당자 (3.2.2), Tizen Platform Team (3.2.3)
 - **Status**: Draft
 
 ---
@@ -106,7 +106,7 @@
 - **Statement**: 에이전트 동작 중 CPU 점유율은 동시 재생 중인 비디오·UI 렌더링 품질에 영향을 주지 않는 수준을 유지해야 한다.
 - **Stimulus**: 에이전트가 백그라운드에서 태스크를 수행 중이며, 사용자가 동시에 VOD를 시청 중임
 - **Response**: 시스템이 CPU를 점유함
-- **Measure**: 백그라운드 평균 CPU 점유율 ≤ **15%** (Mid-tier 기준), 영상 프레임 드롭 없음
+- **Measure**: 백그라운드 평균 CPU 점유율 ≤ **15%** (전 라인업 공통), 영상 프레임 드롭 없음
 - **Measure Basis**: *(작성 예정)* (실측 및 VD 상품화 담당자 요구사항 확인)
 - **Rationale**: 멀티태스킹 보장의 정량적 근거. 영상 프레임 드롭은 사용자가 즉각 인지하는 품질 후퇴 지표이며, 에이전트가 그 원인이 되어서는 안 됨.
 - **Related FR**: `FR-009`
@@ -160,15 +160,15 @@
 
 ---
 
-### NFR-011 라인업별 기능 동등성
+### NFR-011 라인업 내 SKU 간 태스크 성공률 동등성
 
-- **Category**: Availability
-- **Statement**: 동일 라인업 등급 내 모든 SKU에서 활성화된 에이전트 기능은 동등한 응답 시간·성공률을 보여야 한다.
-- **Stimulus**: 동일 등급 라인업의 서로 다른 SKU에서 동일한 태스크를 수행함
+- **Category**: Compatibility
+- **Statement**: 동일 라인업 등급 내의 서로 다른 **SKU**(Stock Keeping Unit — 같은 등급 안에서 화면 크기·세부 사양만 다른 개별 판매 모델)에서, 활성화된 에이전트 기능은 동등한 **태스크 성공률**을 보여야 한다.
+- **Stimulus**: 동일 등급 라인업의 서로 다른 SKU(개별 판매 모델)에서 동일한 태스크를 수행함
 - **Response**: 시스템이 태스크를 실행함
-- **Measure**: 동일 등급 내 SKU 간 응답 시간 편차 ≤ **15%**, 성공률 편차 ≤ **5%**
+- **Measure**: 동일 등급 내 SKU 간 태스크 성공률 편차 ≤ **5%**
 - **Measure Basis**: *(작성 예정)*
-- **Rationale**: 상품화 담당자의 라인업 관리 일관성 요구. 동일 등급 내 SKU별 경험 분산은 CS 비용과 브랜드 리스크를 증가시킴.
+- **Rationale**: 상품화 담당자의 라인업 관리 일관성 요구. 응답 시간은 SKU별 HW 차이로 자연히 달라질 수 있으므로 동등성 대상에서 제외하고, HW와 무관하게 동일해야 하는 **태스크 성공률**만 보증 대상으로 한다. 동일 등급 내 SKU별 성공률 분산은 CS 비용과 브랜드 리스크를 증가시킴.
 - **Related Constraint**: `TC-004` (라인업별 HW 스펙 차이)
 - **Source**: VD 상품화 담당자 (3.2.2)
 - **Status**: Draft
@@ -418,11 +418,11 @@
 ### NFR-029 영구 저장소 풋프린트 한도
 
 - **Category**: Resource Efficiency
-- **Statement**: 본 시스템이 사용하는 영구 저장소(사용자 이력, 캐시, 로컬 모델 가중치, 트레이스 등)의 누적 사용량이 라인업별 예산 내에 있어야 한다.
+- **Statement**: 본 시스템이 사용하는 영구 저장소(사용자 이력, 캐시, 로컬 모델 가중치, 트레이스 등)의 누적 사용량이 고정 상한 이내여야 하며, 이 한도는 전 라인업에 공통 적용된다.
 - **Stimulus**: 시스템이 일정 기간 운영되며 영구 데이터를 축적함
 - **Response**: 시스템이 영구 저장소를 점유함
-- **Measure**: Mid-tier 라인업 기준 누적 ≤ **TBD MB (ADR-XXX)**
-- **Measure Basis**: TBD — VD 상품화 담당자 + Tizen Platform Team의 라인업별 디스크 예산 합의 후 확정.
+- **Measure**: 누적 ≤ **TBD MB (ADR-XXX)** (전 라인업 공통)
+- **Measure Basis**: TBD — VD 상품화 담당자 + Tizen Platform Team의 전 라인업 공통 디스크 예산 합의 후 확정.
 - **Rationale**: 메모리(NFR-006)와 별개로 영구 저장소도 라인업의 고정 자원. 이력·트레이스가 무제한 누적되면 다른 앱 가용성을 침해.
 - **Related FR**: `FR-016`, `FR-019`, `FR-030`
 - **Related Constraint**: `TC-004` (라인업별 HW 스펙 차이)
@@ -458,12 +458,12 @@
 | NFR-003 | 진행 상황 표시 업데이트 주기 | Latency / Performance | FR-007 | 3.4.1 |
 | NFR-004 | 외부 Skill 호출 인터페이스 응답 시간 | Latency / Performance | FR-025, FR-026 | 3.3.3 |
 | NFR-005 | 슬립 복귀 후 에이전트 가용 시간 | Latency / Performance | FR-023 | 3.2.3, 3.4.1 |
-| NFR-006 | 메모리 풋프린트 한도 | Resource Efficiency | TC-004 | 3.2.3, 3.2.2 |
+| NFR-006 | 메모리 풋프린트 한도 (peak ≤ 50MB, 전 라인업 공통) | Resource Efficiency | TC-004 | 3.2.2, 3.2.3 |
 | NFR-007 | CPU 점유율 한도 | Resource Efficiency | FR-009 | 3.2.3, 3.4.1 |
 | NFR-008 | 세션당 토큰 비용 예산 | Resource Efficiency | FR-031 | 3.2.2, 3.2.8 |
 | NFR-009 | 에이전트 오류의 상위 시스템 영향 격리 | Availability | FR-024 | 3.2.3 |
 | NFR-010 | 네트워크 끊김 후 재개 성공률 | Availability | FR-010 | 3.4.1 |
-| NFR-011 | 라인업별 기능 동등성 | Availability | TC-004 | 3.2.2 |
+| NFR-011 | 라인업 내 SKU 간 태스크 성공률 동등성 | Compatibility | TC-004 | 3.2.2 |
 | NFR-012 | Web Runtime 샌드박스 경계 준수 및 권한 최소화 | Security | OC-004 | 3.2.3, 3.2.5 |
 | NFR-013 | 자격증명 저장 암호화 강도 | Security | FR-018 | 3.2.5 |
 | NFR-014 | 프롬프트 인젝션 탐지율 | Security | FR-020 | 3.2.5 |
@@ -489,10 +489,9 @@
 
 다음 항목은 수치 확정을 위해 별도 결정이 필요하며, ADR로 기록되어야 한다.
 
-1. **NFR-006 메모리 한도** — 라인업 등급별 정확한 MB 예산. VD 상품화 담당자 + Tizen Platform Team 합의 필요.
-2. **NFR-008 토큰 예산** — 평균/P95 세션 토큰 한도. 베타 테스트 데이터 기반 확정 필요.
-3. **NFR-014 프롬프트 인젝션 탐지율** — 벤치마크 셋(OWASP LLM01 외) 확정 및 현실적 목표 수치 합의 필요.
-4. **NFR-021 표준 시나리오 Top-100** — 시나리오 카탈로그 정의 필요 (시나리오 챕터에서 작성).
-5. **NFR-029 영구 저장소 한도** — 라인업 등급별 디스크 예산. VD 상품화 담당자 + Tizen Platform Team 합의 필요.
-6. **NFR-030 카테고리별 완료 시간 한도** — 시나리오 카테고리 정의 후 카테고리별 P95 한도 합의 필요.
-7. **AVL 등급** — 시스템 전체 가용성 SLA 등급 (99.9% vs 99.95% vs 99.99%) 미확정.
+1. **NFR-008 토큰 예산** — 평균/P95 세션 토큰 한도. 베타 테스트 데이터 기반 확정 필요.
+2. **NFR-014 프롬프트 인젝션 탐지율** — 벤치마크 셋(OWASP LLM01 외) 확정 및 현실적 목표 수치 합의 필요.
+3. **NFR-021 표준 시나리오 Top-100** — 시나리오 카탈로그 정의 필요 (시나리오 챕터에서 작성).
+4. **NFR-029 영구 저장소 한도** — 전 라인업 공통 디스크 예산(MB) 값 미확정. VD 상품화 담당자 + Tizen Platform Team 합의 필요.
+5. **NFR-030 카테고리별 완료 시간 한도** — 시나리오 카테고리 정의 후 카테고리별 P95 한도 합의 필요.
+6. **AVL 등급** — 시스템 전체 가용성 SLA 등급 (99.9% vs 99.95% vs 99.99%) 미확정.
