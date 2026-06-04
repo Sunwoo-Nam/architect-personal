@@ -74,7 +74,7 @@
 
 - **Description**: 본 시스템은 독립 실행뿐 아니라, Tizen Platform Team이 소유한 Claw 계열 Platform Main Agent의 **Sub-Agent / Skill**로도 호출 가능해야 한다. 즉 본 시스템의 공개 인터페이스는 Main Agent의 호출 계약과 호환되어야 하며, Main Agent의 컨텍스트·세션 모델을 침해하지 않아야 한다.
 - **Source**: Tizen Platform Team (3.2.3)
-- **Impact**: FR-038 (Skill 인터페이스), FR-040 (외부 인증), FR-041 (실행 결과 스키마), Logical View, Integration / Extension View
+- **Impact**: FR-025 (Skill 인터페이스), FR-026 (외부 인증), FR-027 (실행 결과 스키마), Logical View, Integration / Extension View
 - **Status**: Fixed
 
 ---
@@ -83,7 +83,7 @@
 
 - **Description**: 본 시스템은 Claw 계열 내부 플랫폼뿐 아니라, **외부 에이전트 오케스트레이션 플랫폼**(MCP 클라이언트, Agent Protocol 등)에서도 Sub-Agent / Skill로 호출 가능하도록 표준화된 공개 인터페이스를 제공해야 한다. 인터페이스 표준은 MCP tool spec 또는 OpenAPI schema 중 하나 이상을 지원한다.
 - **Source**: 외부 Agent 플랫폼 통합 개발자 (3.3.3)
-- **Impact**: FR-038, FR-040, FR-041, NFR-023 (하위 호환성), External Interface View
+- **Impact**: FR-025, FR-026, FR-027, NFR-023 (하위 호환성), External Interface View
 - **Status**: Fixed
 
 ---
@@ -103,7 +103,7 @@
 
 - **Description**: 본 시스템의 운영 비용 중 가장 큰 비중은 Cloud LLM API 호출 비용이다. VD 상품화 담당자는 사용량 규모 대비 비용 예측 가능성을 출시 승인 전제 조건으로 요구한다. 세션당 평균 토큰 사용량 상한, 비용 모니터링·알림 체계, 비용 폭주 시 강제 차단 정책이 사전에 정의되어야 한다.
 - **Source**: VD 상품화 담당자 (3.2.2)
-- **Impact**: NFR-008 (세션당 토큰 예산), FR-045 (토큰·비용 계측·노출), Roadmap & Capability View
+- **Impact**: NFR-008 (세션당 토큰 예산), FR-031 (토큰·비용 계측·노출), Roadmap & Capability View
 - **Status**: Fixed
 
 ---
@@ -112,7 +112,7 @@
 
 - **Description**: Tizen Platform Team은 본 시스템의 호스트이자 가장 가까운 내부 소비자다. 본 시스템이 노출하는 공개 인터페이스의 안정성·버저닝, 그리고 본 시스템의 실패가 Main Agent / GenUI Renderer로 전파되지 않는 격리 전략은 Platform Team이 정의한 정책을 따라야 한다.
 - **Source**: Tizen Platform Team (3.2.3)
-- **Impact**: NFR-009 (오류 격리), NFR-023 (인터페이스 호환성), FR-037 (오류 격리), Logical View, Integration / Extension View
+- **Impact**: NFR-009 (오류 격리), NFR-023 (인터페이스 호환성), FR-024 (오류 격리), Logical View, Integration / Extension View
 - **Status**: Fixed
 
 ---
@@ -121,7 +121,7 @@
 
 - **Description**: 자격증명 보관·사용, PII 데이터 흐름, 권한 모델, 위협 모델은 Security & Privacy Team의 사전 심사·승인을 받아야 한다. 본 시스템의 설계는 해당 팀이 정의한 권한 도메인·트러스트 경계·암호화 표준 안에서 이루어져야 한다.
 - **Source**: Security & Privacy Team (3.2.5)
-- **Impact**: NFR-012~NFR-015, NFR-017, NFR-018 (보안·프라이버시 전반), FR-030·031·033·034·035 (보안·프라이버시 전반), Security View, Threat Model View, Privacy & Retention View
+- **Impact**: NFR-012~NFR-015, NFR-017, NFR-018 (보안·프라이버시 전반), FR-018·FR-019·FR-020·FR-021·FR-022 (보안·프라이버시 전반), Security View, Threat Model View, Privacy & Retention View
 - **Status**: Fixed
 
 ---
@@ -130,7 +130,7 @@
 
 - **Description**: Cloud LLM API 호출에 따른 토큰 사용 비용은 Samsung이 부담하며, 최종 사용자에게 별도 과금하지 않는다. 본 시스템 사용에 사용량 기반 결제 모델은 존재하지 않으며, 사용 빈도가 사용자 부담으로 직결되지 않는다. 이는 본 시스템의 운영 비용 관리 부담이 전적으로 Samsung 내부 예산으로 흡수됨을 의미하며, 비용 최적화(컨텍스트 압축·모델 라우팅·캐싱 등)는 사용자 가치 보호가 아닌 **사업 지속가능성 차원의 요구**가 된다.
 - **Source**: VD 사업부 경영진 (3.2.1), VD 상품화 담당자 (3.2.2)
-- **Impact**: NFR-008 (세션당 토큰 예산), FR-045 (토큰·비용 계측·노출), OC-002 (비용 예산), Roadmap & Capability View
+- **Impact**: NFR-008 (세션당 토큰 예산), FR-031 (토큰·비용 계측·노출), OC-002 (비용 예산), Roadmap & Capability View
 - **Status**: Fixed
 
 ---
@@ -163,13 +163,13 @@
 | TC-002 | On-device 에이전트 하네스 + Cloud LLM | 1장, 3.2.3 | NFR-008, NFR-018 |
 | TC-003 | 외부 ASR / 화자 식별 시스템 의존 | 3.2.3 | FR-001 |
 | TC-004 | 라인업별 HW 스펙 차이 | 3.2.2, 3.2.3 | NFR-006, NFR-007, NFR-011 |
-| TC-005 | Platform Main Agent의 Sub-Agent 동작 | 3.2.3 | FR-038, FR-040, FR-041 |
-| TC-006 | 외부 Agent 플랫폼 호출 표준 인터페이스 | 3.3.3 | FR-038, FR-040, FR-041, NFR-023 |
+| TC-005 | Platform Main Agent의 Sub-Agent 동작 | 3.2.3 | FR-025, FR-026, FR-027 |
+| TC-006 | 외부 Agent 플랫폼 호출 표준 인터페이스 | 3.3.3 | FR-025, FR-026, FR-027, NFR-023 |
 | OC-001 | VD 사업부 상품화 게이트 | 3.2.2 | 전반 |
-| OC-002 | LLM API 호출 비용 예산 | 3.2.2 | NFR-008, FR-045 |
+| OC-002 | LLM API 호출 비용 예산 | 3.2.2 | NFR-008, FR-031 |
 | OC-003 | Tizen Platform Team 인터페이스·격리 정책 | 3.2.3 | NFR-009, NFR-023 |
 | OC-004 | Security & Privacy Team 보안 게이트 | 3.2.5 | NFR-012~NFR-015, NFR-017, NFR-018 |
-| OC-005 | LLM 토큰 사용 비용 사용자 미부과 | 3.2.1, 3.2.2 | NFR-008, FR-045 |
+| OC-005 | LLM 토큰 사용 비용 사용자 미부과 | 3.2.1, 3.2.2 | NFR-008, FR-031 |
 | CN-001 | Tizen TV 디자인 시스템 (10-feet UI) | 3.2.6 | Generative UI View |
 | CN-002 | ARIA / 시맨틱 마크업 표준 | 3.4.3, W3C | NFR-022 |
 

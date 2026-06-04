@@ -4,12 +4,7 @@
 > 모듈 배정·전체 카드 작성은 별도 단계에서 진행한다.
 > 각 FR의 **Source** 필드는 직접 Concern을 제기한 Stakeholder를 가리킨다.
 
-> **범위 조정 (2026-06-04)**: 아래 FR을 삭제·재분류했다. ID는 재배정하지 않고 **결번**으로 둔다.
-> - **삭제** — FR-002(입력 중재: 상위 플랫폼 입력 레이어 책임, 본 시스템은 전사 발화를 입력으로 받음), FR-015·016·017(페이지 인식·시맨틱 역할·앱 구조정보: 외부 관찰 기능이 아닌 *내부 메커니즘* → 7장 Solution Strategy / Component View로 이관), FR-020(Gen UI 원본 요소 보존: full-page 재구성 스코프 미정 → Gen UI Open Question으로 보류), FR-023(사용자 권한 부분허용·범위설정: 현재 범위 외), FR-024(라인업·지역별 조건부 활성화: 현재 범위 외, 라인업 차등은 TC-004 제약 + NFR 예산으로 표현), FR-026·027·028(멀티프로필: 단일 시스템 다중 프로필은 현재 범위 외).
-> - **NFR 재분류** — FR-032(권한 최소화/Least Privilege)는 횡단 보안 품질 속성이므로 **NFR-012**(SEC, 경계 통제)에 흡수. FR-047(Mock/Stub 인터페이스)은 제품 기능이 아닌 테스트 가능성(testability) 품질이므로 삭제 — 이미 **NFR-026**(TST, Mock 적용 범위)·**NFR-024**(MNT, 모듈 결합도)가 소유.
-> - **삭제** — FR-048(비자동화 대체 경로 동등성)은 명확한 법적 구속력이 없는 원칙(C등급)이므로 완전 삭제. 관련 기능 보존(직접 조작 인수·원본 페이지 표시·실패 폴백)은 FR-009·FR-014·FR-022가 이미 담당.
-> - **흡수** — FR-049(반복 구매·구독 고지·해지)는 FR-006(비가역 동작 확인)의 특수 케이스이므로 FR-006의 Acceptance Criteria로 접음. 규제 의무의 법령·구속력·실현 매핑은 [컴플라이언스 매트릭스](../04-compliance-matrix.md)가 단일 진실원으로 관리한다.
-> - **제약·NFR 중복 제거** — FR-018(Gen UI 디자인 시스템 준수)·FR-019(Gen UI 접근성 메타데이터)는 *준수(conformance)* 요건으로, 각각 제약 **CN-001**·**CN-002**(+ 품질 **NFR-022** WCAG)가 이미 동일하게 규정하므로 삭제. FR-039(공개 인터페이스 버전·하위 호환)는 compatibility 품질이므로 삭제 — **NFR-023**(하위 호환 유지기간)이 소유하고, 버전 식별자 부여는 FR-038·041(versioned 인터페이스)이 포함.
+> **정비 이력**: 초안의 전수 도출 목록에서 범위 외·중복·품질성 항목을 정리하고 **FR-001~033으로 재번호**했다. 범위 제외(입력 중재·페이지 인식·멀티프로필·조건부 활성화·Gen UI 원본 보존 등), NFR·제약으로 표현(권한 최소화·Mock/Stub·디자인/접근성 준수·인터페이스 하위 호환), Acceptance Criteria로 흡수(반복 구매·구독 고지 → 비가역 동작 확인 FR). 상세 이력은 git 및 [컴플라이언스 매트릭스](../04-compliance-matrix.md) 참조.
 
 ---
 
@@ -23,7 +18,7 @@
 
 ---
 
-### FR-003 멀티도메인 태스크 실행
+### FR-002 멀티도메인 태스크 실행
 
 - **Statement** *(Ubiquitous)*:
   - *EN*: The system shall execute tasks across multiple domains — including search, information retrieval, reservation, purchase, content discovery, and smart home control — within a single agent session.
@@ -33,7 +28,7 @@
 
 ---
 
-### FR-004 End-to-end 태스크 자동 완료
+### FR-003 End-to-end 태스크 자동 완료
 
 - **Statement** *(Event-driven)*:
   - *EN*: When the user requests a task that commits an external action (e.g., purchase, reservation), the system shall execute all required steps through to completion without requiring manual page navigation.
@@ -43,7 +38,7 @@
 
 ---
 
-### FR-005 Human-in-the-Loop 확인 요청
+### FR-004 Human-in-the-Loop 확인 요청
 
 - **Statement** *(Event-driven)*:
   - *EN*: When the agent encounters an ambiguous decision point or a high-impact action, the system shall pause execution and request explicit user confirmation before proceeding.
@@ -53,7 +48,7 @@
 
 ---
 
-### FR-006 비가역 동작 전 명시적 확인 단계
+### FR-005 비가역 동작 전 명시적 확인 단계
 
 - **Statement** *(Event-driven)*:
   - *EN*: Before executing an irreversible action (e.g., payment, deletion, subscription enrollment), the system shall present a confirmation step that the user must explicitly approve.
@@ -62,12 +57,12 @@
 - **Priority**: **Must**
 - **Acceptance Criteria**:
   1. 결제·구독 등 외부 동작을 사용자 대신 확정하기 전에 확인 단계를 제시하며, 명시적 승인 없이는 실행하지 않는다.
-  2. *(반복 결제·구독)* 확정 전에 반복 조건(금액·주기·다음 결제일)을 함께 고지한다. *(구 FR-049 / 컴플라이언스 매트릭스 #7)*
-  3. *(반복 결제·구독)* 가입 후 해지 수단으로 사용자를 안내·연결한다 (해지 기능 자체는 해당 서비스가 소유). *(구 FR-049)*
+  2. *(반복 결제·구독)* 확정 전에 반복 조건(금액·주기·다음 결제일)을 함께 고지한다. *(컴플라이언스 매트릭스 #7)*
+  3. *(반복 결제·구독)* 가입 후 해지 수단으로 사용자를 안내·연결한다 (해지 기능 자체는 해당 서비스가 소유).
 
 ---
 
-### FR-007 에이전트 동작 취소 및 재시도
+### FR-006 에이전트 동작 취소 및 재시도
 
 - **Statement** *(State-driven)*:
   - *EN*: While the agent is executing a task, the system shall allow the user to cancel the current action at any point and optionally retry with corrected input.
@@ -77,7 +72,7 @@
 
 ---
 
-### FR-008 에이전트 진행 상황 실시간 표시
+### FR-007 에이전트 진행 상황 실시간 표시
 
 - **Statement** *(State-driven)*:
   - *EN*: While the agent is executing a task, the system shall display the current step (e.g., analyzing page, entering data, awaiting response) in real time to the user.
@@ -87,7 +82,7 @@
 
 ---
 
-### FR-009 에이전트-사용자 제어권 전환 (Co-navigation)
+### FR-008 에이전트-사용자 제어권 전환 (Co-navigation)
 
 - **Statement** *(State-driven)*:
   - *EN*: While the agent is navigating a page, the system shall allow the user to take direct manual control of page interaction at any time without terminating the agent session.
@@ -97,7 +92,7 @@
 
 ---
 
-### FR-010 에이전트 백그라운드 실행 (멀티태스킹)
+### FR-009 에이전트 백그라운드 실행 (멀티태스킹)
 
 - **Statement** *(State-driven)*:
   - *EN*: While the agent is processing a long-running task, the system shall allow the user to continue using other TV features (e.g., watching content, changing channels) without interrupting the task.
@@ -107,7 +102,7 @@
 
 ---
 
-### FR-011 네트워크 끊김 시 태스크 상태 보존 및 재개
+### FR-010 네트워크 끊김 시 태스크 상태 보존 및 재개
 
 - **Statement** *(Unwanted behavior)*:
   - *EN*: If the network connection is interrupted during agent task execution, the system shall preserve the current task state and resume from the last stable checkpoint upon reconnection.
@@ -117,7 +112,7 @@
 
 ---
 
-### FR-012 Headless 실행 모드
+### FR-011 Headless 실행 모드
 
 - **Statement** *(Optional feature)*:
   - *EN*: Where the task result does not require a visible browser window (e.g., information lookup, reservation status check), the system shall complete the task and return only the result without rendering a full browser page.
@@ -127,7 +122,7 @@
 
 ---
 
-### FR-013 로그인 및 인증 장벽 처리 (자동 또는 HITL)
+### FR-012 로그인 및 인증 장벽 처리 (자동 또는 HITL)
 
 - **Statement** *(Event-driven)*:
   - *EN*: When the agent encounters a login wall or CAPTCHA during task execution, the system shall first attempt automatic resolution using stored credentials or platform-provided authentication; if automatic resolution is not possible, the system shall pause and hand off to the user via a Human-in-the-Loop step.
@@ -137,7 +132,7 @@
 
 ---
 
-### FR-014 Headless 처리 결과를 Headed 모드로 전환
+### FR-013 Headless 처리 결과를 Headed 모드로 전환
 
 - **Statement** *(Event-driven)*:
   - *EN*: When the agent has completed or is processing a task in headless mode and the user requests to view the underlying page, the system shall render the full browser page in headed mode without restarting the task.
@@ -147,7 +142,7 @@
 
 ---
 
-### FR-021 AI 생성 콘텐츠 표시 (출처 및 생성 여부 명시)
+### FR-014 AI 생성 콘텐츠 표시 (출처 및 생성 여부 명시)
 
 - **Statement** *(Ubiquitous)*:
   - *EN*: The system shall clearly indicate when displayed content is generated or summarized by AI and shall provide a reference to the original source.
@@ -157,7 +152,7 @@
 
 ---
 
-### FR-022 에이전트 실패 시 폴백 경로 제공
+### FR-015 에이전트 실패 시 폴백 경로 제공
 
 - **Statement** *(Unwanted behavior)*:
   - *EN*: If the agent fails to complete a task, the system shall provide a recovery path (e.g., redirect to the original page, offer step-by-step manual guidance) rather than leaving the user in an unrecoverable state.
@@ -167,7 +162,7 @@
 
 ---
 
-### FR-025 사용자 히스토리·선호 누적 및 활용
+### FR-016 사용자 히스토리·선호 누적 및 활용
 
 - **Statement** *(Ubiquitous)*:
   - *EN*: The system shall accumulate the user's browsing history, past agent requests, and task outcomes, and apply this context to improve task accuracy and reduce required user input over time.
@@ -177,7 +172,7 @@
 
 ---
 
-### FR-029 UI 표시 옵션 설정 (텍스트 크기·대비·응답 속도)
+### FR-017 UI 표시 옵션 설정 (텍스트 크기·대비·응답 속도)
 
 - **Statement** *(Optional feature)*:
   - *EN*: Where accessibility display settings are configured, the system shall apply the user's preferred text size, contrast ratio, and agent voice response speed to all outputs.
@@ -187,7 +182,7 @@
 
 ---
 
-### FR-030 자격증명 안전 저장 및 사용
+### FR-018 자격증명 안전 저장 및 사용
 
 - **Statement** *(Ubiquitous)*:
   - *EN*: The system shall store user credentials (e.g., login tokens, session keys) in an isolated secure credential store and shall not expose them to the AI model or transmit them beyond their intended scope.
@@ -197,7 +192,7 @@
 
 ---
 
-### FR-031 PII 데이터 처리 및 보존 기간 제어
+### FR-019 PII 데이터 처리 및 보존 기간 제어
 
 - **Statement** *(Ubiquitous)*:
   - *EN*: The system shall classify all data that may contain PII (voice transcripts, DOM snapshots, screen content) and enforce the configured retention period, automatically deleting data upon expiry.
@@ -207,7 +202,7 @@
 
 ---
 
-### FR-033 프롬프트 인젝션 탐지 및 방어
+### FR-020 프롬프트 인젝션 탐지 및 방어
 
 - **Statement** *(Unwanted behavior)*:
   - *EN*: If the agent detects instructions embedded in external web content that attempt to hijack or redirect agent behavior, the system shall discard those instructions and notify the user.
@@ -217,7 +212,7 @@
 
 ---
 
-### FR-034 개인정보 동의 수집 및 데이터 주체 권리 행사
+### FR-021 개인정보 동의 수집 및 데이터 주체 권리 행사
 
 - **Statement** *(Event-driven)*:
   - *EN*: Before collecting personal data, the system shall obtain user consent; the system shall also provide a mechanism for users to exercise data subject rights (access, deletion, portability) at any time.
@@ -227,7 +222,7 @@
 
 ---
 
-### FR-035 데이터 처리 방식 사용자 고지 (온디바이스 vs 클라우드)
+### FR-022 데이터 처리 방식 사용자 고지 (온디바이스 vs 클라우드)
 
 - **Statement** *(Event-driven)*:
   - *EN*: Before transmitting user data to an off-device cloud service, the system shall inform the user that the data will be processed outside the device and obtain acknowledgment.
@@ -237,7 +232,7 @@
 
 ---
 
-### FR-036 시스템 전원 상태 변화에 따른 에이전트 생명주기 관리
+### FR-023 시스템 전원 상태 변화에 따른 에이전트 생명주기 관리
 
 - **Statement** *(Event-driven)*:
   - *EN*: When the TV transitions to sleep mode or resumes from sleep, the system shall gracefully suspend and restore the agent harness in accordance with platform lifecycle events.
@@ -247,7 +242,7 @@
 
 ---
 
-### FR-037 에이전트 오류 격리 및 상위 시스템 보호
+### FR-024 에이전트 오류 격리 및 상위 시스템 보호
 
 - **Statement** *(Unwanted behavior)*:
   - *EN*: If the agent harness encounters an unrecoverable error, the system shall isolate the failure and prevent it from propagating to the host Main Agent or Generative UI Renderer.
@@ -257,7 +252,7 @@
 
 ---
 
-### FR-038 MCP / OpenAPI 기반 Skill 등록 인터페이스 제공
+### FR-025 MCP / OpenAPI 기반 Skill 등록 인터페이스 제공
 
 - **Statement** *(Ubiquitous)*:
   - *EN*: The system shall expose a versioned, standard callable interface (MCP tool spec or OpenAPI schema) that allows external agent platforms to register and invoke this agent as a Skill or Sub-Agent.
@@ -267,7 +262,7 @@
 
 ---
 
-### FR-040 외부 호출자 인증 및 권한 검증
+### FR-026 외부 호출자 인증 및 권한 검증
 
 - **Statement** *(Event-driven)*:
   - *EN*: When an external agent platform invokes the system, the system shall authenticate the caller and verify that the requested operation falls within the caller's granted permission scope before execution.
@@ -277,7 +272,7 @@
 
 ---
 
-### FR-041 표준화된 실행 결과 반환 스키마
+### FR-027 표준화된 실행 결과 반환 스키마
 
 - **Statement** *(Ubiquitous)*:
   - *EN*: The system shall return agent task results in a structured, versioned schema that includes execution status (success, failure, partial), outcome data, and error codes.
@@ -287,7 +282,7 @@
 
 ---
 
-### FR-042 에이전트 신원 식별 정보 제공 (Agent-ID)
+### FR-028 에이전트 신원 식별 정보 제공 (Agent-ID)
 
 - **Statement** *(Ubiquitous)*:
   - *EN*: When accessing external web services, the system shall identify itself via a declared Agent-ID or a custom User-Agent string that is distinguishable from regular browser traffic.
@@ -297,7 +292,7 @@
 
 ---
 
-### FR-043 에이전트 접근 정책 준수 (robots.txt · 이용약관)
+### FR-029 에이전트 접근 정책 준수 (robots.txt · 이용약관)
 
 - **Statement** *(Event-driven)*:
   - *EN*: Before performing automation on a web service, the system shall check the service's declared agent access policy (e.g., robots.txt, agent access control headers) and comply with it, including respecting declared rate limits and crawl delays.
@@ -307,7 +302,7 @@
 
 ---
 
-### FR-044 에이전트 루프 실행 트레이스 기록
+### FR-030 에이전트 루프 실행 트레이스 기록
 
 - **Statement** *(Ubiquitous)*:
   - *EN*: The system shall record a structured trace of each agent loop iteration — including tool calls, context snapshots, model responses, and error points — and make it accessible to developers.
@@ -317,7 +312,7 @@
 
 ---
 
-### FR-045 토큰 사용량·응답 지연·비용 계측 및 노출
+### FR-031 토큰 사용량·응답 지연·비용 계측 및 노출
 
 - **Statement** *(Ubiquitous)*:
   - *EN*: The system shall measure per-request token usage, model response latency, and estimated cost, and expose these metrics in a format accessible to developers and operators.
@@ -327,7 +322,7 @@
 
 ---
 
-### FR-046 에이전트 실행 환경 시뮬레이션 모드
+### FR-032 에이전트 실행 환경 시뮬레이션 모드
 
 - **Statement** *(Optional feature)*:
   - *EN*: Where a simulation mode is configured, the system shall execute agent tasks against a sandboxed or mock browser environment without affecting real external services or user data.
@@ -337,7 +332,7 @@
 
 ---
 
-### FR-050 에이전트 행동 이유 설명 (Explainability)
+### FR-033 에이전트 행동 이유 설명 (Explainability)
 
 - **Statement** *(Event-driven)*:
   - *EN*: When the user requests an explanation of an agent action, the system shall provide a concise, human-readable rationale describing why that action was taken.
@@ -352,35 +347,35 @@
 | 번호 | 제목 | Source | Priority |
 |------|------|--------|----------|
 | FR-001 | 사용자 의도 해석 | 3.4.1 | Must |
-| FR-003 | 멀티도메인 태스크 실행 | 3.4.1 | Must |
-| FR-004 | End-to-end 태스크 자동 완료 | 3.4.1 | Must |
-| FR-005 | Human-in-the-Loop 확인 요청 | 3.4.1 | Must |
-| FR-006 | 비가역 동작 전 명시적 확인 단계 | 3.4.2, 3.5 | Must |
-| FR-007 | 에이전트 동작 취소 및 재시도 | 3.4.1, 3.2.6 | Must |
-| FR-008 | 에이전트 진행 상황 실시간 표시 | 3.4.1 | Must |
-| FR-009 | 에이전트-사용자 제어권 전환 (Co-navigation) | 3.4.1 | Should |
-| FR-010 | 에이전트 백그라운드 실행 (멀티태스킹) | 3.4.1 | Should |
-| FR-011 | 네트워크 끊김 시 태스크 상태 보존 및 재개 | 3.4.1 | Should |
-| FR-012 | Headless 실행 모드 | 3.4.1 | Should |
-| FR-013 | 로그인 및 인증 장벽 처리 (자동 또는 HITL) | 3.4.1 | Must |
-| FR-014 | Headless 처리 결과를 Headed 모드로 전환 | 3.4.1 | Should |
-| FR-021 | AI 생성 콘텐츠 표시 (출처 및 생성 여부 명시) | 3.5 | Must |
-| FR-022 | 에이전트 실패 시 폴백 경로 제공 | 3.2.6, 3.2.3 | Must |
-| FR-025 | 사용자 히스토리·선호 누적 및 활용 | 3.4.1 | Should |
-| FR-029 | UI 표시 옵션 설정 (텍스트 크기·대비·응답 속도) | 3.4.2 | Should |
-| FR-030 | 자격증명 안전 저장 및 사용 | 3.2.5 | Must |
-| FR-031 | PII 데이터 처리 및 보존 기간 제어 | 3.2.5 | Must |
-| FR-033 | 프롬프트 인젝션 탐지 및 방어 | 3.2.5 | Must |
-| FR-034 | 개인정보 동의 수집 및 데이터 주체 권리 행사 | 3.5 | Must |
-| FR-035 | 데이터 처리 방식 사용자 고지 (온디바이스 vs 클라우드) | 3.5 | Must |
-| FR-036 | 시스템 전원 상태 변화에 따른 에이전트 생명주기 관리 | 3.2.3 | Must |
-| FR-037 | 에이전트 오류 격리 및 상위 시스템 보호 | 3.2.3 | Must |
-| FR-038 | MCP / OpenAPI 기반 Skill 등록 인터페이스 제공 | 3.3.3, 3.2.3 | Should |
-| FR-040 | 외부 호출자 인증 및 권한 검증 | 3.3.3 | Should |
-| FR-041 | 표준화된 실행 결과 반환 스키마 | 3.3.3 | Should |
-| FR-042 | 에이전트 신원 식별 정보 제공 (Agent-ID) | 3.3.2 | Should |
-| FR-043 | 에이전트 접근 정책 준수 (robots.txt · 이용약관) | 3.3.2 | Should |
-| FR-044 | 에이전트 루프 실행 트레이스 기록 | 3.2.8 | Should |
-| FR-045 | 토큰 사용량·응답 지연·비용 계측 및 노출 | 3.2.8, 3.2.2 | Should |
-| FR-046 | 에이전트 실행 환경 시뮬레이션 모드 | 3.2.8, 3.2.7 | Should |
-| FR-050 | 에이전트 행동 이유 설명 (Explainability) | 3.2.6, 3.4.3 | Should |
+| FR-002 | 멀티도메인 태스크 실행 | 3.4.1 | Must |
+| FR-003 | End-to-end 태스크 자동 완료 | 3.4.1 | Must |
+| FR-004 | Human-in-the-Loop 확인 요청 | 3.4.1 | Must |
+| FR-005 | 비가역 동작 전 명시적 확인 단계 | 3.4.2, 3.5 | Must |
+| FR-006 | 에이전트 동작 취소 및 재시도 | 3.4.1, 3.2.6 | Must |
+| FR-007 | 에이전트 진행 상황 실시간 표시 | 3.4.1 | Must |
+| FR-008 | 에이전트-사용자 제어권 전환 (Co-navigation) | 3.4.1 | Should |
+| FR-009 | 에이전트 백그라운드 실행 (멀티태스킹) | 3.4.1 | Should |
+| FR-010 | 네트워크 끊김 시 태스크 상태 보존 및 재개 | 3.4.1 | Should |
+| FR-011 | Headless 실행 모드 | 3.4.1 | Should |
+| FR-012 | 로그인 및 인증 장벽 처리 (자동 또는 HITL) | 3.4.1 | Must |
+| FR-013 | Headless 처리 결과를 Headed 모드로 전환 | 3.4.1 | Should |
+| FR-014 | AI 생성 콘텐츠 표시 (출처 및 생성 여부 명시) | 3.5 | Must |
+| FR-015 | 에이전트 실패 시 폴백 경로 제공 | 3.2.6, 3.2.3 | Must |
+| FR-016 | 사용자 히스토리·선호 누적 및 활용 | 3.4.1 | Should |
+| FR-017 | UI 표시 옵션 설정 (텍스트 크기·대비·응답 속도) | 3.4.2 | Should |
+| FR-018 | 자격증명 안전 저장 및 사용 | 3.2.5 | Must |
+| FR-019 | PII 데이터 처리 및 보존 기간 제어 | 3.2.5 | Must |
+| FR-020 | 프롬프트 인젝션 탐지 및 방어 | 3.2.5 | Must |
+| FR-021 | 개인정보 동의 수집 및 데이터 주체 권리 행사 | 3.5 | Must |
+| FR-022 | 데이터 처리 방식 사용자 고지 (온디바이스 vs 클라우드) | 3.5 | Must |
+| FR-023 | 시스템 전원 상태 변화에 따른 에이전트 생명주기 관리 | 3.2.3 | Must |
+| FR-024 | 에이전트 오류 격리 및 상위 시스템 보호 | 3.2.3 | Must |
+| FR-025 | MCP / OpenAPI 기반 Skill 등록 인터페이스 제공 | 3.3.3, 3.2.3 | Should |
+| FR-026 | 외부 호출자 인증 및 권한 검증 | 3.3.3 | Should |
+| FR-027 | 표준화된 실행 결과 반환 스키마 | 3.3.3 | Should |
+| FR-028 | 에이전트 신원 식별 정보 제공 (Agent-ID) | 3.3.2 | Should |
+| FR-029 | 에이전트 접근 정책 준수 (robots.txt · 이용약관) | 3.3.2 | Should |
+| FR-030 | 에이전트 루프 실행 트레이스 기록 | 3.2.8 | Should |
+| FR-031 | 토큰 사용량·응답 지연·비용 계측 및 노출 | 3.2.8, 3.2.2 | Should |
+| FR-032 | 에이전트 실행 환경 시뮬레이션 모드 | 3.2.8, 3.2.7 | Should |
+| FR-033 | 에이전트 행동 이유 설명 (Explainability) | 3.2.6, 3.4.3 | Should |

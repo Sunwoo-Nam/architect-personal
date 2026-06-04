@@ -27,7 +27,7 @@ docs/
     00-overview.md               ✅ 작성 완료 (※ 일부 내용 outdated, 별도 정리 예정)
     01-functional/
       00-overview.md             ✅ 작성 완료 (※ area code 가정, outdated)
-      draft.md                   ✅ 작성 완료 (FR 33건, 결번 유지·area 코드 미배정)
+      draft.md                   ✅ 작성 완료 (FR-001~033 순차·area 코드 미배정)
       use-cases.md               ✅ 작성 완료 (UC 카탈로그, 결번 유지)
     02-non-functional/
       draft.md                   ✅ 작성 완료 (NFR 29건, 결번 유지·area 코드 미배정)
