@@ -5,6 +5,8 @@
 > 각 FR의 **Source** 필드는 직접 Concern을 제기한 Stakeholder를 가리킨다.
 
 > **정비 이력**: 초안의 전수 도출 목록에서 범위 외·중복·품질성 항목을 정리하고 **FR-001~033으로 재번호**했다. 범위 제외(입력 중재·페이지 인식·멀티프로필·조건부 활성화·Gen UI 원본 보존 등), NFR·제약으로 표현(권한 최소화·Mock/Stub·디자인/접근성 준수·인터페이스 하위 호환), Acceptance Criteria로 흡수(반복 구매·구독 고지 → 비가역 동작 확인 FR). 상세 이력은 git 및 [컴플라이언스 매트릭스](../04-compliance-matrix.md) 참조.
+>
+> **범위 제외 (자격증명 저장)**: 자격증명의 *저장·암호화*는 플랫폼/브라우저 소관이므로 본 시스템 범위에서 제외했다(구 FR-018 삭제, NFR-013 삭제 — FR-018은 현재 결번). 에이전트는 플랫폼/브라우저가 보관한 자격증명을 *사용*(FR-012)하며, 모델 컨텍스트로의 비유출은 NFR-018이 보증한다.
 
 ---
 
@@ -125,8 +127,8 @@
 ### FR-012 로그인 및 인증 장벽 처리 (자동 또는 HITL)
 
 - **Statement** *(Event-driven)*:
-  - *EN*: When the agent encounters a login wall or CAPTCHA during task execution, the system shall first attempt automatic resolution using stored credentials or platform-provided authentication; if automatic resolution is not possible, the system shall pause and hand off to the user via a Human-in-the-Loop step.
-  - *KO*: 에이전트가 태스크 실행 중 로그인 페이지나 캡차를 만나면, 저장된 자격증명 또는 플랫폼 제공 인증을 사용한 자동 처리를 먼저 시도해야 하며, 자동 처리가 불가능한 경우에는 실행을 중단하고 Human-in-the-Loop 단계를 통해 사용자에게 인증을 넘겨야 한다.
+  - *EN*: When the agent encounters a login wall or CAPTCHA during task execution, the system shall first attempt automatic resolution using platform/browser-stored credentials or platform-provided authentication; if automatic resolution is not possible, the system shall pause and hand off to the user via a Human-in-the-Loop step.
+  - *KO*: 에이전트가 태스크 실행 중 로그인 페이지나 캡차를 만나면, **플랫폼·브라우저가 보관한 자격증명** 또는 플랫폼 제공 인증을 사용한 자동 처리를 먼저 시도해야 하며, 자동 처리가 불가능한 경우에는 실행을 중단하고 Human-in-the-Loop 단계를 통해 사용자에게 인증을 넘겨야 한다.
 - **Source**: 일반 시청자 (3.4.1)
 - **Priority**: **Must**
 
@@ -179,16 +181,6 @@
   - *KO*: 접근성 표시 설정이 구성된 경우, 시스템은 사용자가 선택한 텍스트 크기, 대비 비율, 에이전트 음성 응답 속도를 모든 출력에 적용해야 한다.
 - **Source**: 고령 사용자 (3.4.2)
 - **Priority**: **Should**
-
----
-
-### FR-018 자격증명 안전 저장 및 사용
-
-- **Statement** *(Ubiquitous)*:
-  - *EN*: The system shall store user credentials (e.g., login tokens, session keys) in an isolated secure credential store and shall not expose them to the AI model or transmit them beyond their intended scope.
-  - *KO*: 시스템은 사용자 자격증명(로그인 토큰, 세션 키 등)을 격리된 안전한 자격증명 저장소에 보관해야 하며, AI 모델에 노출하거나 의도된 범위를 벗어나 전송해서는 안 된다.
-- **Source**: Security & Privacy Team (3.2.5)
-- **Priority**: **Must**
 
 ---
 
@@ -363,7 +355,6 @@
 | FR-015 | 에이전트 실패 시 폴백 경로 제공 | 3.2.6, 3.2.3 | Must |
 | FR-016 | 사용자 히스토리·선호 누적 및 활용 | 3.4.1 | Should |
 | FR-017 | UI 표시 옵션 설정 (텍스트 크기·대비·응답 속도) | 3.4.2 | Should |
-| FR-018 | 자격증명 안전 저장 및 사용 | 3.2.5 | Must |
 | FR-019 | PII 데이터 처리 및 보존 기간 제어 | 3.2.5 | Must |
 | FR-020 | 프롬프트 인젝션 탐지 및 방어 | 3.2.5 | Must |
 | FR-021 | 개인정보 동의 수집 및 데이터 주체 권리 행사 | 3.5 | Must |

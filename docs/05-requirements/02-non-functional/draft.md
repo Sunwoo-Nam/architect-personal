@@ -6,7 +6,7 @@
 > **Category** 필드는 Quality Attribute 전체 명칭(Latency / Performance, Resource Efficiency, Availability, Security, Privacy, Quality / Accuracy, Compatibility, Accessibility, Maintainability, Testability, Observability)을 사용한다.
 > **Measure Basis** 필드는 각 수치의 도출 근거를 별도로 기록한다(작성 예정).
 
-> **정비 이력**: FR draft 정비에 연동하여 NFR을 정리했다 — NFR-016(프로필 격리)은 멀티프로필 범위 제외로 삭제(결번 유지), NFR-012는 권한 최소화 품질을 흡수, NFR-006·011·029는 제약 TC-004(라인업별 HW)에 앵커링, NFR-022·023·024·026은 대응 FR 없이 자립(접근성·호환성·테스트 가능성 품질). 상세 이력은 git 참조.
+> **정비 이력**: FR draft 정비에 연동하여 NFR을 정리했다 — NFR-016(프로필 격리)은 멀티프로필 범위 제외로 삭제(결번 유지), NFR-012는 권한 최소화 품질을 흡수, NFR-006·011·029는 제약 TC-004(라인업별 HW)에 앵커링, NFR-022·023·024·026은 대응 FR 없이 자립(접근성·호환성·테스트 가능성 품질). **NFR-013(자격증명 저장 암호화) 삭제** — 자격증명 저장·암호화는 플랫폼/브라우저 소관(에이전트 범위 외)이며, 모델 비유출은 NFR-018이 보증(결번 유지). 상세 이력은 git 참조.
 
 ---
 
@@ -190,21 +190,6 @@
 
 ---
 
-### NFR-013 자격증명 저장 암호화 강도
-
-- **Category**: Security
-- **Statement**: 사용자 자격증명(로그인 토큰, 세션 키)은 산업 표준 암호화 알고리즘으로 저장되어야 하며, AI 모델 컨텍스트에 어떠한 형태로도 노출되지 않아야 한다.
-- **Stimulus**: 시스템이 사용자 자격증명을 저장 또는 사용함
-- **Response**: 시스템이 자격증명을 안전 저장소에 보관하고, 모델 호출 시 자격증명을 컨텍스트에서 제외함
-- **Measure**: 저장: **AES-256-GCM 이상**, 키 관리: **Tizen TEE(Trusted Execution Environment) 사용**, 모델 컨텍스트 누출 = **0건**
-- **Measure Basis**: *(작성 예정)*
-- **Rationale**: 자격증명 노출 사고는 단일 사용자에 그치지 않고 시스템 전체 신뢰를 잠식. 모델 컨텍스트는 외부 공급사로 전송되는 표면이므로 차단이 필수.
-- **Related FR**: `FR-018`
-- **Source**: Security & Privacy Team (3.2.5)
-- **Status**: Draft
-
----
-
 ### NFR-014 프롬프트 인젝션 탐지율
 
 - **Category**: Security
@@ -258,8 +243,8 @@
 - **Response**: 시스템이 요청 페이로드에서 PII를 식별·마스킹하고, 자격증명을 제거한 뒤 전송함
 - **Measure**: 자동 PII 탐지 도구의 표준 벤치마크 커버리지 ≥ **95%** (탐지된 항목은 100% 마스킹), 자격증명 전송 사고 = **0건**, 정기 페이로드 audit 시 미탐 PII 발견율 ≤ **1%**
 - **Measure Basis**: *(작성 예정)*
-- **Rationale**: GDPR 데이터 최소화 원칙. 마스킹 정책은 "탐지되면 100% 차단"이며, 잔여 리스크는 탐지 도구 커버리지와 정기 audit으로 관리.
-- **Related FR**: `FR-018`, `FR-022`
+- **Rationale**: GDPR 데이터 최소화 원칙. 마스킹 정책은 "탐지되면 100% 차단"이며, 잔여 리스크는 탐지 도구 커버리지와 정기 audit으로 관리. 자격증명의 모델 컨텍스트 비유출도 본 NFR이 보증한다(저장 자체는 플랫폼/브라우저 소관).
+- **Related FR**: `FR-022`
 - **Source**: Security & Privacy Team (3.2.5), 규제 · 법률 기관 (3.5)
 - **Status**: Draft
 
@@ -465,11 +450,10 @@
 | NFR-010 | 네트워크 끊김 후 재개 성공률 | Availability | FR-010 | 3.4.1 |
 | NFR-011 | 라인업 내 SKU 간 태스크 성공률 동등성 | Compatibility | TC-004 | 3.2.2 |
 | NFR-012 | Web Runtime 샌드박스 경계 준수 및 권한 최소화 | Security | OC-004 | 3.2.3, 3.2.5 |
-| NFR-013 | 자격증명 저장 암호화 강도 | Security | FR-018 | 3.2.5 |
 | NFR-014 | 프롬프트 인젝션 탐지율 | Security | FR-020 | 3.2.5 |
 | NFR-015 | 외부 호출자 인증 강도 | Security | FR-026 | 3.3.3, 3.2.5 |
 | NFR-017 | PII 데이터 기본 보존 기간 | Privacy | FR-019, FR-021 | 3.2.5, 3.5 |
-| NFR-018 | 클라우드 전송 데이터의 최소화 | Privacy | FR-018, FR-022 | 3.2.5, 3.5 |
+| NFR-018 | 클라우드 전송 데이터의 최소화 | Privacy | FR-022 | 3.2.5, 3.5 |
 | NFR-019 | 데이터 주체 권리 행사 응답 시간 | Privacy | FR-021 | 3.5 |
 | NFR-020 | 의도 파악 정확도 | Quality / Accuracy | FR-001 | 3.4.1 |
 | NFR-021 | 태스크 완료 성공률 | Quality / Accuracy | FR-002, FR-003 | 3.4.1 |

@@ -121,7 +121,7 @@
 
 - **Description**: 자격증명 보관·사용, PII 데이터 흐름, 권한 모델, 위협 모델은 Security & Privacy Team의 사전 심사·승인을 받아야 한다. 본 시스템의 설계는 해당 팀이 정의한 권한 도메인·트러스트 경계·암호화 표준 안에서 이루어져야 한다.
 - **Source**: Security & Privacy Team (3.2.5)
-- **Impact**: NFR-012~NFR-015, NFR-017, NFR-018 (보안·프라이버시 전반), FR-018·FR-019·FR-020·FR-021·FR-022 (보안·프라이버시 전반), Security View, Threat Model View, Privacy & Retention View
+- **Impact**: NFR-012, NFR-014, NFR-015, NFR-017, NFR-018 (보안·프라이버시 전반), FR-019·FR-020·FR-021·FR-022 (보안·프라이버시 전반), Security View, Threat Model View, Privacy & Retention View
 - **Status**: Fixed
 
 ---
@@ -168,7 +168,7 @@
 | OC-001 | VD 사업부 상품화 게이트 | 3.2.2 | 전반 |
 | OC-002 | LLM API 호출 비용 예산 | 3.2.2 | NFR-008, FR-031 |
 | OC-003 | Tizen Platform Team 인터페이스·격리 정책 | 3.2.3 | NFR-009, NFR-023 |
-| OC-004 | Security & Privacy Team 보안 게이트 | 3.2.5 | NFR-012~NFR-015, NFR-017, NFR-018 |
+| OC-004 | Security & Privacy Team 보안 게이트 | 3.2.5 | NFR-012, NFR-014, NFR-015, NFR-017, NFR-018 |
 | OC-005 | LLM 토큰 사용 비용 사용자 미부과 | 3.2.1, 3.2.2 | NFR-008, FR-031 |
 | CN-001 | Tizen TV 디자인 시스템 (10-feet UI) | 3.2.6 | Generative UI View |
 | CN-002 | ARIA / 시맨틱 마크업 표준 | 3.4.3, W3C | NFR-022 |
