@@ -298,10 +298,10 @@
 ### NFR-022 WCAG 2.2 AA 준수
 
 - **Category**: Accessibility
-- **Statement**: 시스템이 출력하는 모든 UI(Generative UI 포함)는 WCAG 2.2 Level AA 기준을 충족해야 한다.
+- **Statement**: 시스템이 출력하는 모든 UI(Generative UI 인터페이스 산출물 및 Generative Web Page 변환 결과 포함)는 WCAG 2.2 Level AA 기준을 충족해야 한다.
 - **Stimulus**: 시스템이 사용자에게 UI를 출력함
 - **Response**: 시스템이 출력하는 UI가 접근성 표준에 부합함
-- **Measure**: WCAG 2.2 AA 자동 검사 도구(axe-core 등) 위반 = **0건** (Generative UI 포함 전체 컴포넌트), 수동 검수 통과
+- **Measure**: WCAG 2.2 AA 자동 검사 도구(axe-core 등) 위반 = **0건** (Generative UI 인터페이스 산출물 + GWP 변환된 페이지 DOM 포함 전체 컴포넌트), 수동 검수 통과
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: 글로벌 출시의 hard requirement이자 EU 접근성법·한국 장차법·ADA의 명문 요건. 자동 검사만으로는 부족하므로 수동 검수 병행.
 - **Related FR**: *(설계 품질 — 직접 대응 FR 없음; 제약 CN-002 / 컴플라이언스 매트릭스 #9)*
@@ -434,6 +434,55 @@
 
 ---
 
+### NFR-031 GWP 변환 추가 지연 시간
+
+- **Category**: Latency / Performance
+- **Statement**: 페이지 로드 시 GWP 적용 판정과 (적용 시) 변환·렌더링이 추가로 야기하는 지연이 일정 이내여야 한다.
+- **Stimulus**: 사용자가 URL 접근 또는 링크 이동으로 페이지를 로드함
+- **Response**: 시스템이 GWP 적합성 판정을 수행하고, 적용 시 변환된 DOM을 렌더링함
+- **Measure**:
+  - 적합성 판정 자체의 추가 지연 P95 ≤ **300ms** (변환 미적용 시 사용자 체감 영향 최소)
+  - GWP 적용 시 원본 표시 대비 첫 픽셀까지의 추가 지연 P95 ≤ **1.5초**
+- **Measure Basis**: 일반적인 웹 페이지 로드 인지 지연 허용 한계(2-3초) 내에서 GWP가 유발하는 증분이 사용자가 "느려졌다"고 체감하지 않을 수준. ADR 확정 시 사용자 테스트로 보정 예정.
+- **Rationale**: GWP가 페이지 로드를 눈에 띄게 지연시키면 사용자는 GWP를 끄거나 우회하려 하며, 본 기능의 가치 명제가 무너짐. 자율 트리거가 일반화될수록 이 지연이 누적 체감에 미치는 영향이 큼.
+- **Related FR**: `FR-034`, `FR-035`
+- **Source**: 일반 시청자 (3.4.1)
+- **Status**: Draft
+
+---
+
+### NFR-032 GWP D-pad 포커스 응답 시간
+
+- **Category**: Latency / Performance
+- **Statement**: GWP 렌더링된 페이지에서 D-pad 방향키 입력에 대한 포커스 이동·시각 피드백이 즉각적이어야 한다.
+- **Stimulus**: 사용자가 리모컨 방향키를 누름
+- **Response**: 시스템이 포커스 인디케이터를 인접 요소로 이동·표시함
+- **Measure**: 키 입력 ~ 포커스 인디케이터 화면 갱신까지의 시간 P95 ≤ **100ms**
+- **Measure Basis**: OTT 앱 표준 포커스 응답 체감 기준. 100ms를 초과하면 사용자가 "버벅인다"고 인식.
+- **Rationale**: GWP가 "OTT 앱 같은 경험"을 약속하므로, 포커스 응답성이 OTT 앱 수준에 미치지 못하면 핵심 차별점이 무너짐. 포커스 응답은 사용자 신뢰의 일차 지표.
+- **Related FR**: `FR-036`
+- **Source**: 일반 시청자 (3.4.1), 고령 사용자 (3.4.2), UX · Design Team (3.2.6)
+- **Status**: Draft
+
+---
+
+### NFR-033 GWP 변환 콘텐츠의 시맨틱 보존 정확도
+
+- **Category**: Quality / Accuracy
+- **Statement**: GWP 변환된 페이지에서 원본 페이지의 핵심 콘텐츠·액션이 누락·왜곡 없이 보존되어야 한다.
+- **Stimulus**: GWP 서비스가 페이지를 변환함
+- **Response**: 변환된 DOM이 원본의 핵심 정보·액션 가능 요소를 포함함
+- **Measure**: 표준 페이지 코퍼스(쇼핑·뉴스·예약 도메인 각 N개)에 대해
+  - 핵심 콘텐츠 보존율 ≥ **TBD%** (수동 평가)
+  - 핵심 액션 가능 요소(폼·결제 버튼·필수 링크) 보존율 = **100%** (누락 시 회귀로 간주)
+- **Measure Basis**: 액션 가능 요소 누락은 사용자 태스크 실패로 직결되므로 무관용. 콘텐츠 보존율 임계값은 코퍼스 정의 후 결정.
+- **Rationale**: 변환 과정에서 결제 버튼이 사라지거나 핵심 정보가 누락되면 GWP는 가치 마이너스 기능이 됨. 시맨틱 보존은 GWP의 안전성 baseline.
+- **Related FR**: `FR-035`
+- **Source**: 일반 시청자 (3.4.1), QA · Certification Team (3.2.7)
+- **Status**: Draft
+
+---
+
 ## 요약
 
 | 번호 | 제목 | Category | Related FR | Source |
@@ -466,6 +515,9 @@
 | NFR-028 | HITL 응답 후 태스크 재개 시간 | Latency / Performance | FR-004, FR-005 | 3.4.1, 3.2.6 |
 | NFR-029 | 영구 저장소 풋프린트 한도 | Resource Efficiency | FR-016, FR-019, FR-030, TC-004 | 3.2.2, 3.2.3 |
 | NFR-030 | 복잡한 태스크 End-to-end 완료 시간 | Latency / Performance | FR-002, FR-003 | 3.4.1 |
+| NFR-031 | GWP 변환 추가 지연 시간 | Latency / Performance | FR-034, FR-035 | 3.4.1 |
+| NFR-032 | GWP D-pad 포커스 응답 시간 | Latency / Performance | FR-036 | 3.4.1, 3.4.2, 3.2.6 |
+| NFR-033 | GWP 변환 콘텐츠의 시맨틱 보존 정확도 | Quality / Accuracy | FR-035 | 3.4.1, 3.2.7 |
 
 ---
 
