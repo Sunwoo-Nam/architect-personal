@@ -43,6 +43,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 │   │   ├── 외부 Skill 호출 라우팅 오버헤드 ≤ 500ms            [M, M]  → NFR-004
 │   │   ├── 슬립 복귀 1초 이내 가용                            [H, H]  → NFR-005
 │   │   ├── HITL 응답 후 재개 P95 ≤ 500ms                      [M, L]  → NFR-028
+│   │   ├── 사용자 개입 시 동작 중지 P95 ≤ TBD                 [H, H]  → NFR-034
 │   │   ├── 복잡 태스크 카테고리별 완료 시간 한도               [H, H]  → NFR-030
 │   │   ├── GWP 변환 추가 지연 (판정 ≤300ms / 첫 픽셀 ≤1.5s)   [H, M]  → NFR-031
 │   │   └── GWP D-pad 포커스 응답 P95 ≤ 100ms                  [H, M]  → NFR-032
@@ -145,6 +146,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 | 태스크 성공률 ≥80% | Functional Quality — 수행 정확도 | NFR-021 | 에이전트 루프 설계, HITL 적용 기준, 시나리오 카탈로그 |
 | GWP 변환 시맨틱 보존 (액션 100% / 콘텐츠 ≥임계값) | Functional Quality — GWP 시맨틱 보존 | NFR-033 | 콘텐츠 추출·재구성 파이프라인, 액션 요소 보존 검증, 변환 실패 시 폴백 정책 |
 | 시뮬레이션 커버리지·결정성 (≥80% / ≥95%) | Testability — 결정적 재현 | NFR-025 | 테스트 인프라, 외부 의존성 모킹 전략 |
+| 사용자 개입 시 동작 중지 (취소·제어권 회수) | Performance — 응답성 | NFR-034 | 인터럽트 전파·in-flight 도구 호출 중단, 제어권 이양, 외부 부작용 경계 |
 
 ### 6.3.2 [H, M] — 표준 기법 적용 영역 (High value, Established)
 
@@ -168,10 +170,10 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 | 우선순위 | leaf 수 | 비중 |
 |---------|--------|------|
-| [H, H] | 12 | 39% |
-| [H, M] | 10 | 32% |
-| [M, *] | 9 | 29% |
-| **총** | **31** | 100% |
+| [H, H] | 12 | 38% |
+| [H, M] | 10 | 31% |
+| [M, *] | 10 | 31% |
+| **총** | **32** | 100% |
 
 [H, H] leaf가 전체의 1/3 이상을 차지하며, 이는 본 시스템이 **AI Agent 특유의 신생 영역 + TV의 리소스·UX 제약 + 라인업·규제 환경 + GWP 변환 신뢰성**의 교집합에서 동작하는 데 따른 결과다. 이 12개가 7~9장 핵심 결정의 입력이 된다.
 
@@ -181,7 +183,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 본 절은 향후 작성될 항목의 목차다.
 
-- **6.6 QA 시나리오 카탈로그** — [H, H] 10개 leaf를 SEI 6-part 형식으로 풀어 쓰고, ATAM 워크숍 입력으로 사용. *(본 사이클 작성, 아래 6.6 참조)*
+- **6.6 QA 시나리오 카탈로그** — [H, H] leaf를 SEI 6-part 형식으로 풀어 쓰고, ATAM 워크숍 입력으로 사용. *(본 사이클 작성, 아래 6.6 참조)*
 - **6.7 QA 간 트레이드오프** — 충돌 지점 식별 및 7·9장 위임. *(작성됨, 아래 6.7 참조)*
 - **6.8 Open Questions** — 본 장 내부 미결 사항. 5장 Open Questions와 별개로 관리. *(작성됨, 아래 6.8 참조)*
 
@@ -189,7 +191,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 ## 6.6 QA 시나리오 카탈로그
 
-본 절은 6.3.1의 [H, H] 10개 leaf를 SEI 6-part 형식(Source / Stimulus / Artifact / Environment / Response / Response Measure)으로 풀어 쓴다. 각 시나리오는 5장 NFR을 정량 기준으로 인용하며, 8장(Views)·9장(ADR)·10장(ATAM)의 직접 입력으로 사용된다.
+본 절은 6.3.1의 [H, H] 핵심 leaf를 SEI 6-part 형식(Source / Stimulus / Artifact / Environment / Response / Response Measure)으로 풀어 쓴다. 각 시나리오는 5장 NFR을 정량 기준으로 인용하며, 8장(Views)·9장(ADR)·10장(ATAM)의 직접 입력으로 사용된다.
 
 표기:
 - **Mapped NFR**: 본 시나리오를 정량화하는 NFR ID
@@ -324,6 +326,19 @@ Utility (Tizen TV AI Web Agent의 효용)
 - **Response Measure**: Top-100 시나리오 시뮬레이션 커버리지 ≥ **80%**, 재현 결정성(동일 입력 → 동일 출력) ≥ **95%** (NFR-025 참조)
 - **Mapped NFR**: NFR-025
 - **Mapped QA leaf**: Testability — 결정적 재현 [H, H]
+
+---
+
+### QAS-011 사용자 개입 시 에이전트 동작 중지
+
+- **Source**: 사용자 (End User)
+- **Stimulus**: 에이전트가 태스크를 실행하는 중 사용자가 취소 또는 직접 조작 개입(제어권 회수)을 입력함
+- **Artifact**: 에이전트 루프(취소·인터럽트 전파), 도구 호출 파이프라인, 제어권 이양 핸들러, 외부 부작용 경계
+- **Environment**: 정상 운영, 에이전트가 태스크 실행 중 (비가역 동작 직전 포함)
+- **Response**: 시스템이 진행 중 동작을 중지하고, 새로운 비가역 외부 부작용을 시작하지 않으며, 제어권을 사용자에게 이양하거나 안전 상태로 복귀함
+- **Response Measure**: 개입 입력 ~ 중지(추가 비가역 부작용 차단)까지 P95 ≤ **TBD ms** (NFR-034 참조)
+- **Mapped NFR**: NFR-034
+- **Mapped QA leaf**: Performance — 응답성 (사용자 개입 중지) [H, H]
 
 ---
 

@@ -94,6 +94,7 @@
   - *KO*: 에이전트가 태스크를 실행하는 동안, 사용자는 언제든지 현재 동작을 취소하고 선택적으로 수정된 입력으로 재시도할 수 있어야 한다.
 - **Source**: 일반 시청자 (3.4.1), UX · Design Team (3.2.6)
 - **Priority**: **Must**
+- **Related NFR**: `NFR-034` (개입 시 동작 중지 응답성)
 
 ---
 
@@ -114,6 +115,7 @@
   - *KO*: 에이전트가 페이지를 탐색하는 동안, 사용자는 에이전트 세션을 종료하지 않고 언제든지 직접 페이지 조작 제어권을 가져올 수 있어야 한다.
 - **Source**: 일반 시청자 (3.4.1)
 - **Priority**: **Should**
+- **Related NFR**: `NFR-034` (제어권 회수 시 동작 중지 응답성)
 
 ---
 
@@ -257,11 +259,11 @@
 
 ---
 
-### FR-025 MCP / OpenAPI 기반 Skill 등록 인터페이스 제공
+### FR-025 표준 인터페이스 기반 Skill / Sub-Agent 등록·호출
 
 - **Statement** *(Ubiquitous)*:
-  - *EN*: The system shall expose a versioned, standard callable interface (MCP tool spec or OpenAPI schema) that allows external agent platforms to register and invoke this agent as a Skill or Sub-Agent.
-  - *KO*: 시스템은 외부 에이전트 플랫폼이 본 시스템을 Skill 또는 Sub-Agent로 등록하고 호출할 수 있도록 버전 관리된 표준 호출 인터페이스(MCP tool spec 또는 OpenAPI 스키마)를 노출해야 한다.
+  - *EN*: The system shall expose a versioned, standard callable interface that allows external agent platforms to register and invoke this agent as a Skill or Sub-Agent.
+  - *KO*: 시스템은 외부 에이전트 플랫폼이 본 시스템을 Skill 또는 Sub-Agent로 등록·호출할 수 있도록 버전 관리된 표준 호출 인터페이스를 노출해야 한다.
 - **Source**: 외부 Agent 플랫폼 통합 개발자 (3.3.3), Tizen Platform Team (3.2.3)
 - **Priority**: **Should**
 
@@ -441,7 +443,7 @@
 | FR-022 | 데이터 처리 방식 사용자 고지 (온디바이스 vs 클라우드) | 3.5 | Must |
 | FR-023 | 시스템 전원 상태 변화에 따른 에이전트 생명주기 관리 | 3.2.3 | Must |
 | FR-024 | 에이전트 오류 격리 및 상위 시스템 보호 | 3.2.3 | Must |
-| FR-025 | MCP / OpenAPI 기반 Skill 등록 인터페이스 제공 | 3.3.3, 3.2.3 | Should |
+| FR-025 | 표준 인터페이스 기반 Skill / Sub-Agent 등록·호출 | 3.3.3, 3.2.3 | Should |
 | FR-026 | 외부 호출자 인증 및 권한 검증 | 3.3.3 | Should |
 | FR-027 | 표준화된 실행 결과 반환 스키마 | 3.3.3 | Should |
 | FR-028 | 에이전트 신원 식별 정보 제공 (Agent-ID) | 3.3.2 | Should |
