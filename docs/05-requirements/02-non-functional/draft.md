@@ -17,7 +17,7 @@
 - **Stimulus**: 사용자가 단순 명령(Quick Action 후보) 발화를 종료함
 - **Response**: 시스템이 결과를 표시하거나 동작을 완료함
 - **Measure**: 1초 이내 (정상 네트워크 조건)
-- **Measure Basis**: VD 상품화 담당자 요구사항
+- **Measure Basis**: VD 사업부(상품화) 요구사항
 - **Rationale**: 단순 명령은 기존 TV 음성 어시스턴트의 사용성을 후퇴시키지 않아야 한다. Quick Action 경로는 에이전트 루프 비용 없이 단순 의도를 처리하므로 동등 이상 응답성을 보장하고, 에이전트 루프 경로는 LLM 호출 비용을 감안해 별도 완화 한도를 부여.
 - **Related FR**: `FR-001`, `FR-007`
 - **Source**: 일반 시청자 (3.4.1)
@@ -65,7 +65,7 @@
 - **Measure Basis**: *(작성 예정)* (실제 동작 확인 필요)
 - **Rationale**: Sub-Agent로 호출되는 시나리오에서 본 시스템의 통합 오버헤드가 호출자 측 사용자 경험을 저해해서는 안 됨.
 - **Related FR**: `FR-025`, `FR-026`
-- **Source**: 외부 Agent 플랫폼 통합 개발자 (3.3.3)
+- **Source**: 외부 Agent 플랫폼 통합 개발자 (3.3.2)
 - **Status**: Draft
 
 ---
@@ -80,7 +80,7 @@
 - **Measure Basis**: *(작성 예정)* (launching time 측정 필요)
 - **Rationale**: 사용자가 TV를 켠 직후 음성 명령을 시도하는 경우가 빈번. 복귀가 느리면 첫 명령이 무시되어 사용자에게 "동작하지 않는다"는 인식을 남김.
 - **Related FR**: `FR-023`
-- **Source**: Tizen Platform Team (3.2.3), 일반 시청자 (3.4.1)
+- **Source**: Tizen Platform · Web Engine Team (3.2.2), 일반 시청자 (3.4.1)
 - **Status**: Draft
 
 ---
@@ -92,10 +92,10 @@
 - **Stimulus**: 에이전트가 일반적인 태스크를 수행 중임
 - **Response**: 시스템이 메모리를 점유함
 - **Measure**: 합산 peak 메모리 ≤ **50 MB** (전 라인업 공통)
-- **Measure Basis**: VD 상품화 담당자 요구사항.
+- **Measure Basis**: VD 사업부(상품화) 요구사항.
 - **Rationale**: 본 시스템이 Main Agent·GenUI Renderer·기존 앱과 한정된 메모리 예산 안에서 공존해야 라인업 탑재가 가능. 가장 제약이 큰 라인업에서도 동작하도록 단일 상한을 전 라인업 공통으로 적용한다.
 - **Related Constraint**: `TC-004` (라인업별 HW 스펙 차이)
-- **Source**: VD 상품화 담당자 (3.2.2), Tizen Platform Team (3.2.3)
+- **Source**: VD 사업부 (3.2.1), Tizen Platform · Web Engine Team (3.2.2)
 - **Status**: Draft
 
 ---
@@ -107,10 +107,10 @@
 - **Stimulus**: 에이전트가 백그라운드에서 태스크를 수행 중이며, 사용자가 동시에 VOD를 시청 중임
 - **Response**: 시스템이 CPU를 점유함
 - **Measure**: 백그라운드 평균 CPU 점유율 ≤ **15%** (전 라인업 공통), 영상 프레임 드롭 없음
-- **Measure Basis**: *(작성 예정)* (실측 및 VD 상품화 담당자 요구사항 확인)
+- **Measure Basis**: *(작성 예정)* (실측 및 VD 사업부(상품화) 요구사항 확인)
 - **Rationale**: 멀티태스킹 보장의 정량적 근거. 영상 프레임 드롭은 사용자가 즉각 인지하는 품질 후퇴 지표이며, 에이전트가 그 원인이 되어서는 안 됨.
 - **Related FR**: `FR-009`
-- **Source**: Tizen Platform Team (3.2.3), 일반 시청자 (3.4.1)
+- **Source**: Tizen Platform · Web Engine Team (3.2.2), 일반 시청자 (3.4.1)
 - **Status**: Draft
 
 ---
@@ -123,9 +123,9 @@
 - **Response**: 시스템이 LLM API를 호출하여 토큰을 소비함
 - **Measure**: 세션 평균 토큰 사용량 ≤ **TBD tokens (ADR-XXX)**, P95 ≤ **TBD tokens**
 - **Measure Basis**: TBD — 베타 테스트 사용 데이터 수집 후 비용 모델과 함께 확정.
-- **Rationale**: VD 상품화 담당자가 라인업·지역별 운영 비용을 예측 가능해야 출시 의사결정 가능. 실측 데이터 없이 추정 불가하므로 베타 단계로 위임.
+- **Rationale**: VD 사업부(상품화)가 라인업·지역별 운영 비용을 예측 가능해야 출시 의사결정 가능. 실측 데이터 없이 추정 불가하므로 베타 단계로 위임.
 - **Related FR**: `FR-031`
-- **Source**: VD 상품화 담당자 (3.2.2), AI Web Agent 개발팀 (3.2.8)
+- **Source**: VD 사업부 (3.2.1), 개발 · QA 조직 (3.2.4)
 - **Status**: Draft
 
 ---
@@ -138,9 +138,9 @@
 - **Response**: 시스템이 오류를 격리하고 호스트 시스템은 정상 동작을 유지함
 - **Measure**: 호스트 시스템 가용성 ≥ **99.95%** (에이전트 오류 1000건 발생 시에도 유지)
 - **Measure Basis**: *(작성 예정)*
-- **Rationale**: Tizen Platform Team의 핵심 거버넌스 조건. 본 시스템 실패가 플랫폼 전체 안정성을 흔들면 라인업 탑재 자체가 불가.
+- **Rationale**: Tizen Platform · Web Engine Team의 핵심 거버넌스 조건. 본 시스템 실패가 플랫폼 전체 안정성을 흔들면 라인업 탑재 자체가 불가.
 - **Related FR**: `FR-024`
-- **Source**: Tizen Platform Team (3.2.3)
+- **Source**: Tizen Platform · Web Engine Team (3.2.2)
 - **Status**: Draft
 
 ---
@@ -170,7 +170,7 @@
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: 상품화 담당자의 라인업 관리 일관성 요구. 응답 시간은 SKU별 HW 차이로 자연히 달라질 수 있으므로 동등성 대상에서 제외하고, HW와 무관하게 동일해야 하는 **태스크 성공률**만 보증 대상으로 한다. 동일 등급 내 SKU별 성공률 분산은 CS 비용과 브랜드 리스크를 증가시킴.
 - **Related Constraint**: `TC-004` (라인업별 HW 스펙 차이)
-- **Source**: VD 상품화 담당자 (3.2.2)
+- **Source**: VD 사업부 (3.2.1)
 - **Status**: Draft
 
 ---
@@ -183,9 +183,9 @@
 - **Response**: 시스템이 시스템 자원에 접근을 시도하고, 태스크에 필요한 최소 권한만 보유함
 - **Measure**: 샌드박스 위반 시도 = **0건** (정적 분석 + 런타임 모니터링), Tizen Web Runtime CTS 통과, **태스크 종료 후 불필요 권한 잔존 = 0건**
 - **Measure Basis**: *(작성 예정)*
-- **Rationale**: 사용자가 직접 관찰할 수 없는 횡단 보안 제약. 위반 시 Tizen Platform Team의 거버넌스 게이트 통과 불가. 권한 최소화는 공격 표면과 오용 시 피해 범위를 동시에 축소하므로 같은 "경계 통제" 품질로 묶어 관리한다. *(권한 최소화 원칙 포함)*
+- **Rationale**: 사용자가 직접 관찰할 수 없는 횡단 보안 제약. 위반 시 Tizen Platform · Web Engine Team의 거버넌스 게이트 통과 불가. 권한 최소화는 공격 표면과 오용 시 피해 범위를 동시에 축소하므로 같은 "경계 통제" 품질로 묶어 관리한다. *(권한 최소화 원칙 포함)*
 - **Related Constraint**: `OC-004` (보안 게이트)
-- **Source**: Tizen Platform Team (3.2.3), Security & Privacy Team (3.2.5)
+- **Source**: Tizen Platform · Web Engine Team (3.2.2), 보안 · 프라이버시 · 컴플라이언스 (3.2.5)
 - **Status**: Draft
 
 ---
@@ -200,7 +200,7 @@
 - **Measure Basis**: TBD — 벤치마크 셋(OWASP LLM01 외) 확정 및 현실적 목표 수치 합의 후 결정.
 - **Rationale**: 에이전트 특유의 공격 표면이며 Security 팀의 핵심 Concern. 현재 SOTA가 일관된 고탐지율을 달성하지 못하는 단계이므로 벤치마크 합의가 선행되어야 함.
 - **Related FR**: `FR-020`
-- **Source**: Security & Privacy Team (3.2.5)
+- **Source**: 보안 · 프라이버시 · 컴플라이언스 (3.2.5)
 - **Status**: Draft
 
 ---
@@ -215,7 +215,7 @@
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: 외부 호출 인터페이스가 노출되는 순간 공격 표면이 됨. 인증 없는 호출 허용은 사용자 데이터·자격증명 노출로 직결.
 - **Related FR**: `FR-026`
-- **Source**: 외부 Agent 플랫폼 통합 개발자 (3.3.3), Security & Privacy Team (3.2.5)
+- **Source**: 외부 Agent 플랫폼 통합 개발자 (3.3.2), 보안 · 프라이버시 · 컴플라이언스 (3.2.5)
 - **Status**: Draft
 
 ---
@@ -230,7 +230,7 @@
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: 디버깅·개선 목적의 데이터 활용과 규제(GDPR Article 5(1)(e), PIPA 제21조) 파기 의무 사이의 균형 지점이 명문화되어야 함.
 - **Related FR**: `FR-019`, `FR-021`
-- **Source**: Security & Privacy Team (3.2.5), 규제 · 법률 기관 (3.5)
+- **Source**: 보안 · 프라이버시 · 컴플라이언스 (3.2.5)
 - **Status**: Draft
 
 ---
@@ -245,7 +245,7 @@
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: GDPR 데이터 최소화 원칙. 마스킹 정책은 "탐지되면 100% 차단"이며, 잔여 리스크는 탐지 도구 커버리지와 정기 audit으로 관리. 자격증명의 모델 컨텍스트 비유출도 본 NFR이 보증한다(저장 자체는 플랫폼/브라우저 소관).
 - **Related FR**: `FR-022`
-- **Source**: Security & Privacy Team (3.2.5), 규제 · 법률 기관 (3.5)
+- **Source**: 보안 · 프라이버시 · 컴플라이언스 (3.2.5)
 - **Status**: Draft
 
 ---
@@ -260,7 +260,7 @@
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: 데이터 주체 권리는 규제(GDPR Article 12(3), PIPA 제35조)의 명문 요건. 시스템이 이를 지원하지 않으면 운영팀이 수동 대응으로 SLA를 맞춰야 함.
 - **Related FR**: `FR-021`
-- **Source**: 규제 · 법률 기관 (3.5)
+- **Source**: 보안 · 프라이버시 · 컴플라이언스 (3.2.5)
 - **Status**: Draft
 
 ---
@@ -305,7 +305,7 @@
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: 글로벌 출시의 hard requirement이자 EU 접근성법·한국 장차법·ADA의 명문 요건. 자동 검사만으로는 부족하므로 수동 검수 병행.
 - **Related FR**: *(설계 품질 — 직접 대응 FR 없음; 제약 CN-002 / 컴플라이언스 매트릭스 #9)*
-- **Source**: 접근성 요구 사용자 (3.4.3), 규제 · 법률 기관 (3.5)
+- **Source**: 접근성 · 고령 사용자 (3.4.2), 보안 · 프라이버시 · 컴플라이언스 (3.2.5)
 - **Status**: Draft
 
 ---
@@ -320,7 +320,7 @@
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: 외부 Agent 플랫폼 통합 개발자가 본 시스템의 버전 변경에 따라 자기 통합 코드를 마이그레이션할 시간이 필요. 너무 짧으면 통합 자체를 포기.
 - **Related FR**: *(설계 품질 — 직접 대응 FR 없음; 버전 식별자 부여는 인터페이스 FR(Skill 등록·결과 스키마)이 포함)*
-- **Source**: 외부 Agent 플랫폼 통합 개발자 (3.3.3), Tizen Platform Team (3.2.3)
+- **Source**: 외부 Agent 플랫폼 통합 개발자 (3.3.2), Tizen Platform · Web Engine Team (3.2.2)
 - **Status**: Draft
 
 ---
@@ -334,8 +334,8 @@
 - **Measure**: 정적 분석 도구(예: dependency graph) 기준 영역 간 비공개 심볼 참조 = **0건**
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: 개발팀의 영역별 독립 개발·테스트 요구. 결합도 높으면 한 영역 변경이 전체 회귀 테스트를 강제하여 개발 속도가 저하됨.
-- **Related FR**: *(설계 품질 — 직접 대응 FR 없음; 개발팀 Concern 3.2.8)*
-- **Source**: AI Web Agent 개발팀 (3.2.8)
+- **Related FR**: *(설계 품질 — 직접 대응 FR 없음; 개발 · QA 조직 Concern 3.2.4)*
+- **Source**: 개발 · QA 조직 (3.2.4)
 - **Status**: Draft
 
 ---
@@ -350,7 +350,7 @@
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: AI 비결정성에도 불구하고 회귀 감지를 가능하게 하려면 시뮬레이션 환경의 커버리지와 결정성이 핵심. 둘 다 갖춰져야 자동 회귀가 의미를 가짐.
 - **Related FR**: `FR-032`
-- **Source**: QA · Certification Team (3.2.7), AI Web Agent 개발팀 (3.2.8)
+- **Source**: 개발 · QA 조직 (3.2.4)
 - **Status**: Draft
 
 ---
@@ -364,8 +364,8 @@
 - **Measure**: 단위 테스트 외부 의존성(네트워크·디스크·시스템 호출) 비율 = **0%**, Mock 커버리지 ≥ **95%**
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: 단위 테스트의 격리성은 CI 안정성과 빌드 속도에 직결. 외부 의존이 남으면 flaky test가 발생하여 신뢰가 무너짐.
-- **Related FR**: *(설계 품질 — 직접 대응 FR 없음; 개발팀 Concern 3.2.8)*
-- **Source**: AI Web Agent 개발팀 (3.2.8)
+- **Related FR**: *(설계 품질 — 직접 대응 FR 없음; 개발 · QA 조직 Concern 3.2.4)*
+- **Source**: 개발 · QA 조직 (3.2.4)
 - **Status**: Draft
 
 ---
@@ -380,7 +380,7 @@
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: 사용자 신고에서 사후 분석까지 일정 시간이 소요되므로, 트레이스가 그 기간 안에 사라지면 디버깅이 불가능. 조회 속도도 운영 효율성에 직결.
 - **Related FR**: `FR-030`
-- **Source**: AI Web Agent 개발팀 (3.2.8)
+- **Source**: 개발 · QA 조직 (3.2.4)
 - **Status**: Draft
 
 ---
@@ -395,7 +395,7 @@
 - **Measure Basis**: *(작성 예정)*
 - **Rationale**: HITL 흐름은 본질적으로 사용자 대기를 강제하는 단계이므로 응답 후 재개는 즉각적이어야 함. 지연이 길면 사용자는 자기 입력이 무시되었다고 오해.
 - **Related FR**: `FR-004`, `FR-005`
-- **Source**: 일반 시청자 (3.4.1), UX · Design Team (3.2.6)
+- **Source**: 일반 시청자 (3.4.1), UX · Design Team (3.2.3)
 - **Status**: Draft
 
 ---
@@ -407,11 +407,11 @@
 - **Stimulus**: 시스템이 일정 기간 운영되며 영구 데이터를 축적함
 - **Response**: 시스템이 영구 저장소를 점유함
 - **Measure**: 누적 ≤ **TBD MB (ADR-XXX)** (전 라인업 공통)
-- **Measure Basis**: TBD — VD 상품화 담당자 + Tizen Platform Team의 전 라인업 공통 디스크 예산 합의 후 확정.
+- **Measure Basis**: TBD — VD 사업부(상품화) + Tizen Platform · Web Engine Team의 전 라인업 공통 디스크 예산 합의 후 확정.
 - **Rationale**: 메모리(NFR-006)와 별개로 영구 저장소도 라인업의 고정 자원. 이력·트레이스가 무제한 누적되면 다른 앱 가용성을 침해.
 - **Related FR**: `FR-016`, `FR-019`, `FR-030`
 - **Related Constraint**: `TC-004` (라인업별 HW 스펙 차이)
-- **Source**: VD 상품화 담당자 (3.2.2), Tizen Platform Team (3.2.3)
+- **Source**: VD 사업부 (3.2.1), Tizen Platform · Web Engine Team (3.2.2)
 - **Status**: Draft
 
 ---
@@ -461,7 +461,7 @@
 - **Measure Basis**: OTT 앱 표준 포커스 응답 체감 기준. 100ms를 초과하면 사용자가 "버벅인다"고 인식.
 - **Rationale**: GWP가 "OTT 앱 같은 경험"을 약속하므로, 포커스 응답성이 OTT 앱 수준에 미치지 못하면 핵심 차별점이 무너짐. 포커스 응답은 사용자 신뢰의 일차 지표.
 - **Related FR**: `FR-036`
-- **Source**: 일반 시청자 (3.4.1), 고령 사용자 (3.4.2), UX · Design Team (3.2.6)
+- **Source**: 일반 시청자 (3.4.1), 접근성 · 고령 사용자 (3.4.2), UX · Design Team (3.2.3)
 - **Status**: Draft
 
 ---
@@ -478,7 +478,7 @@
 - **Measure Basis**: 액션 가능 요소 누락은 사용자 태스크 실패로 직결되므로 무관용. 콘텐츠 보존율 임계값은 코퍼스 정의 후 결정.
 - **Rationale**: 변환 과정에서 결제 버튼이 사라지거나 핵심 정보가 누락되면 GWP는 가치 마이너스 기능이 됨. 시맨틱 보존은 GWP의 안전성 baseline.
 - **Related FR**: `FR-035`
-- **Source**: 일반 시청자 (3.4.1), QA · Certification Team (3.2.7)
+- **Source**: 일반 시청자 (3.4.1), 개발 · QA 조직 (3.2.4)
 - **Status**: Draft
 
 ---
@@ -493,7 +493,7 @@
 - **Measure Basis**: TBD — barge-in 지각 한계 기준 사용자 테스트로 확정. (참고: 인지적 즉시성 한계는 일반적으로 100~300ms)
 - **Rationale**: 사용자가 멈추라고 했는데 에이전트가 계속 진행하면 통제감·신뢰가 무너지며, 특히 비가역 동작(FR-005) 직전 개입에서는 안전 문제로 직결된다. 이미 전송된 외부 요청은 되돌릴 수 없을 수 있으므로, 본 NFR은 "새로운 비가역 부작용을 더 시작하지 않을 때까지"를 중지 경계로 정의한다.
 - **Related FR**: `FR-006`, `FR-008` (FR-005 비가역 동작과 연계)
-- **Source**: 일반 시청자 (3.4.1), UX · Design Team (3.2.6)
+- **Source**: 일반 시청자 (3.4.1), UX · Design Team (3.2.3)
 - **Status**: Draft
 
 ---
@@ -505,35 +505,35 @@
 | NFR-001 | 간단한 명령의 End-to-end 응답 시간 | Latency / Performance | FR-001, FR-007 | 3.4.1 |
 | NFR-002 | 복잡한 태스크 첫 피드백 시간 | Latency / Performance | FR-007 | 3.4.1 |
 | NFR-003 | 진행 상황 표시 업데이트 주기 | Latency / Performance | FR-007 | 3.4.1 |
-| NFR-004 | 외부 Skill 호출 인터페이스 응답 시간 | Latency / Performance | FR-025, FR-026 | 3.3.3 |
-| NFR-005 | 슬립 복귀 후 에이전트 가용 시간 | Latency / Performance | FR-023 | 3.2.3, 3.4.1 |
-| NFR-006 | 메모리 풋프린트 한도 (peak ≤ 50MB, 전 라인업 공통) | Resource Efficiency | TC-004 | 3.2.2, 3.2.3 |
-| NFR-007 | CPU 점유율 한도 | Resource Efficiency | FR-009 | 3.2.3, 3.4.1 |
-| NFR-008 | 세션당 토큰 비용 예산 | Resource Efficiency | FR-031 | 3.2.2, 3.2.8 |
-| NFR-009 | 에이전트 오류의 상위 시스템 영향 격리 | Availability | FR-024 | 3.2.3 |
+| NFR-004 | 외부 Skill 호출 인터페이스 응답 시간 | Latency / Performance | FR-025, FR-026 | 3.3.2 |
+| NFR-005 | 슬립 복귀 후 에이전트 가용 시간 | Latency / Performance | FR-023 | 3.2.2, 3.4.1 |
+| NFR-006 | 메모리 풋프린트 한도 (peak ≤ 50MB, 전 라인업 공통) | Resource Efficiency | TC-004 | 3.2.1, 3.2.2 |
+| NFR-007 | CPU 점유율 한도 | Resource Efficiency | FR-009 | 3.2.2, 3.4.1 |
+| NFR-008 | 세션당 토큰 비용 예산 | Resource Efficiency | FR-031 | 3.2.1, 3.2.4 |
+| NFR-009 | 에이전트 오류의 상위 시스템 영향 격리 | Availability | FR-024 | 3.2.2 |
 | NFR-010 | 네트워크 끊김 후 재개 성공률 | Availability | FR-010 | 3.4.1 |
-| NFR-011 | 라인업 내 SKU 간 태스크 성공률 동등성 | Compatibility | TC-004 | 3.2.2 |
-| NFR-012 | Web Runtime 샌드박스 경계 준수 및 권한 최소화 | Security | OC-004 | 3.2.3, 3.2.5 |
+| NFR-011 | 라인업 내 SKU 간 태스크 성공률 동등성 | Compatibility | TC-004 | 3.2.1 |
+| NFR-012 | Web Runtime 샌드박스 경계 준수 및 권한 최소화 | Security | OC-004 | 3.2.2, 3.2.5 |
 | NFR-014 | 프롬프트 인젝션 탐지율 | Security | FR-020 | 3.2.5 |
-| NFR-015 | 외부 호출자 인증 강도 | Security | FR-026 | 3.3.3, 3.2.5 |
-| NFR-017 | PII 데이터 기본 보존 기간 | Privacy | FR-019, FR-021 | 3.2.5, 3.5 |
-| NFR-018 | 클라우드 전송 데이터의 최소화 | Privacy | FR-022 | 3.2.5, 3.5 |
-| NFR-019 | 데이터 주체 권리 행사 응답 시간 | Privacy | FR-021 | 3.5 |
+| NFR-015 | 외부 호출자 인증 강도 | Security | FR-026 | 3.3.2, 3.2.5 |
+| NFR-017 | PII 데이터 기본 보존 기간 | Privacy | FR-019, FR-021 | 3.2.5 |
+| NFR-018 | 클라우드 전송 데이터의 최소화 | Privacy | FR-022 | 3.2.5 |
+| NFR-019 | 데이터 주체 권리 행사 응답 시간 | Privacy | FR-021 | 3.2.5 |
 | NFR-020 | 의도 파악 정확도 | Quality / Accuracy | FR-001 | 3.4.1 |
 | NFR-021 | 태스크 완료 성공률 | Quality / Accuracy | FR-002, FR-003 | 3.4.1 |
-| NFR-022 | WCAG 2.2 AA 준수 | Accessibility | — (CN-002) | 3.4.3, 3.5 |
-| NFR-023 | 공개 인터페이스 하위 호환성 유지 기간 | Maintainability | — | 3.3.3, 3.2.3 |
-| NFR-024 | 모듈 결합도 | Maintainability | — | 3.2.8 |
-| NFR-025 | 시뮬레이션 모드 시나리오 커버리지 | Testability | FR-032 | 3.2.7, 3.2.8 |
-| NFR-026 | Mock 인터페이스 적용 범위 | Testability | — | 3.2.8 |
-| NFR-027 | 에이전트 트레이스 보존 기간 | Observability | FR-030 | 3.2.8 |
-| NFR-028 | HITL 응답 후 태스크 재개 시간 | Latency / Performance | FR-004, FR-005 | 3.4.1, 3.2.6 |
-| NFR-029 | 영구 저장소 풋프린트 한도 | Resource Efficiency | FR-016, FR-019, FR-030, TC-004 | 3.2.2, 3.2.3 |
+| NFR-022 | WCAG 2.2 AA 준수 | Accessibility | — (CN-002) | 3.4.2, 3.2.5 |
+| NFR-023 | 공개 인터페이스 하위 호환성 유지 기간 | Maintainability | — | 3.3.2, 3.2.2 |
+| NFR-024 | 모듈 결합도 | Maintainability | — | 3.2.4 |
+| NFR-025 | 시뮬레이션 모드 시나리오 커버리지 | Testability | FR-032 | 3.2.4 |
+| NFR-026 | Mock 인터페이스 적용 범위 | Testability | — | 3.2.4 |
+| NFR-027 | 에이전트 트레이스 보존 기간 | Observability | FR-030 | 3.2.4 |
+| NFR-028 | HITL 응답 후 태스크 재개 시간 | Latency / Performance | FR-004, FR-005 | 3.4.1, 3.2.3 |
+| NFR-029 | 영구 저장소 풋프린트 한도 | Resource Efficiency | FR-016, FR-019, FR-030, TC-004 | 3.2.1, 3.2.2 |
 | NFR-030 | 복잡한 태스크 End-to-end 완료 시간 | Latency / Performance | FR-002, FR-003 | 3.4.1 |
 | NFR-031 | GWP 변환 추가 지연 시간 | Latency / Performance | FR-034, FR-035 | 3.4.1 |
-| NFR-032 | GWP D-pad 포커스 응답 시간 | Latency / Performance | FR-036 | 3.4.1, 3.4.2, 3.2.6 |
-| NFR-033 | GWP 변환 콘텐츠의 시맨틱 보존 정확도 | Quality / Accuracy | FR-035 | 3.4.1, 3.2.7 |
-| NFR-034 | 사용자 개입 시 에이전트 동작 중지 시간 | Latency / Performance | FR-006, FR-008 | 3.4.1, 3.2.6 |
+| NFR-032 | GWP D-pad 포커스 응답 시간 | Latency / Performance | FR-036 | 3.4.1, 3.4.2, 3.2.3 |
+| NFR-033 | GWP 변환 콘텐츠의 시맨틱 보존 정확도 | Quality / Accuracy | FR-035 | 3.4.1, 3.2.4 |
+| NFR-034 | 사용자 개입 시 에이전트 동작 중지 시간 | Latency / Performance | FR-006, FR-008 | 3.4.1, 3.2.3 |
 
 ---
 
@@ -544,7 +544,7 @@
 1. **NFR-008 토큰 예산** — 평균/P95 세션 토큰 한도. 베타 테스트 데이터 기반 확정 필요.
 2. **NFR-014 프롬프트 인젝션 탐지율** — 벤치마크 셋(OWASP LLM01 외) 확정 및 현실적 목표 수치 합의 필요.
 3. **NFR-021 표준 시나리오 Top-100** — 시나리오 카탈로그 정의 필요 (시나리오 챕터에서 작성).
-4. **NFR-029 영구 저장소 한도** — 전 라인업 공통 디스크 예산(MB) 값 미확정. VD 상품화 담당자 + Tizen Platform Team 합의 필요.
+4. **NFR-029 영구 저장소 한도** — 전 라인업 공통 디스크 예산(MB) 값 미확정. VD 사업부(상품화) + Tizen Platform · Web Engine Team 합의 필요.
 5. **NFR-030 카테고리별 완료 시간 한도** — 시나리오 카테고리 정의 후 카테고리별 P95 한도 합의 필요.
 6. **AVL 등급** — 시스템 전체 가용성 SLA 등급 (99.9% vs 99.95% vs 99.99%) 미확정.
 7. **NFR-034 동작 중지 시간** — 사용자 개입(취소·제어권 회수) ~ 중지까지의 P95 한도(ms). barge-in 지각 한계 기준 사용자 테스트로 확정 필요.

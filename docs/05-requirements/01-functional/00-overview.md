@@ -12,15 +12,15 @@
 
 | 코드 | 영역 | 책임 범위 | 주된 출처 (시나리오 / Concern) |
 |------|------|-----------|------------------------------|
-| **VUI** | Voice User Interface | 음성 입력 수신, ASR/NLU 결과 수신, 발화 세션 관리, 음성 응답 요청, 입력 모달리티 조율 | 2.2 시1~4 / 3.2.7 UX, 3.2.8 Account, 3.4 End User |
-| **AGT** | Agent Core | 의도→계획→실행 루프, 상태/컨텍스트 관리, 추론 호출 조율, 결과 합성 | 2.2 시1~5 / 3.2.3 아키텍트 |
-| **BRW** | Browser Control | 웹 엔진 세션 확보, CDP·Browser Session 호출, Headless 라이프사이클, 직접 조작 명령 매핑 | 2.2 시1~5 / 3.2.5 Web Engine |
-| **CNT** | Content Pipeline | DOM·접근성 트리 분석, 핵심 콘텐츠 추출, 모델 입력용 표현 변환, 가공 결과 전달 | 2.2 시1·5 / 3.2.5 Web Engine, 3.2.7 UX |
-| **MDL** | Model Abstraction Layer | 클라우드 LLM·온디바이스 SLM 추상화, 모델 선택·라우팅, 응답 스키마 정규화 | 2.2 시 전반 / 3.3.3 AI 모델 공급사 |
-| **WFL** | Workflow | 자동 구매·예약·반복 작업의 단계 정의·진행·재개, 사용자 의도 위임 범위 관리 | 2.2 시2·3 / 3.4 End User, 3.5 규제 |
-| **HIL** | Human-in-the-Loop | 결제·민감 작업의 확인·승인·취소·철회 게이트, 동의 상태 모델 운용 | 2.2 시2·3 / 3.2.6 Security, 3.2.8 Account, 3.5 규제 |
-| **INT** | Host Integration | Main Agent · GenUI Renderer 호출 계약, 라이프사이클 신호, 진입점 관리 | 3.2.4 Tizen Platform |
-| **EXT** | External Services | Account/Wallet 위임, 제3자 사이트 식별·준수 계약, 외부 모델 SLA 핸들링 | 3.2.8 Account, 3.3.2 제3자 서비스, 3.3.3 AI 모델 공급사 |
+| **VUI** | Voice User Interface | 음성 입력 수신, ASR/NLU 결과 수신, 발화 세션 관리, 음성 응답 요청, 입력 모달리티 조율 | 2.2 시1~4 / 3.2.3 UX · Design, Account(3장 미식별), 3.4 End User |
+| **AGT** | Agent Core | 의도→계획→실행 루프, 상태/컨텍스트 관리, 추론 호출 조율, 결과 합성 | 2.2 시1~5 / 아키텍트(기능 역할) |
+| **BRW** | Browser Control | 웹 엔진 세션 확보, CDP·Browser Session 호출, Headless 라이프사이클, 직접 조작 명령 매핑 | 2.2 시1~5 / 3.2.2 Platform · Web Engine |
+| **CNT** | Content Pipeline | DOM·접근성 트리 분석, 핵심 콘텐츠 추출, 모델 입력용 표현 변환, 가공 결과 전달 | 2.2 시1·5 / 3.2.2 Platform · Web Engine, 3.2.3 UX · Design |
+| **MDL** | Model Abstraction Layer | 클라우드 LLM·온디바이스 SLM 추상화, 모델 선택·라우팅, 응답 스키마 정규화 | 2.2 시 전반 / AI 모델 공급사(제약 취급, 3.6) |
+| **WFL** | Workflow | 자동 구매·예약·반복 작업의 단계 정의·진행·재개, 사용자 의도 위임 범위 관리 | 2.2 시2·3 / 3.4 End User, 3.2.5 컴플라이언스 |
+| **HIL** | Human-in-the-Loop | 결제·민감 작업의 확인·승인·취소·철회 게이트, 동의 상태 모델 운용 | 2.2 시2·3 / 3.2.5 보안 · 프라이버시 · 컴플라이언스, Account(3장 미식별), 3.2.5 컴플라이언스 |
+| **INT** | Host Integration | Main Agent · GenUI Renderer 호출 계약, 라이프사이클 신호, 진입점 관리 | 3.2.2 Tizen Platform · Web Engine |
+| **EXT** | External Services | Account/Wallet 위임, 제3자 사이트 식별·준수 계약, 외부 모델 SLA 핸들링 | Account(3장 미식별), 3.3.1 웹 콘텐츠 · 서비스 제공자, AI 모델 공급사(제약 취급, 3.6) |
 
 영역 간 의존도가 낮은 쪽부터 작성한다. 작성 순서는 **VUI → AGT → BRW → CNT → MDL → WFL → HIL → INT → EXT**.
 
@@ -98,7 +98,7 @@ FR-<영역코드>-<일련번호 3자리>
 - **Acceptance Criteria**:
   1. <검증 가능한 조건 1>
   2. <검증 가능한 조건 2>
-- **Related Views**: <3.6 매핑표의 View 명 (콤마 구분)>
+- **Related Views**: <3.5 매핑표의 View 명 (콤마 구분)>
 - **Related NFR**: <NFR-...-NNN | TBD>
 - **Status**: <Draft / Reviewed / Approved | Deprecated / Superseded>
 ```
@@ -112,7 +112,7 @@ FR-<영역코드>-<일련번호 3자리>
 | Source | 도출 출처. 시나리오·Stakeholder Concern 중 하나 이상. 둘 다 있으면 모두 명시. |
 | Priority | 본 5장 단계의 *제안값*. 12번 활동에서 라인업별 재조정 가능. |
 | Acceptance Criteria | 정성/정량 모두 허용. 정량 임계가 필요하면 NFR로 위임. 외부 의존(예: 화자 ID 모델)은 해당 외부 인터페이스 가정으로 명시. |
-| Related Views | 3.6의 View 명을 그대로 사용. 본 FR이 직접 해소되는 View만 기재. |
+| Related Views | 3.5의 View 명을 그대로 사용. 본 FR이 직접 해소되는 View만 기재. |
 | Related NFR | NFR 작성 전이면 *TBD*, 작성 후에는 NFR ID 콤마 구분. |
 | Status | Draft → Reviewed → Approved. 본 사이클 산출물의 기본 상태는 Draft. |
 

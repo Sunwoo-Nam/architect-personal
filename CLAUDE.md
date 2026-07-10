@@ -13,7 +13,7 @@
 - **특징**:
   - Cloud Frontier LLM 사용 (온디바이스 추론 아님, 단 on-device에서 에이전트 런타임 동작)
   - TV 특화 Gen UI, Quick Action(에이전트 루프 우회 경로)
-  - Claw 계열 Platform Main Agent의 Sub-Agent / Skill로 동작 가능
+  - AIOS(Tizen OS AI화)의 Platform Main Agent인 **argot**(argo-tizen)의 Sub-Agent / Skill로 동작 — argot은 Bixby로 사용자 질의를 받아 브라우저 제어 태스크 판단 시 본 시스템 호출, 결과를 받아 사용자에게 표시 (argot·Bixby 자체는 out-of-scope)
   - 리모컨 + 음성 멀티모달 입력 조율
 
 ### 현재 문서 상태 (2026-05 기준)
