@@ -202,5 +202,6 @@ Option X를 선택한다.
 | WFL | Workflow / Quick Action | `06-wfl.md` |
 | HIL | Human-in-the-Loop | `07-hil.md` |
 | GNUI | GenUI Interface Contract (entry app GenUI 렌더링 엔진은 out-of-scope; 본 영역은 인터페이스 계약만 다룸) | `08-gnui.md` |
-| GWP | Generative Web Page (페이지 자체를 TV·리모컨 UX에 맞춰 재구성하는 시스템 공통 서비스) | `09-gwp.md` |
-| PRV | Privacy & Retention | `10-prv.md` |
+| PRV | Privacy & Retention | `09-prv.md` |
+
+> **참고**: 구 GWP(Generative Web Page) 영역은 과제 범위 제외로 삭제 (1장 Out-of-Scope 참조).

@@ -31,7 +31,7 @@
 | 7 | 결제 전 강력한 사용자 인증·명시 확인 | EU | PSD2 (2015/2366) + SCA RTS | **A** | FR-005 |
 | 8 | 반복 결제·구독 조건 고지 + 해지 안내 | US · EU · KR | ROSCA / 소비자권리지침 2011/83 (Omnibus 2019/2161) / 전자상거래법 §13·17 | **A** | FR-005 (AC 2·3) |
 | 9 | 접근성 (Generative UI 포함) | EU · US · KR | EAA 2019/882 (2025-06 적용) / ADA / 장애인차별금지법 | **A** | NFR-022, CN-002 |
-| 10 | AI 생성·변형 콘텐츠 표시·투명성 | EU · CN | EU AI Act 2024/1689 Art 50 (2026-08 적용) / 中 생성형 AI 라벨링 규정 | **B** | FR-035 (AC 4 — GWP 변환 페이지의 AI 변형 표시) + GNUI area TBD (entry app GenUI 카드의 AI 생성·요약 표시는 GNUI area 소관) |
+| 10 | AI 생성·변형 콘텐츠 표시·투명성 | EU · CN | EU AI Act 2024/1689 Art 50 (2026-08 적용) / 中 생성형 AI 라벨링 규정 | **B** | GNUI area TBD (entry app GenUI 카드의 AI 생성·요약 표시는 GNUI area 소관; 구 FR-035 AC 4의 GWP 변환 표시는 GWP 범위 제외로 삭제) |
 | 11 | 자동화 의사결정 투명성·인간 개입 | EU | GDPR Art 22 / EU AI Act Art 86 (2026-08) | **B** | FR-033, FR-004 |
 
 ---

@@ -10,7 +10,7 @@
 >
 > **범위 제외 (AI 생성·출처 표시)**: 구 FR-014(AI 생성 콘텐츠 표시) 삭제 — FR-014는 현재 결번. 사유: ① "AI 생성 표시"는 본 draft가 다루는 에이전트 하네스의 동작이 아니라 Generative UI(GNUI) 렌더러의 표시 책임이며, ② Source로 인용된 3.2.8(구 3.2.5)의 "광고성 표시 의무" Concern은 *광고/협찬 고지* 의무로 "AI 생성 고지"와 다른 규제 도메인이라 VoC 매핑이 잘못되어 있었음. 표시·라벨링 FR은 GNUI area에서 별도로 다룬다.
 >
-> **범위 추가 (Generative Web Page, GWP)**: FR-034~038 신설. 사용자가 직접 방문하는 웹 페이지를 TV·리모컨 UX에 맞춰 재구성하는 시스템 공통 서비스. 시스템 자율 트리거(페이지 적합성 판정)·에이전트 매개·사용자 명시 요청 3개 트리거 경로를 지원하며, 변환된 페이지 DOM 산출까지 본 과제 범위 (픽셀 렌더링은 브라우저 담당). 자세한 결정 근거는 [01-background §1.3.1·1.3.2·1.4](../../01-background-and-purpose.md) 참조.
+> **범위 제외 (Generative Web Page, GWP)**: 구 FR-034~038(GWP 적용 판정·트리거, 콘텐츠 추출·재구성, D-pad 포커스 네비게이션, 원본 토글, 의도 힌트 전달) 삭제 — FR-034~038은 현재 결번. GWP(페이지 자체 재가공 서비스)가 과제 범위에서 제외됨에 따라 관련 FR 전체를 제거했다(1장 Out-of-Scope 참조). 연동 삭제: NFR-031~033, UC-08·28·29, 2장 시나리오 5~7.
 
 ---
 
@@ -349,73 +349,6 @@
 
 ---
 
-### FR-034 Generative Web Page (GWP) 적용 대상 판정 및 트리거
-
-- **Statement** *(Event-driven)*:
-  - *EN*: When a web page is loaded into the TV browser, the system shall analyze the page's suitability for the TV/remote-control environment (layout, font size, interaction model) and, if deemed unsuitable, shall propose or apply a Generative Web Page (GWP) transformation. The system shall also accept GWP requests via two additional trigger paths: (a) explicit user voice command, and (b) agent-mediated invocation with intent hints.
-  - *KO*: TV 브라우저에 웹 페이지가 로드되면, 시스템은 해당 페이지의 TV·리모컨 환경 적합성(레이아웃·폰트 크기·인터랙션 모델)을 분석하여 부적합 판정 시 Generative Web Page(GWP) 변환을 제안하거나 적용해야 한다. 또한 시스템은 GWP를 (a) 사용자 명시적 음성 명령, (b) 에이전트 매개 호출(의도 힌트 동반) 두 경로로도 트리거할 수 있어야 한다.
-- **Source**: 일반 사용자 (3.3.1) — "TV 부적합 페이지의 자동 재구성" Concern
-- **Priority**: **Must**
-- **Acceptance Criteria**:
-  1. 페이지 로드 시 GWP 서비스가 적합성 판정을 수행하며, 판정 기준은 운영자가 조정 가능하다.
-  2. 자율 트리거로 적용 시에는 사용자에게 GWP가 적용됨을 가시적으로 알리고, 원본으로 즉시 복귀할 수단을 제공한다.
-  3. 사용자 명시 요청·에이전트 호출 트리거는 적합성 판정 결과와 무관하게 즉시 GWP를 수행한다.
-
----
-
-### FR-035 GWP 콘텐츠 추출 및 TV 친화 레이아웃 재구성
-
-- **Statement** *(Ubiquitous)*:
-  - *EN*: For pages targeted by GWP, the system shall extract the page's primary content (text, media, actionable elements) and produce a transformed DOM that conforms to a TV/remote-control-optimized layout policy (e.g., card-grid, large-typography, simplified hierarchy). The transformed DOM shall be renderable by a standard web browser engine (Chromium).
-  - *KO*: GWP 대상 페이지에 대해, 시스템은 페이지의 핵심 콘텐츠(텍스트·미디어·액션 가능 요소)를 추출하고 TV·리모컨 최적화 레이아웃 정책(카드 그리드, 큰 타이포그래피, 단순화된 계층 등)을 따르는 변환된 DOM을 산출해야 한다. 변환된 DOM은 표준 웹 브라우저 엔진(Chromium)으로 렌더링 가능해야 한다.
-- **Source**: 일반 사용자 (3.3.1), 고령 사용자 (3.3.2), UX팀 (3.2.5)
-- **Priority**: **Must**
-- **Acceptance Criteria**:
-  1. 변환된 DOM은 본 시스템 외부 브라우저 엔진의 추가 확장 없이 렌더링 가능하다.
-  2. 핵심 액션 가능 요소(폼·버튼·링크)는 원본 페이지의 동작 시맨틱을 보존한다 (예: 결제 버튼은 결제 동작을 유발한다).
-  3. 에이전트 매개 호출 시 전달된 의도 힌트가 있는 경우, 레이아웃 우선순위·강조에 반영한다.
-  4. 변환된 페이지에는 AI에 의해 변형된 결과임을 사용자가 인지할 수 있는 표시를 포함한다 (EU AI Act Art 50 / 中 생성형 AI 라벨링 규정 대응 — 컴플라이언스 매트릭스 #10).
-
----
-
-### FR-036 GWP D-pad 포커스 네비게이션 (OTT 스타일)
-
-- **Statement** *(Ubiquitous)*:
-  - *EN*: GWP-rendered pages shall support OTT-app-style D-pad focus navigation, allowing the user to move focus between cards/sections via the remote's directional keys and to trigger actions via the OK key.
-  - *KO*: GWP로 렌더링된 페이지는 OTT 앱 스타일의 D-pad 포커스 네비게이션을 지원해야 하며, 사용자는 리모컨 방향키로 카드/섹션 간 포커스를 이동하고 OK 키로 액션을 실행할 수 있어야 한다.
-- **Source**: 일반 사용자 (3.3.1), 고령 사용자 (3.3.2), UX팀 (3.2.5)
-- **Priority**: **Must**
-- **Acceptance Criteria**:
-  1. 포커스 가능한 모든 요소에 시각적 포커스 인디케이터를 표시한다.
-  2. 방향키 이동 규칙(인접 카드 우선, 자연스러운 시각 흐름)이 일관되게 적용된다.
-  3. 포커스가 화면 가장자리에 도달하면 wrap-around 또는 명확한 경계 피드백을 제공한다.
-
----
-
-### FR-037 원본 ↔ GWP 토글 (원본 보존)
-
-- **Statement** *(Ubiquitous)*:
-  - *EN*: When GWP is applied to a page, the system shall preserve the original page in addition to the transformed view and shall allow the user to toggle between the two at any time without losing scroll position or interaction state beyond what is unavoidable due to layout differences.
-  - *KO*: GWP가 페이지에 적용된 경우, 시스템은 변환된 뷰와 별도로 원본 페이지를 보존해야 하며, 사용자는 언제든 두 뷰를 토글할 수 있어야 하고, 레이아웃 차이로 불가피한 경우를 제외하면 스크롤 위치·인터랙션 상태가 손실되어서는 안 된다.
-- **Source**: 일반 사용자 (3.3.1)
-- **Priority**: **Must**
-- **Acceptance Criteria**:
-  1. 토글 어포던스는 두 뷰 모두에서 일관된 위치·표현으로 제공한다.
-  2. 토글 시점에 페이지를 재로드하지 않으며, 가능한 경우 동등 위치로 매핑한다.
-  3. 사용자가 원본 뷰를 선호로 명시한 사이트는 이후 동일 사이트 방문 시 자동 GWP를 적용하지 않는다 (사용자 결정 존중).
-
----
-
-### FR-038 GWP 에이전트 매개 호출 시 의도 힌트 전달
-
-- **Statement** *(Event-driven)*:
-  - *EN*: When the agent invokes GWP to present a task result, the system shall pass user-intent hints (e.g., search keywords, comparison criteria, focused entity) to the GWP service so that the transformed layout can prioritize and emphasize content relevant to the user's intent.
-  - *KO*: 에이전트가 태스크 결과 제시를 위해 GWP를 호출할 때, 시스템은 사용자 의도 힌트(검색 키워드, 비교 기준, 관심 엔티티 등)를 GWP 서비스에 전달하여 변환된 레이아웃이 사용자 의도에 부합하는 콘텐츠를 우선·강조하도록 해야 한다.
-- **Source**: 일반 사용자 (3.3.1), SW 개발팀 (3.2.4)
-- **Priority**: **Should**
-
----
-
 ## 요약
 
 | 번호 | 제목 | Source | Priority |
@@ -452,8 +385,3 @@
 | FR-031 | 토큰 사용량·응답 지연·비용 계측 및 노출 | 3.2.4, 3.2.1 | Should |
 | FR-032 | 에이전트 실행 환경 시뮬레이션 모드 | 3.2.4 | Should |
 | FR-033 | 에이전트 행동 이유 설명 (Explainability) | 3.2.5, 3.3.2 | Should |
-| FR-034 | GWP 적용 대상 판정 및 트리거 | 3.3.1 | Must |
-| FR-035 | GWP 콘텐츠 추출 및 TV 친화 레이아웃 재구성 | 3.3.1, 3.3.2, 3.2.5 | Must |
-| FR-036 | GWP D-pad 포커스 네비게이션 (OTT 스타일) | 3.3.1, 3.3.2, 3.2.5 | Must |
-| FR-037 | 원본 ↔ GWP 토글 (원본 보존) | 3.3.1 | Must |
-| FR-038 | GWP 에이전트 매개 호출 시 의도 힌트 전달 | 3.3.1, 3.2.4 | Should |
