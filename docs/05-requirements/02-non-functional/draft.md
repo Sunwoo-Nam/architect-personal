@@ -19,7 +19,7 @@
 - **Measure**: 1초 이내 (정상 네트워크 조건)
 - **Measure Basis**: VD 사업부(상품화) 요구사항
 - **Rationale**: 단순 명령은 기존 TV 음성 어시스턴트의 사용성을 후퇴시키지 않아야 한다. Quick Action 경로는 에이전트 루프 비용 없이 단순 의도를 처리하므로 동등 이상 응답성을 보장하고, 에이전트 루프 경로는 LLM 호출 비용을 감안해 별도 완화 한도를 부여.
-- **Related FR**: `FR-001`, `FR-007`
+- **Related FR**: `FR-001`, `FR-003a`, `FR-007`
 - **Source**: 일반 사용자 (3.3.1)
 - **Status**: Draft
 
@@ -471,7 +471,7 @@
 
 | 번호 | 제목 | Category | Related FR | Source |
 |------|------|----------|------------|--------|
-| NFR-001 | 간단한 명령의 End-to-end 응답 시간 | Latency / Performance | FR-001, FR-007 | 3.3.1 |
+| NFR-001 | 간단한 명령의 End-to-end 응답 시간 | Latency / Performance | FR-001, FR-003a, FR-007 | 3.3.1 |
 | NFR-002 | 복잡한 태스크 첫 피드백 시간 | Latency / Performance | FR-007 | 3.3.1 |
 | NFR-003 | 진행 상황 표시 업데이트 주기 | Latency / Performance | FR-007 | 3.3.1 |
 | NFR-004 | 외부 Skill 호출 인터페이스 응답 시간 | Latency / Performance | FR-025, FR-026 | 3.2.2 |
