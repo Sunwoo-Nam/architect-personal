@@ -229,9 +229,9 @@
 - **Output Spec**: 가용 상태 도달 시간 ≤ 1초.
 
 ### TC-NFR-06 — NFR-006 메모리 풋프린트 한도
-- **Test Feature**: 하네스+MAL+GenUI 렌더러 합산 peak 메모리
+- **Test Feature**: 하네스+GenUI 렌더러 합산 peak 메모리
 - **Pre-Condition**: 최저 사양 라인업 기기, 일반 태스크 수행 중
-- **InputSpec + Procedure**: 대표 태스크를 수행하며 세 컴포넌트 합산 메모리를 일정 시간 샘플링하여 peak를 측정한다.
+- **InputSpec + Procedure**: 대표 태스크를 수행하며 두 컴포넌트 합산 메모리를 일정 시간 샘플링하여 peak를 측정한다.
 - **Output Spec**: 합산 peak 메모리 ≤ **50MB** (전 라인업 공통).
 
 ### TC-NFR-07 — NFR-007 CPU 점유율 한도
@@ -331,7 +331,7 @@
 ### TC-NFR-24 — NFR-024 모듈 결합도
 - **Test Feature**: 영역 간 비공개 심볼 참조 부재
 - **Pre-Condition**: 정적 분석(dependency graph) 도구 구성
-- **InputSpec + Procedure**: VUI·에이전트 코어·브라우저 제어·모델 추상화 간 의존성 그래프를 생성하고 비공개 심볼 참조를 검사한다.
+- **InputSpec + Procedure**: VUI·에이전트 코어·브라우저 제어·콘텐츠 파이프라인 간 의존성 그래프를 생성하고 비공개 심볼 참조를 검사한다.
 - **Output Spec**: 영역 간 비공개 심볼 참조 0건(공개 인터페이스만 경유).
 
 ### TC-NFR-25 — NFR-025 시뮬레이션 모드 시나리오 커버리지
@@ -361,7 +361,7 @@
 ### TC-NFR-29 — NFR-029 영구 저장소 풋프린트 한도
 - **Test Feature**: 영구 저장소 누적 사용량
 - **Pre-Condition**: 일정 기간 운영 데이터 축적 (전 라인업 공통 기준)
-- **InputSpec + Procedure**: 대표 사용 패턴으로 일정 기간 운영하며 이력·캐시·로컬 모델·트레이스의 누적 디스크 사용량을 측정한다.
+- **InputSpec + Procedure**: 대표 사용 패턴으로 일정 기간 운영하며 이력·캐시·트레이스의 누적 디스크 사용량을 측정한다.
 - **Output Spec**: 누적 영구 저장소 사용량 ≤ 확정 예산(MB) (전 라인업 공통) — 기준값 TBD(ADR), 측정 절차는 본 TC로 고정.
 
 ### TC-NFR-30 — NFR-030 복잡한 태스크 End-to-end 완료 시간

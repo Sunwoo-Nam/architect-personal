@@ -1,0 +1,209 @@
+<mxfile host="65bd71144e">
+    <diagram id="domain-model" name="Domain Model">
+        <mxGraphModel dx="2709" dy="1589" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1200" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" value="구역·제목" style="" parent="0"/>
+                <mxCell id="title" value="Tizen TV AI Web Agent — 도메인 모델" style="text;html=1;fontSize=18;fontStyle=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="10" width="700" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="z1" value="상호작용·개인화" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#888888;verticalAlign=top;fontSize=13;fontStyle=1;spacingTop=4;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="70" width="250" height="790" as="geometry"/>
+                </mxCell>
+                <mxCell id="z2" value="실행 코어" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#888888;verticalAlign=top;fontSize=13;fontStyle=1;spacingTop=4;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="70" width="260" height="790" as="geometry"/>
+                </mxCell>
+                <mxCell id="z3" value="브라우저·모델 상호작용" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#888888;verticalAlign=top;fontSize=13;fontStyle=1;spacingTop=4;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="70" width="260" height="790" as="geometry"/>
+                </mxCell>
+                <mxCell id="z4" value="데이터·컴플라이언스" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#888888;verticalAlign=top;fontSize=13;fontStyle=1;spacingTop=4;" parent="1" vertex="1">
+                    <mxGeometry x="390" y="890" width="630" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend" value="범례&lt;br&gt;— 실선: 연관 (레이블에 다중성)&lt;div&gt;◆ 합성 (전체-부분)&lt;br&gt;- -▷ 점선 화살표: 의존·흐름 (마스킹·분류·동의 등 정책 결부)&lt;br&gt;구역: 개념 그룹핑 (아키텍처 경계 아님)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#888888;align=left;verticalAlign=top;spacing=8;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="940" width="300" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="layEnt" value="엔티티" style="" parent="0"/>
+                <mxCell id="ent_profile" value="&lt;b&gt;사용자 프로필 (UserProfile)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;선호·이력 컨텍스트&lt;br&gt;권한 범위 (사이트 허용/차단)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="70" y="110" width="190" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_utter" value="&lt;b&gt;발화 (Utterance)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;전사 텍스트 (외부 STT 산출)&lt;br&gt;수신 시각" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="70" y="270" width="190" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_intent" value="&lt;b&gt;의도 (Intent)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;유형 (Quick Action / 에이전트 태스크)&lt;br&gt;대상 도메인 · 명확화 필요" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="70" y="410" width="190" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_qa" value="&lt;b&gt;Quick Action 항목&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;명령 패턴 · 대상 기능&lt;br&gt;결정론적 실행 (LLM 루프 미사용)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="70" y="560" width="190" height="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_consent" value="&lt;b&gt;동의 (Consent)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;동의 항목 (수집 · 클라우드 전송)&lt;br&gt;상태 · 부여/철회 시각" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="70" y="710" width="190" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_skill" value="&lt;b&gt;Skill 호출 (SkillInvocation)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;호출자 (argot / 외부 플랫폼)&lt;br&gt;인터페이스 버전 · 인증 컨텍스트" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="400" y="110" width="220" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_task" value="&lt;b&gt;태스크 (Task)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;도메인 (검색·조회·예약·구매·탐색·스마트홈)&lt;br&gt;상태 (실행 / 일시중단 / 완료 / 부분 / 실패)&lt;br&gt;실행 모드 (전경 / 백그라운드)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="400" y="260" width="220" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_step" value="&lt;b&gt;단계 (Step)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;순번 · 유형 (브라우저 액션 / 모델 추론 / 도구 호출)&lt;br&gt;진행 상태 표시 텍스트 · 에러" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="400" y="430" width="220" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_hitl" value="&lt;b&gt;HITL 승인 요청 (ApprovalRequest)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;사유 (비가역 동작 / 모호 판단 / 인증 인계)&lt;br&gt;고지 내용 (반복 결제 조건 등) · 사용자 응답" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="400" y="590" width="220" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_ckpt" value="&lt;b&gt;체크포인트 (Checkpoint)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;저장 시각 · 태스크 상태 스냅샷 (재개용)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="400" y="750" width="220" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_result" value="&lt;b&gt;태스크 결과 (TaskResult)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;상태 (성공 / 실패 / 부분 완료)&lt;br&gt;결과 데이터 · 에러 코드 (구조화 스키마)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="780" y="110" width="220" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_bsess" value="&lt;b&gt;브라우저 세션 (BrowserSession)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;모드 (Headless / Headed)&lt;br&gt;현재 URL · 제어권 (에이전트 / 사용자)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="780" y="260" width="220" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_page" value="&lt;b&gt;페이지 표현 (PageRepresentation)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;DOM · 접근성 트리 추출물&lt;br&gt;모델 입력용 구조화" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="780" y="420" width="220" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_mreq" value="&lt;b&gt;모델 요청 (ModelRequest)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;모델 식별자&lt;br&gt;토큰 사용량 · 응답 지연 · 예상 비용" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="780" y="570" width="220" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_policy" value="&lt;b&gt;접근 정책 (AccessPolicy)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;대상 서비스 · robots 규칙 · rate limit&lt;br&gt;Agent-ID 식별 요구" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="780" y="730" width="220" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_trace" value="&lt;b&gt;트레이스 레코드 (TraceRecord)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;도구 호출 · 컨텍스트 스냅샷 · 모델 응답 · 에러 지점 보존" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="420" y="940" width="210" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_pii" value="&lt;b&gt;PII 데이터 항목 (PIIDataItem)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;원천 (음성 전사 / DOM 스냅샷 / 화면 콘텐츠)&lt;br&gt;분류 태그 · 보존 기한 · 만료 시 자동 삭제" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layEnt" vertex="1">
+                    <mxGeometry x="780" y="940" width="220" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="layRel" value="관계" style="" parent="0"/>
+                <mxCell id="r1" value="발화&#xa;1 → *" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;fontSize=10;" parent="layRel" source="ent_profile" target="ent_utter" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="r2" value="부여&#xa;1 → *" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;fontSize=10;exitX=0;exitY=0.5;entryX=0;entryY=0.5;edgeStyle=orthogonalEdgeStyle;" parent="layRel" source="ent_profile" target="ent_consent" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="10" y="165"/>
+                            <mxPoint x="10" y="760"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="r3" value="이력으로 누적" style="endArrow=none;html=1;rounded=0;dashed=1;strokeColor=#000000;fontSize=10;edgeStyle=orthogonalEdgeStyle;" parent="layRel" source="ent_task" target="ent_profile" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="330" y="280"/>
+                            <mxPoint x="330" y="180"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="r4" value="해석&#xa;1 → 1" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;fontSize=10;" parent="layRel" source="ent_utter" target="ent_intent" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="r5" value="매칭 (Quick 경로)&#xa;→ 0..1" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;fontSize=10;" parent="layRel" source="ent_intent" target="ent_qa" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="r6" value="계획 (에이전트 경로)&#xa;→ 0..1" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" parent="layRel" source="ent_intent" target="ent_task" edge="1">
+                    <mxGeometry x="-0.1231" y="-2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="r7" value="생성 (argot 경로)&#xa;1 → 1" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;fontSize=10;" parent="layRel" source="ent_skill" target="ent_task" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="r8" value="결과 반환" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;fontSize=10;" parent="layRel" source="ent_skill" target="ent_result" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="r9" value="구성&#xa;1 ◆→ 1..*" style="endArrow=none;startArrow=diamondThin;startFill=1;html=1;rounded=0;strokeColor=#000000;fontSize=10;" parent="layRel" source="ent_task" target="ent_step" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="r10" value="상태 보존·재개&#xa;1 → 0..*" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;fontSize=10;edgeStyle=orthogonalEdgeStyle;" parent="layRel" source="ent_task" target="ent_ckpt" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="350" y="370"/>
+                            <mxPoint x="350" y="790"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="r11" value="산출&#xa;1 → 1" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;fontSize=10;edgeStyle=orthogonalEdgeStyle;" parent="layRel" source="ent_task" target="ent_result" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="710" y="290"/>
+                            <mxPoint x="710" y="190"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="r12" value="HITL 게이트&#xa;→ 0..1" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;fontSize=10;" parent="layRel" source="ent_step" target="ent_hitl" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="r13" value="기록&#xa;1 → 1" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;fontSize=10;edgeStyle=orthogonalEdgeStyle;" parent="layRel" source="ent_step" target="ent_trace" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="680" y="530"/>
+                            <mxPoint x="680" y="970"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="r14" value="추론 호출&#xa;→ 0..1" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;" parent="layRel" source="ent_step" target="ent_mreq" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="720" y="483"/>
+                            <mxPoint x="720" y="623"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="r15" value="사용&#xa;1 → 0..*" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;fontSize=10;edgeStyle=orthogonalEdgeStyle;" parent="layRel" source="ent_task" target="ent_bsess" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="700" y="320"/>
+                            <mxPoint x="700" y="320"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="r16" value="관찰·추출&#xa;1 → 0..*" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;fontSize=10;" parent="layRel" source="ent_bsess" target="ent_page" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="r17" value="컨텍스트 포함&#xa;(PII 마스킹 후)" style="endArrow=open;html=1;rounded=0;dashed=1;strokeColor=#000000;fontSize=10;" parent="layRel" source="ent_page" target="ent_mreq" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="r18" value="준수&#xa;* → 0..1" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;fontSize=10;edgeStyle=orthogonalEdgeStyle;" parent="layRel" source="ent_bsess" target="ent_policy" edge="1">
+                    <mxGeometry x="-0.125" y="10" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1080" y="312.4999999999998"/>
+                            <mxPoint x="1080" y="780"/>
+                        </Array>
+                        <mxPoint x="2" y="-7" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="r19" value="수집·보존 근거" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" parent="layRel" source="ent_consent" target="ent_pii" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="r20" value="클라우드 전송 동의" style="endArrow=open;html=1;rounded=0;dashed=1;strokeColor=#000000;fontSize=10;exitX=1;exitY=0.5;edgeStyle=orthogonalEdgeStyle;" parent="layRel" source="ent_consent" target="ent_mreq" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="260" y="720"/>
+                            <mxPoint x="890" y="720"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="r21" value="PII 분류 대상" style="endArrow=open;html=1;rounded=0;dashed=1;strokeColor=#000000;fontSize=10;" parent="layRel" source="ent_trace" target="ent_pii" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="r22" value="PII 분류 대상" style="endArrow=open;html=1;rounded=0;dashed=1;strokeColor=#000000;fontSize=10;exitX=1;exitY=0.5;entryX=1;entryY=0.25;" parent="layRel" source="ent_page" target="ent_pii" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1130" y="470"/>
+                            <mxPoint x="1130" y="966"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="r23" value="PII 분류 대상" style="endArrow=open;html=1;rounded=0;dashed=1;strokeColor=#000000;fontSize=10;exitX=0;exitY=0.5;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;" parent="layRel" source="ent_utter" target="ent_pii" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-50" y="315"/>
+                            <mxPoint x="-50" y="1080"/>
+                            <mxPoint x="890" y="1080"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

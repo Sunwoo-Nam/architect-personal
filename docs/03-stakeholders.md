@@ -93,13 +93,13 @@ v1(16개) → v2(9개, Concern 중첩 기준 병합)를 거쳐, v3에서는 **RA
 
 ### 3.2.4 SW 개발팀 (본 시스템 개발 주체)
 
-- **역할**: 본 AI Web Agent(온디바이스 에이전트 하네스, VUI·AGT·BRW·CNT·MDL·WFL·HIL·GNUI·PRV 등 기능 영역)를 실제로 **구현·통합**하는 내부 엔지니어링 팀. 아키텍트가 정의한 설계를 코드로 실현하는 실행 주체이며, 본 시스템을 *소비*하는 3.2.2 ARGO 개발팀·*공급*하는 3.2.3 웹 엔진 팀과 명확히 구분되는 **개발 주체**다.
+- **역할**: 본 AI Web Agent(온디바이스 에이전트 하네스, VUI·AGT·BRW·CNT·WFL·HIL·GNUI·PRV 등 기능 영역)를 실제로 **구현·통합**하는 내부 엔지니어링 팀. 아키텍트가 정의한 설계를 코드로 실현하는 실행 주체이며, 본 시스템을 *소비*하는 3.2.2 ARGO 개발팀·*공급*하는 3.2.3 웹 엔진 팀과 명확히 구분되는 **개발 주체**다.
 - **주요 Concern**
   - 기능 영역별 **독립 개발·테스트가 가능한 모듈 경계**와 Mock/Stub 지원, 새 도구·스킬·모델 추가의 용이성(유지보수성·확장성)
   - **비결정적(non-deterministic) AI 동작을 개발 루프 안에서 재현**할 수 있는 시뮬레이션·리플레이 환경
   - LLM API 호출 시 **토큰 사용량·응답 시간·비용**을 실시간 추적·최적화하는 개발자 도구와, 에이전트 루프 실행 트레이스(도구 호출 순서, 컨텍스트 스냅샷, 에러 지점) 가시성
   - 온디바이스 하네스와 클라우드 LLM 간 레이턴시·오류율을 개발 루프 안에서 즉시 확인 가능한지
-  - CDP·MDL·호스트 호출 계약 등 외부 의존 인터페이스의 변경이 구현에 미치는 파급을 국소화하는 경계 설계
+  - CDP·클라우드 LLM API·호스트 호출 계약 등 외부 의존 인터페이스의 변경이 구현에 미치는 파급을 국소화하는 경계 설계
 - **관련 Architectural View**
   - Component View (모듈 경계·개발 단위 격리)
   - Logical View (내부 구조·책임 배분)
@@ -272,7 +272,7 @@ End User는 단일 그룹이 아니라 사용 맥락·접근성 요구가 다른
 - **조직 구조 가정**: Samsung 내부 조직의 분류는 일반화된 역할 기반이며, 실제 조직도의 팀 명칭과 1:1 대응을 전제하지 않는다. 본 시스템을 **개발하는 주체(3.2.4 SW 개발팀)**, **소비(호출)하는 주체(3.2.2 ARGO 개발팀)**, **플랫폼 인터페이스를 공급하는 주체(3.2.3 웹 엔진 팀)**, **검증·배포하는 주체(3.2.6·3.2.7)**는 서로 분리된 역할이라는 전제를 따른다.
 - **분할 granularity 가정**: v3의 재분할(3.1.1)은 RACI 책임(Accountable) 분리와 Concern 축 상충을 기준으로 한다. 재분할된 역할 간 이해가 실제로 수렴하는 것으로 판명되면(예: SW 개발팀과 품질 담당자가 단일 조직으로 운영) 카드를 다시 병합할 수 있다.
 - **규제 대변 가정**: 규제·법률 기관은 본 시스템과 직접 상호작용하지 않으므로 별도 Stakeholder로 두지 않고, 내부 컴플라이언스 역할(3.2.8)이 그 요구를 대변한다. 본 시스템은 글로벌 출시를 전제로 하며, 가장 보수적인 규제(예: GDPR, EAA, PIPA)를 기준선으로 삼는다. 특정 지역 한정 출시의 경우 대변 범위가 달라질 수 있다.
-- **AI 모델 소싱 가정**: AI 모델은 자사·제3자·온디바이스·클라우드 모두의 조합이 가능하다고 전제한다. 따라서 모델 공급사는 단일 벤더가 아닌 범주로 취급한다.
+- **AI 모델 소싱 가정**: 추론은 클라우드 LLM API 호출을 전제로 한다(TC-002, 별도 모델 추상화 계층 없음). 모델 공급사는 단일 벤더가 아닌 범주로 취급하며, 공급사 교체 가능성은 설계 제약으로 다룬다.
 - **Out-of-Scope (제약으로 취급하는 외부 주체)**: 다음 주체는 본 시스템과 직접 상호작용하지 않거나 의사결정 이해관계가 없으므로 Stakeholder로 식별하지 않고, NFR · Deployment · Rendering Policy · External Interface View 등에서 **설계 제약(Constraint)**으로 다룬다.
   - **웹 콘텐츠 · 서비스 제공자** (에이전트가 조작·재구성하는 이커머스·예약·OTT·포털 등의 소유자) — 에이전트 접근 정책·식별 수단·메타데이터 요구는 External Interface / Rendering Policy View의 제약으로 반영한다.
   - **외부 Agent 플랫폼** (MCP 클라이언트, LangChain, AutoGen 등에서 본 시스템을 Skill / Sub-Agent로 호출하려는 제3자) — 표준 인터페이스 요구는 3.2.2 ARGO 개발팀이 참조 소비자로 대표하며, 향후 실질 이해관계가 구체화되면 Stakeholder로 승격을 재검토한다.
@@ -360,7 +360,7 @@ Power├────────────────────────
 | # | 활동 | 대응 Architectural View (3.5) |
 |---|------|-----------------------------|
 | 1 | 시스템 경계·Logical / Component Architecture 정의 | Context, Logical, Component View |
-| 2 | Model Abstraction Layer 인터페이스 확정 | Logical, External Interface View |
+| 2 | 클라우드 LLM 연동 방식 확정 (API·프롬프트·비용 통제) | Logical, External Interface View |
 | 3 | Web Engine 연동 계약(CDP · Browser Session) 확정 | Component, Integration / Extension, Data Flow View |
 | 4 | 호스트(Main Agent · GenUI Renderer) 호출 계약 확정 | Logical, Integration / Extension, External Interface View |
 | 5 | 리소스 예산 · 배치 결정 | Deployment, Process, Resource Budget View |
@@ -381,7 +381,7 @@ Power├────────────────────────
 | # | 활동 | VD 사업부 | 아키텍트 | ARGO 개발 | 웹 엔진 | SW 개발 | UX팀 | 품질 | 배포 | 보안·컴플 |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 1 | 시스템 경계 · Logical / Component 정의 | I | **A**, R | C | C | R | C |  |  | C |
-| 2 | Model Abstraction Layer 인터페이스 | I | **A**, R |  |  | R |  |  |  | C |
+| 2 | 클라우드 LLM 연동 방식 | I | **A**, R |  |  | R |  |  |  | C |
 | 3 | CDP · Browser Session 계약 |  | **A**, R |  | R | R |  | C |  | C |
 | 4 | 호스트 호출 계약 확정 | I | **A**, R | R |  | R | C |  |  | C |
 | 5 | 리소스 예산 · 배치 | C | R | C | R | C |  |  | **A**, R |  |

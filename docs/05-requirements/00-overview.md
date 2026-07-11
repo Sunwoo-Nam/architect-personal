@@ -13,9 +13,17 @@
 
 본 5장은 FR과 NFR을 별도 디렉터리·별도 문서로 분리해 작성한다. 동일 항목에 대한 FR과 NFR은 서로 양방향으로 참조하며, 추적성 표(`01-functional/99-traceability.md`)에서 통합된다.
 
+### 5.1.0 도메인 모델 (공통 어휘)
+
+본 장 전체에서 사용하는 도메인 개념(발화·의도·태스크·단계·HITL 승인·브라우저 세션·페이지 표현·모델 요청·동의·PII 데이터 항목·트레이스 등)과 그 관계는 아래 도메인 모델이 단일 어휘 기준이다. FR/NFR/UC에서 이 개념들을 지칭할 때는 도메인 모델의 명칭을 그대로 사용한다.
+
+![Domain Model](../../diagrams/04-domain-model.drawio)
+
+> 분석 수준의 개념 모델이며 구현 클래스 설계가 아니다. 엔티티 추가·개명 시 본 다이어그램과 관련 FR/UC 명칭을 함께 갱신한다.
+
 ### 5.1.1 본 사이클의 작업 범위
 
-본 작업 사이클에서는 **기능 요구사항(FR)** 만 작성한다. NFR은 후속 사이클에서 동일 디렉터리 구조(`02-non-functional/`)로 추가한다. FR 영역 작성도 한 번에 9개를 모두 작성하지 않고, **VUI(Voice User Interface) 영역만 우선 작성**하여 작성 규약·카드 스키마의 적합성을 검증한 뒤 다른 영역으로 확장한다.
+본 작업 사이클에서는 **기능 요구사항(FR)** 만 작성한다. NFR은 후속 사이클에서 동일 디렉터리 구조(`02-non-functional/`)로 추가한다. FR 영역 작성도 한 번에 8개를 모두 작성하지 않고, **VUI(Voice User Interface) 영역만 우선 작성**하여 작성 규약·카드 스키마의 적합성을 검증한 뒤 다른 영역으로 확장한다.
 
 ```
 docs/05-requirements/
@@ -26,11 +34,10 @@ docs/05-requirements/
 │   ├── 02-agt.md                   # (후속) Agent Core
 │   ├── 03-brw.md                   # (후속) Browser Control
 │   ├── 04-cnt.md                   # (후속) Content Pipeline
-│   ├── 05-mdl.md                   # (후속) Model Abstraction
-│   ├── 06-wfl.md                   # (후속) Workflow
-│   ├── 07-hil.md                   # (후속) Human-in-the-Loop
-│   ├── 08-int.md                   # (후속) Host Integration
-│   ├── 09-ext.md                   # (후속) External Services
+│   ├── 05-wfl.md                   # (후속) Workflow
+│   ├── 06-hil.md                   # (후속) Human-in-the-Loop
+│   ├── 07-int.md                   # (후속) Host Integration
+│   ├── 08-ext.md                   # (후속) External Services
 │   └── 99-traceability.md          # (후속) FR↔시나리오↔Stakeholder↔View 추적표
 └── 02-non-functional/              # (후속 사이클)
 ```
@@ -49,10 +56,10 @@ docs/05-requirements/
 
 모든 요구사항은 다음 두 가지 출처 중 적어도 하나로부터 도출되어야 하며, 카드의 `Source` 필드에 명시한다.
 
-1. **타겟 사용 시나리오** (2.2의 시나리오 1~5)
+1. **타겟 사용 시나리오** (2.2의 시나리오 1~4)
 2. **Stakeholder Concern** (3.2~3.3)
 
-추적은 양방향으로 이루어진다. 각 영역 파일 말미에 영역 단위 추적표를 둔다. 9개 영역 작성이 모두 끝난 시점에 `99-traceability.md`에서 통합 추적표를 생성한다.
+추적은 양방향으로 이루어진다. 각 영역 파일 말미에 영역 단위 추적표를 둔다. 8개 영역 작성이 모두 끝난 시점에 `99-traceability.md`에서 통합 추적표를 생성한다.
 
 ### 5.2.3 검증 가능성 (Verifiability)
 

@@ -198,10 +198,9 @@ Option X를 선택한다.
 | AGT | Agent Core | `02-agt.md` |
 | BRW | Browser Control | `03-brw.md` |
 | CNT | Content Pipeline | `04-cnt.md` |
-| MDL | Model Abstraction Layer | `05-mdl.md` |
-| WFL | Workflow / Quick Action | `06-wfl.md` |
-| HIL | Human-in-the-Loop | `07-hil.md` |
-| GNUI | GenUI Interface Contract (entry app GenUI 렌더링 엔진은 out-of-scope; 본 영역은 인터페이스 계약만 다룸) | `08-gnui.md` |
-| PRV | Privacy & Retention | `09-prv.md` |
+| WFL | Workflow / Quick Action | `05-wfl.md` |
+| HIL | Human-in-the-Loop | `06-hil.md` |
+| GNUI | GenUI Interface Contract (entry app GenUI 렌더링 엔진은 out-of-scope; 본 영역은 인터페이스 계약만 다룸) | `07-gnui.md` |
+| PRV | Privacy & Retention | `08-prv.md` |
 
-> **참고**: 구 GWP(Generative Web Page) 영역은 과제 범위 제외로 삭제 (1장 Out-of-Scope 참조).
+> **참고**: 구 GWP(Generative Web Page) 영역은 과제 범위 제외로 삭제 (1장 Out-of-Scope 참조). 구 MDL(Model Abstraction Layer) 영역은 모델 추상화 계층을 두지 않기로 결정하여 삭제 — 추론은 클라우드 LLM 직접 호출(TC-002).

@@ -61,11 +61,8 @@
         <mxCell id="safety" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;fontColor=#c62828;strokeColor=#ef9a9a;fontSize=10;align=center;" value="&lt;b&gt;Safety / Privacy Filter&lt;/b&gt;&#xa;PII 마스킹 · Human-in-the-Loop" vertex="1">
           <mxGeometry height="55" width="270" x="370" y="450" as="geometry" />
         </mxCell>
-        <mxCell id="mal" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;fontColor=#6a1b9a;strokeColor=#ce93d8;fontSize=10;align=center;" value="&lt;b&gt;Model Abstraction Layer&lt;/b&gt;&#xa;통합 모델 인터페이스 · 라우팅 · 폴백 · 캐싱" vertex="1">
+        <mxCell id="mal" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;fontColor=#6a1b9a;strokeColor=#ce93d8;fontSize=10;align=center;" value="&lt;b&gt;Cloud LLM Client&lt;/b&gt;&#xa;LLM API 호출 · 응답 캐싱" vertex="1">
           <mxGeometry height="55" width="280" x="660" y="375" as="geometry" />
-        </mxCell>
-        <mxCell id="ondevice_slm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#616161;strokeColor=#bdbdbd;fontSize=10;align=center;dashed=1;dashPattern=5 3;" value="&lt;b&gt;On-Device SLM&lt;/b&gt; (Optional)&#xa;간단한 의도 분류&#xa;오프라인 폴백" vertex="1">
-          <mxGeometry height="55" width="280" x="660" y="450" as="geometry" />
         </mxCell>
         <mxCell id="arr_ip_wf" edge="1" parent="1" source="intent_parser" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#e65100;strokeWidth=1.5;" target="workflow">
           <mxGeometry relative="1" as="geometry" />
@@ -148,9 +145,6 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="arr_mal_slm" edge="1" parent="1" source="mal" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#9e9e9e;strokeWidth=1.5;dashed=1;fontColor=#9e9e9e;fontSize=9;" target="ondevice_slm" value="폴백">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="arr_chromium_genui" edge="1" parent="1" source="chromium_bg" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1565c0;strokeWidth=1.5;fontColor=#1565c0;fontSize=9;" target="genui" value="웹 콘텐츠">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -200,7 +194,7 @@
         <mxCell id="leg4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#ce93d8;" value="" vertex="1">
           <mxGeometry height="12" width="16" x="1185" y="1000" as="geometry" />
         </mxCell>
-        <mxCell id="leg4_t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontColor=#333333;" value="MAL — 모델 라우팅 (Cloud / On-Device)" vertex="1">
+        <mxCell id="leg4_t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontColor=#333333;" value="Cloud LLM Client — LLM API 호출부" vertex="1">
           <mxGeometry height="18" width="220" x="1208" y="995" as="geometry" />
         </mxCell>
         <mxCell id="leg5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#7c3aed;strokeColor=none;" value="" vertex="1">
