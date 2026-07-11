@@ -45,6 +45,10 @@
 
 > argot·Bixby 자체의 설계는 본 ADS의 범위가 아니다. 본 문서에서 두 시스템은 **호출자(consumer)** 로서만 다루며, 상세 인터페이스 계약은 Context View·External Interface View(08-views)에서 정의한다.
 
+![System Context Diagram](../diagrams/05-context-diagram.drawio)
+
+> 위 컨텍스트 다이어그램(C4 L1)은 본 시스템의 스코프 경계 — In-Scope(에이전트 하네스), out-of-scope 인접 시스템(Bixby·argot·GenUI Renderer·웹 엔진), 외부 의존(클라우드 LLM·제3자 웹 서비스·외부 에이전트 플랫폼) — 와 상호작용을 한눈에 보여준다. 스코프·인터페이스 변경 시 함께 갱신한다.
+
 ---
 
 ## 2.2 타겟 사용 시나리오
