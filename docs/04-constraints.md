@@ -37,7 +37,7 @@
 ### TC-001 Chromium 기반 Web Engine 및 CDP 의존
 
 - **Description**: 본 시스템은 Tizen의 Chromium/Blink 기반 Web Engine과 그것이 노출하는 **CDP(Chrome DevTools Protocol)** 및 Browser Session 인터페이스를 통해 페이지를 관찰·조작한다. CDP가 제공하지 않는 동작은 본 시스템에서 구현할 수 없으며, Web Engine 업그레이드 시 CDP 호환성이 사전에 검증되어야 한다.
-- **Source**: Tizen Platform · Web Engine Team (3.2.2)
+- **Source**: 웹 엔진 팀 (3.2.3)
 - **Impact**: 페이지 인식·요소 시맨틱 해석 메커니즘 (7장 Solution Strategy), Component View, Integration / Extension View, Deployment View
 - **Status**: Fixed
 
@@ -46,7 +46,7 @@
 ### TC-002 On-device 에이전트 하네스 + Cloud LLM
 
 - **Description**: 에이전트 루프(도구 선택·실행 흐름·HITL 흐름) 자체는 TV 디바이스 안에서 실행되며, 추론(reasoning)은 외부 클라우드 LLM API 호출로 수행한다. 본 시스템은 on-device 추론을 1차 목표로 하지 않으며, 모델 추상화 계층은 클라우드 LLM 호출을 1순위 가정으로 설계한다. (특정 보조 작업에서 on-device SLM 가용성은 별도 결정 사안.)
-- **Source**: 1장 시스템 특징, Tizen Platform · Web Engine Team (3.2.2)
+- **Source**: 1장 시스템 특징, 웹 엔진 팀 (3.2.3)
 - **Impact**: NFR-008 (토큰 비용), NFR-009 (오류 격리), NFR-018 (클라우드 전송 최소화), Component View, Deployment View
 - **Status**: Fixed
 
@@ -55,7 +55,7 @@
 ### TC-003 외부 ASR / 화자 식별 시스템 의존
 
 - **Description**: 음성 인식(Speech-to-Text)은 본 시스템 외부의 Tizen VUI 프레임워크가 담당하며, 본 시스템은 ASR 결과(전사된 텍스트)를 입력으로 받는다. ASR 정확도·지연·웨이크워드 처리·다국어 지원 등은 외부 시스템의 책임이며 본 시스템은 그 결과에 의존한다. (화자 식별(Speaker Identification) 결과를 활용하는 멀티프로필 처리는 현재 본 시스템 범위에서 제외된다 — 5장 범위 조정 참조.)
-- **Source**: Tizen Platform · Web Engine Team (3.2.2)
+- **Source**: 웹 엔진 팀 (3.2.3)
 - **Impact**: FR-001 (의도 해석), Context View, External Interface View
 - **Status**: Fixed
 
@@ -64,7 +64,7 @@
 ### TC-004 라인업별 HW 스펙 차이 (메모리·CPU·NPU)
 
 - **Description**: Samsung TV는 동일 시점에 여러 라인업(Premium / Mid / Entry)이 동시에 출시되며, 라인업별 메모리·CPU·NPU 스펙이 서로 다르다. 본 시스템은 단일 빌드가 모든 라인업에서 동작 가능함을 1차 목표로 하며, 자원 예산(메모리·CPU·저장소)은 **가장 제약이 큰 라인업을 기준으로 한 전 라인업 공통 상한**을 적용한다.
-- **Source**: VD 사업부 (3.2.1), Tizen Platform · Web Engine Team (3.2.2)
+- **Source**: VD 사업부 (3.2.1), 웹 엔진 팀 (3.2.3)
 - **Impact**: NFR-006 (메모리), NFR-007 (CPU), NFR-011 (라인업 동등성), NFR-029 (저장소), Deployment View, Resource Budget View
 - **Status**: Fixed
 
@@ -72,8 +72,8 @@
 
 ### TC-005 Platform Main Agent(argot)의 Sub-Agent로 동작 가능
 
-- **Description**: 본 시스템은 독립 실행뿐 아니라, Tizen Platform · Web Engine Team이 소유한 Platform Main Agent **argot(argo-tizen)** 의 **Sub-Agent / Skill**로도 호출 가능해야 한다. argot은 AIOS(Tizen OS AI화)의 메인 에이전트로서 Bixby를 통해 사용자 질의를 수신하고, 브라우저 제어 태스크로 판단 시 본 시스템을 호출하며, 본 시스템의 결과를 받아 사용자에게 표시한다 (호출 흐름은 [2장 시스템 컨텍스트](02-project-overview.md) 참조). 본 시스템의 공개 인터페이스는 argot의 호출 계약과 호환되어야 하며, argot의 컨텍스트·세션 모델을 침해하지 않아야 한다.
-- **Source**: Tizen Platform · Web Engine Team (3.2.2)
+- **Description**: 본 시스템은 독립 실행뿐 아니라, ARGO 개발팀이 소유한 Platform Main Agent **argot(argo-tizen)** 의 **Sub-Agent / Skill**로도 호출 가능해야 한다. argot은 AIOS(Tizen OS AI화)의 메인 에이전트로서 Bixby를 통해 사용자 질의를 수신하고, 브라우저 제어 태스크로 판단 시 본 시스템을 호출하며, 본 시스템의 결과를 받아 사용자에게 표시한다 (호출 흐름은 [2장 시스템 컨텍스트](02-project-overview.md) 참조). 본 시스템의 공개 인터페이스는 argot의 호출 계약과 호환되어야 하며, argot의 컨텍스트·세션 모델을 침해하지 않아야 한다.
+- **Source**: ARGO 개발팀 (3.2.2)
 - **Impact**: FR-025 (Skill 인터페이스), FR-026 (외부 인증), FR-027 (실행 결과 스키마), Logical View, Integration / Extension View
 - **Status**: Fixed
 
@@ -81,8 +81,8 @@
 
 ### TC-006 외부 Agent 플랫폼 호출 표준 인터페이스
 
-- **Description**: 본 시스템은 내부 플랫폼(argot)뿐 아니라, **외부 에이전트 오케스트레이션 플랫폼**(MCP 클라이언트, Agent Protocol 등)에서도 Sub-Agent / Skill로 호출 가능하도록 표준화된 공개 인터페이스를 제공해야 한다. 인터페이스 표준은 MCP tool spec 또는 OpenAPI schema 중 하나 이상을 지원한다.
-- **Source**: 외부 Agent 플랫폼 통합 개발자 (3.3.2)
+- **Description**: 본 시스템은 내부 플랫폼(argot)뿐 아니라, **외부 에이전트 오케스트레이션 플랫폼**(MCP 클라이언트, Agent Protocol 등)에서도 Sub-Agent / Skill로 호출 가능하도록 표준화된 공개 인터페이스를 제공해야 한다. 인터페이스 표준은 MCP tool spec 또는 OpenAPI schema 중 하나 이상을 지원한다. 외부 에이전트 플랫폼 자체는 본 시스템과 직접 상호작용이 미확정이므로 Stakeholder가 아닌 제약으로 취급하며(3.6), 표준 인터페이스 요구는 ARGO 개발팀이 참조 소비자로 대표한다.
+- **Source**: ARGO 개발팀 (3.2.2, 참조 소비자) — cf. 3.6 Out-of-Scope(외부 Agent 플랫폼)
 - **Impact**: FR-025, FR-026, FR-027, NFR-023 (하위 호환성), External Interface View
 - **Status**: Fixed
 
@@ -108,19 +108,19 @@
 
 ---
 
-### OC-003 Tizen Platform · Web Engine Team의 인터페이스·격리 정책
+### OC-003 ARGO 개발팀의 호출 계약·격리 정책
 
-- **Description**: Tizen Platform · Web Engine Team은 본 시스템의 호스트이자 가장 가까운 내부 소비자다. 본 시스템이 노출하는 공개 인터페이스의 안정성·버저닝, 그리고 본 시스템의 실패가 Main Agent / GenUI Renderer로 전파되지 않는 격리 전략은 Platform Team이 정의한 정책을 따라야 한다.
-- **Source**: Tizen Platform · Web Engine Team (3.2.2)
+- **Description**: ARGO 개발팀은 본 시스템의 가장 가까운 내부 소비자(호출자)다. 본 시스템이 노출하는 공개 인터페이스의 안정성·버저닝, 그리고 본 시스템의 실패가 Main Agent / GenUI Renderer로 전파되지 않는 격리 전략은 ARGO 개발팀이 정의한 호출 계약·격리 정책을 따라야 한다.
+- **Source**: ARGO 개발팀 (3.2.2)
 - **Impact**: NFR-009 (오류 격리), NFR-023 (인터페이스 호환성), FR-024 (오류 격리), Logical View, Integration / Extension View
 - **Status**: Fixed
 
 ---
 
-### OC-004 보안 · 프라이버시 · 컴플라이언스의 보안 게이트
+### OC-004 보안 · 컴플라이언스팀의 보안 게이트
 
-- **Description**: 자격증명 보관·사용, PII 데이터 흐름, 권한 모델, 위협 모델은 보안 · 프라이버시 · 컴플라이언스의 사전 심사·승인을 받아야 한다. 본 시스템의 설계는 해당 팀이 정의한 권한 도메인·트러스트 경계·암호화 표준 안에서 이루어져야 한다.
-- **Source**: 보안 · 프라이버시 · 컴플라이언스 (3.2.5)
+- **Description**: 자격증명 보관·사용, PII 데이터 흐름, 권한 모델, 위협 모델은 보안 · 컴플라이언스팀의 사전 심사·승인을 받아야 한다. 본 시스템의 설계는 해당 팀이 정의한 권한 도메인·트러스트 경계·암호화 표준 안에서 이루어져야 한다.
+- **Source**: 보안 · 컴플라이언스팀 (3.2.8)
 - **Impact**: NFR-012, NFR-014, NFR-015, NFR-017, NFR-018 (보안·프라이버시 전반), FR-019·FR-020·FR-021·FR-022 (보안·프라이버시 전반), Security View, Threat Model View, Privacy & Retention View
 - **Status**: Fixed
 
@@ -139,8 +139,8 @@
 
 ### CN-001 Tizen TV 디자인 시스템 (10-feet UI)
 
-- **Description**: 본 시스템이 출력하는 모든 UI(Generative UI 포함)는 Tizen TV 디자인 시스템의 토큰(타이포그래피·색상·포커스·모션·간격)과 10-feet UI(원거리 시청) 가이드라인을 따라야 한다. UI 라이브러리·디자인 토큰은 UX·Design Team이 소유·제공한다.
-- **Source**: UX · Design Team (3.2.3)
+- **Description**: 본 시스템이 출력하는 모든 UI(Generative UI 포함)는 Tizen TV 디자인 시스템의 토큰(타이포그래피·색상·포커스·모션·간격)과 10-feet UI(원거리 시청) 가이드라인을 따라야 한다. UI 라이브러리·디자인 토큰은 UX팀이 소유·제공한다.
+- **Source**: UX팀 (3.2.5)
 - **Impact**: Generative UI 렌더링 전반(디자인 토큰 준수 — 본 제약이 직접 규정), Generative UI View, Interaction View
 - **Status**: Fixed
 
@@ -149,7 +149,7 @@
 ### CN-002 ARIA / 시맨틱 마크업 표준
 
 - **Description**: Generative UI 컴포넌트는 W3C ARIA 표준에 따라 role / label / description / state 등 접근성 속성을 완전히 포함해야 한다. 이는 보조 기술(AT, OS 레이어에서 처리)이 UI를 정확히 해석할 수 있도록 하는 기반 표준이다.
-- **Source**: 접근성 · 고령 사용자 (3.4.2), W3C ARIA
+- **Source**: 고령 사용자 (3.3.2), W3C ARIA
 - **Impact**: NFR-022 (WCAG — 접근성 속성 준수 측정), Generative UI View, Accessibility View
 - **Status**: Fixed
 
@@ -159,19 +159,19 @@
 
 | ID | 제목 | Source | 주요 Impact |
 |----|------|--------|-------------|
-| TC-001 | Chromium 기반 Web Engine 및 CDP 의존 | 3.2.2 | 페이지 인식 메커니즘(7장), Component View |
-| TC-002 | On-device 에이전트 하네스 + Cloud LLM | 1장, 3.2.2 | NFR-008, NFR-018 |
-| TC-003 | 외부 ASR / 화자 식별 시스템 의존 | 3.2.2 | FR-001 |
-| TC-004 | 라인업별 HW 스펙 차이 | 3.2.1, 3.2.2 | NFR-006, NFR-007, NFR-011 |
+| TC-001 | Chromium 기반 Web Engine 및 CDP 의존 | 3.2.3 | 페이지 인식 메커니즘(7장), Component View |
+| TC-002 | On-device 에이전트 하네스 + Cloud LLM | 1장, 3.2.3 | NFR-008, NFR-018 |
+| TC-003 | 외부 ASR / 화자 식별 시스템 의존 | 3.2.3 | FR-001 |
+| TC-004 | 라인업별 HW 스펙 차이 | 3.2.1, 3.2.3 | NFR-006, NFR-007, NFR-011 |
 | TC-005 | Platform Main Agent(argot)의 Sub-Agent 동작 | 3.2.2 | FR-025, FR-026, FR-027 |
-| TC-006 | 외부 Agent 플랫폼 호출 표준 인터페이스 | 3.3.2 | FR-025, FR-026, FR-027, NFR-023 |
+| TC-006 | 외부 Agent 플랫폼 호출 표준 인터페이스 | 3.2.2 (참조 소비자) | FR-025, FR-026, FR-027, NFR-023 |
 | OC-001 | VD 사업부 상품화 게이트 | 3.2.1 | 전반 |
 | OC-002 | LLM API 호출 비용 예산 | 3.2.1 | NFR-008, FR-031 |
-| OC-003 | Tizen Platform · Web Engine Team 인터페이스·격리 정책 | 3.2.2 | NFR-009, NFR-023 |
-| OC-004 | 보안 · 프라이버시 · 컴플라이언스 보안 게이트 | 3.2.5 | NFR-012, NFR-014, NFR-015, NFR-017, NFR-018 |
+| OC-003 | ARGO 개발팀 호출 계약·격리 정책 | 3.2.2 | NFR-009, NFR-023 |
+| OC-004 | 보안 · 컴플라이언스팀 보안 게이트 | 3.2.8 | NFR-012, NFR-014, NFR-015, NFR-017, NFR-018 |
 | OC-005 | LLM 토큰 사용 비용 사용자 미부과 | 3.2.1 | NFR-008, FR-031 |
-| CN-001 | Tizen TV 디자인 시스템 (10-feet UI) | 3.2.3 | Generative UI View |
-| CN-002 | ARIA / 시맨틱 마크업 표준 | 3.4.2, W3C | NFR-022 |
+| CN-001 | Tizen TV 디자인 시스템 (10-feet UI) | 3.2.5 | Generative UI View |
+| CN-002 | ARIA / 시맨틱 마크업 표준 | 3.3.2, W3C | NFR-022 |
 
 총 13건.
 
