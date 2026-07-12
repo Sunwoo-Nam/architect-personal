@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="use-case-diagram" name="Use Case Diagram">
-        <mxGraphModel dx="1111" dy="1108" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1500" math="0" shadow="0">
+        <mxGraphModel dx="724" dy="723" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1500" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" value="경계·그룹" style="" parent="0"/>
@@ -44,7 +44,7 @@
                 <mxCell id="a_web3" value="제3자 웹 서비스" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;strokeColor=#000000;fillColor=#FFFFFF;dashed=1;fontSize=12;" parent="layActors" vertex="1">
                     <mxGeometry x="1020" y="220" width="40" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="a_argot" value="argot Main Agent&#xa;(Bixby 경유, 3.2.2)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;strokeColor=#000000;fillColor=#FFFFFF;fontSize=12;" parent="layActors" vertex="1">
+                <mxCell id="a_argot" value="argot Main Agent" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;strokeColor=#000000;fillColor=#FFFFFF;fontSize=12;" parent="layActors" vertex="1">
                     <mxGeometry x="1020" y="580" width="40" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="layUC" value="Use Cases" style="" parent="0"/>
