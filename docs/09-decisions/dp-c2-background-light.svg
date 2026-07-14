@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" font-family="Pretendard, 'Noto Sans KR', 'Malgun Gothic', sans-serif">
+  <defs>
+    <linearGradient id="spectrum" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#14B8A6"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <marker id="aT" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#0D9488"/>
+    </marker>
+    <marker id="aP" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#7C3AED"/>
+    </marker>
+    <marker id="aM" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#64748B"/>
+    </marker>
+    <marker id="aMs" markerWidth="10" markerHeight="10" refX="2" refY="5" orient="auto">
+      <path d="M10,0 L0,5 L10,10 Z" fill="#64748B"/>
+    </marker>
+    <marker id="aA" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#D97706"/>
+    </marker>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#FFFFFF"/>
+
+  <!-- ===== header ===== -->
+  <text x="70" y="40" font-size="13" fill="#0D9488" letter-spacing="3">DECISION POINT C2 · QUICK ACTION 실행 구조</text>
+  <text x="70" y="80" font-size="32" font-weight="700" fill="#111827">DP-C2 배경 — Quick Action 실행 구조</text>
+  <text x="70" y="110" font-size="14.5" fill="#5B6472">에이전트 루프 없이 처리되어야 하는 단순 명령의 우회 경로 — 그 분기(dispatch)를 파이프라인의 어느 지점에서, 누구의 소유로 수행하는가는 응답성·정확도·소유권·안전이 정면으로 얽히는 구조적 결정이다</text>
+
+  <!-- ============================================================ -->
+  <!-- 01 문제 정의 : dispatch pipeline + budget bar                -->
+  <!-- ============================================================ -->
+  <text x="70" y="160" font-size="17" font-weight="700" fill="#0D9488">01 · 문제 정의<tspan fill="#111827"> — Quick Action은 무엇이 구조적으로 다르고, 분기는 어디에 놓이는가</tspan></text>
+
+  <!-- input chain -->
+  <rect x="70" y="280" width="110" height="70" rx="12" fill="#F8FAFC" stroke="#CBD5E1"/>
+  <text x="125" y="311" font-size="13" font-weight="700" fill="#111827" text-anchor="middle">사용자</text>
+  <text x="125" y="332" font-size="10" fill="#5B6472" text-anchor="middle">발화 (음성)</text>
+  <path d="M180,315 L206,315" stroke="#64748B" stroke-width="2" marker-end="url(#aM)"/>
+
+  <rect x="210" y="280" width="170" height="70" rx="12" fill="#F1F5F9" stroke="#CBD5E1"/>
+  <text x="295" y="308" font-size="12.5" font-weight="700" fill="#111827" text-anchor="middle">음성 인식 · 발화 해석</text>
+  <text x="295" y="330" font-size="10" fill="#5B6472" text-anchor="middle">빅스비 상류 단계 (통제 밖)</text>
+  <path d="M380,315 L406,315" stroke="#64748B" stroke-width="2" marker-end="url(#aM)"/>
+
+  <!-- dispatch fork zone -->
+  <rect x="410" y="250" width="150" height="130" rx="14" fill="#FFFBEB" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="485" y="280" font-size="13" font-weight="700" fill="#B45309" text-anchor="middle">분기 지점 = ?</text>
+  <rect x="474" y="304" width="22" height="22" rx="4" transform="rotate(45 485 315)" fill="#F59E0B"/>
+  <text x="485" y="320" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">?</text>
+  <text x="485" y="362" font-size="9.5" fill="#B45309" text-anchor="middle">누가 · 어디서 판별하는가</text>
+  <path d="M560,295 L596,242" stroke="#7C3AED" stroke-width="2" marker-end="url(#aP)"/>
+  <path d="M560,335 L596,388" stroke="#0D9488" stroke-width="2" marker-end="url(#aT)"/>
+
+  <!-- lane: general task (agent loop) -->
+  <rect x="600" y="190" width="400" height="90" rx="12" fill="#F5F3FF" stroke="#7C3AED" stroke-width="1.2"/>
+  <text x="620" y="215" font-size="13.5" font-weight="700" fill="#6D28D9">일반 태스크 — 에이전트 루프</text>
+  <rect x="620" y="227" width="64" height="24" rx="12" fill="#EDE9FE" stroke="#C4B5FD"/>
+  <text x="652" y="243" font-size="10" fill="#5B21B6" text-anchor="middle">계획</text>
+  <path d="M684,239 L698,239" stroke="#8B5CF6" stroke-width="1.6" marker-end="url(#aP)"/>
+  <rect x="700" y="227" width="78" height="24" rx="12" fill="#EDE9FE" stroke="#C4B5FD"/>
+  <text x="739" y="243" font-size="10" fill="#5B21B6" text-anchor="middle">도구 호출</text>
+  <path d="M778,239 L792,239" stroke="#8B5CF6" stroke-width="1.6" marker-end="url(#aP)"/>
+  <rect x="794" y="227" width="64" height="24" rx="12" fill="#EDE9FE" stroke="#C4B5FD"/>
+  <text x="826" y="243" font-size="10" fill="#5B21B6" text-anchor="middle">관찰</text>
+  <path d="M858,239 L872,239" stroke="#8B5CF6" stroke-width="1.6" marker-end="url(#aP)"/>
+  <rect x="874" y="227" width="106" height="24" rx="12" fill="#EDE9FE" stroke="#C4B5FD"/>
+  <text x="927" y="243" font-size="10" font-weight="700" fill="#5B21B6" text-anchor="middle">↻ 루프 ×N 반복</text>
+  <text x="620" y="270" font-size="9.5" fill="#5B6472">매 스텝 LLM 호출 — 예) “이 배우 나온 다른 영화 찾아줘”</text>
+  <path d="M1000,235 L1026,235" stroke="#64748B" stroke-width="2" marker-end="url(#aM)"/>
+  <rect x="1030" y="210" width="170" height="50" rx="10" fill="#F8FAFC" stroke="#CBD5E1"/>
+  <text x="1115" y="231" font-size="12" font-weight="700" fill="#111827" text-anchor="middle">완료</text>
+  <text x="1115" y="250" font-size="9.5" fill="#5B6472" text-anchor="middle">수십 초 ~ 수 분 · 토큰 소모</text>
+
+  <!-- lane: quick action (bypass) -->
+  <rect x="600" y="340" width="400" height="90" rx="12" fill="#F0FDFA" stroke="#0D9488" stroke-width="1.2"/>
+  <text x="620" y="365" font-size="13.5" font-weight="700" fill="#0F766E">Quick Action — 우회 경로</text>
+  <rect x="620" y="377" width="116" height="24" rx="12" fill="#CCFBF1" stroke="#5EEAD4"/>
+  <text x="678" y="393" font-size="10" fill="#0F766E" text-anchor="middle">카탈로그 매칭</text>
+  <path d="M736,389 L750,389" stroke="#0D9488" stroke-width="1.6" marker-end="url(#aT)"/>
+  <rect x="752" y="377" width="130" height="24" rx="12" fill="#CCFBF1" stroke="#5EEAD4"/>
+  <text x="817" y="393" font-size="10" fill="#0F766E" text-anchor="middle">명령 직접 실행</text>
+  <text x="620" y="420" font-size="9.5" fill="#5B6472">LLM 호출 0회 · 루프 없음 — 예) 재생 · 정지 · 5초 앞/뒤로</text>
+  <path d="M1000,385 L1026,385" stroke="#64748B" stroke-width="2" marker-end="url(#aM)"/>
+  <rect x="1030" y="360" width="170" height="50" rx="10" fill="#F0FDFA" stroke="#0D9488"/>
+  <text x="1115" y="381" font-size="12" font-weight="700" fill="#0F766E" text-anchor="middle">동작 (미디어 제어)</text>
+  <text x="1115" y="400" font-size="9.5" fill="#5B6472" text-anchor="middle">목표 : E2E ≤ 4초</text>
+
+  <!-- budget bar -->
+  <text x="210" y="462" font-size="12" font-weight="700" fill="#111827">E2E 예산 : 4초 <tspan font-size="10" font-weight="400" fill="#5B6472">(빅스비 발화 유입 → 실제 동작)</tspan></text>
+  <rect x="210" y="470" width="290" height="20" fill="#CBD5E1"/>
+  <rect x="500" y="470" width="700" height="20" fill="#99F6E4"/>
+  <rect x="210" y="470" width="990" height="20" rx="5" fill="none" stroke="#94A3B8"/>
+  <line x1="500" y1="464" x2="500" y2="496" stroke="#64748B" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="355" y="484" font-size="9.5" font-weight="700" fill="#334155" text-anchor="middle">상류 소모 (통제 밖)</text>
+  <text x="850" y="484" font-size="9.5" font-weight="700" fill="#0F766E" text-anchor="middle">잔여 예산 — 분기 판별 · 경로 진입 · 실행이 모두 여기서</text>
+  <text x="210" y="510" font-size="9.5" fill="#94A3B8">0초</text>
+  <text x="1200" y="510" font-size="9.5" fill="#94A3B8" text-anchor="end">4초</text>
+  <text x="508" y="510" font-size="9.5" fill="#5B6472">← 경계는 상류 처리 시간에 따라 변동 — 잔여 예산의 크기 자체가 불확실</text>
+
+  <!-- diagram caption -->
+  <text x="635" y="530" font-size="11.5" text-anchor="middle"><tspan fill="#5B6472">두 경로의 구조적 차이는 명확 — 결정 대상은 </tspan><tspan fill="#B45309" font-weight="700">갈림길(분기)을 어디에 · 누구의 소유로</tspan><tspan fill="#5B6472"> 두는가이다</tspan></text>
+
+  <!-- ============================================================ -->
+  <!-- 02 왜 중요한가 (right column)                                 -->
+  <!-- ============================================================ -->
+  <text x="1260" y="160" font-size="17" font-weight="700" fill="#0D9488">02 · 왜 중요한가</text>
+
+  <rect x="1260" y="180" width="590" height="74" rx="11" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <circle cx="1292" cy="212" r="12" fill="#F1F5F9" stroke="#0D9488"/>
+  <text x="1292" y="217" font-size="11" font-weight="700" fill="#0D9488" text-anchor="middle">1</text>
+  <text x="1314" y="217" font-size="14.5" font-weight="700" fill="#111827">리모컨과 경쟁하는 임계 응답성</text>
+  <text x="1288" y="241" font-size="11.5" fill="#5B6472">E2E 4초 초과 시 사용자는 물리 버튼으로 회귀 — 음성 경로 자체가 폐기됨</text>
+
+  <rect x="1260" y="263" width="590" height="74" rx="11" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <circle cx="1292" cy="295" r="12" fill="#F1F5F9" stroke="#0D9488"/>
+  <text x="1292" y="300" font-size="11" font-weight="700" fill="#0D9488" text-anchor="middle">2</text>
+  <text x="1314" y="300" font-size="14.5" font-weight="700" fill="#111827">최고 빈도 경로</text>
+  <text x="1288" y="324" font-size="11.5" fill="#5B6472">재생·정지·구간 이동은 세션당 수십 회 — 지연·토큰 손실이 곱으로 누적</text>
+
+  <rect x="1260" y="346" width="590" height="74" rx="11" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <circle cx="1292" cy="378" r="12" fill="#F1F5F9" stroke="#0D9488"/>
+  <text x="1292" y="383" font-size="11" font-weight="700" fill="#0D9488" text-anchor="middle">3</text>
+  <text x="1314" y="383" font-size="14.5" font-weight="700" fill="#111827">분기 지점 = 소유권 경계</text>
+  <text x="1288" y="407" font-size="11.5" fill="#5B6472">분기 위치가 카탈로그의 소유·배포 주체를 결정 (명령 추가 시 배포 주체가 갈림)</text>
+
+  <rect x="1260" y="429" width="590" height="74" rx="11" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <circle cx="1292" cy="461" r="12" fill="#F1F5F9" stroke="#0D9488"/>
+  <text x="1292" y="466" font-size="11" font-weight="700" fill="#0D9488" text-anchor="middle">4</text>
+  <text x="1314" y="466" font-size="14.5" font-weight="700" fill="#111827">DP-C1(통합 인터페이스)에 종속</text>
+  <text x="1288" y="490" font-size="11.5" fill="#5B6472">통합 계약의 형태가 정해져야 분기 지점의 후보 위치가 확정된다</text>
+
+  <!-- ============================================================ -->
+  <!-- 03 왜 어려운가 (bottom zone)                                  -->
+  <!-- ============================================================ -->
+  <text x="70" y="556" font-size="17" font-weight="700"><tspan fill="#0D9488">03 · 왜 어려운가</tspan><tspan fill="#111827"> — 분기 지점의 위치를 두고 QA가 정면 충돌한다</tspan></text>
+
+  <!-- left: spectrum + tension table -->
+  <text x="70" y="594" font-size="13.5" font-weight="700" fill="#0D9488">상류 분기<tspan font-size="10.5" font-weight="400" fill="#5B6472">  발화 해석에 근접 · 조기 판별</tspan></text>
+  <text x="1180" y="594" font-size="13.5" font-weight="700" fill="#7C3AED" text-anchor="end"><tspan font-size="10.5" font-weight="400" fill="#5B6472">실행 컨텍스트에 근접 · 늦은 판별  </tspan>하류 분기</text>
+  <rect x="70" y="604" width="1110" height="6" rx="3" fill="url(#spectrum)"/>
+  <text x="625" y="626" font-size="10.5" fill="#94A3B8" text-anchor="middle">단일 결정 변수 : 분기 지점의 위치 (Dispatch Point Placement)</text>
+
+  <!-- row 1 -->
+  <rect x="70" y="640" width="175" height="60" rx="11" fill="#F1F5F9" stroke="#CBD5E1"/>
+  <text x="157" y="675" font-size="12.5" font-weight="700" fill="#111827" text-anchor="middle">① 판별 시점</text>
+  <rect x="260" y="640" width="440" height="60" rx="10" fill="#F0FDFA" stroke="#0D9488" stroke-opacity="0.65"/>
+  <text x="280" y="665" font-size="13.5" font-weight="700" fill="#0F766E">임계 응답성</text>
+  <text x="280" y="686" font-size="10.5" fill="#5B6472">조기 분기 — 경로 진입 비용을 잔여 예산에서 제거</text>
+  <polygon points="702,670 712,664 712,676" fill="#0D9488"/>
+  <polygon points="738,670 728,664 728,676" fill="#7C3AED"/>
+  <rect x="740" y="640" width="440" height="60" rx="10" fill="#F5F3FF" stroke="#7C3AED" stroke-opacity="0.65"/>
+  <text x="760" y="665" font-size="13.5" font-weight="700" fill="#6D28D9">분기 정확도</text>
+  <text x="760" y="686" font-size="10.5" fill="#5B6472">“지금 재생 중인가” — 판단 근거인 실행 컨텍스트는 하류에 존재</text>
+
+  <!-- row 2 -->
+  <rect x="70" y="712" width="175" height="60" rx="11" fill="#F1F5F9" stroke="#CBD5E1"/>
+  <text x="157" y="747" font-size="12.5" font-weight="700" fill="#111827" text-anchor="middle">② 카탈로그 소유권</text>
+  <rect x="260" y="712" width="440" height="60" rx="10" fill="#F0FDFA" stroke="#0D9488" stroke-opacity="0.65"/>
+  <text x="280" y="737" font-size="13.5" font-weight="700" fill="#0F766E">판별 비용 최소화</text>
+  <text x="280" y="758" font-size="10.5" fill="#5B6472">상류에 이미 있는 발화 해석 능력을 재사용</text>
+  <polygon points="702,742 712,736 712,748" fill="#0D9488"/>
+  <polygon points="738,742 728,736 728,748" fill="#7C3AED"/>
+  <rect x="740" y="712" width="440" height="60" rx="10" fill="#F5F3FF" stroke="#7C3AED" stroke-opacity="0.65"/>
+  <text x="760" y="737" font-size="13.5" font-weight="700" fill="#6D28D9">배포 독립성 · 교정 권한</text>
+  <text x="760" y="758" font-size="10.5" fill="#5B6472">명령 추가·오분기 교정을 자체 배포 주기로 수행</text>
+
+  <!-- row 3 -->
+  <rect x="70" y="784" width="175" height="60" rx="11" fill="#F1F5F9" stroke="#CBD5E1"/>
+  <text x="157" y="819" font-size="12.5" font-weight="700" fill="#111827" text-anchor="middle">③ 자원 배치</text>
+  <rect x="260" y="784" width="440" height="60" rx="10" fill="#F0FDFA" stroke="#0D9488" stroke-opacity="0.65"/>
+  <text x="280" y="809" font-size="13.5" font-weight="700" fill="#0F766E">메모리 예산 보호</text>
+  <text x="280" y="830" font-size="10.5" fill="#5B6472">하류의 상시 대기 없이 동작 (TV 자원 제약)</text>
+  <polygon points="702,814 712,808 712,820" fill="#0D9488"/>
+  <polygon points="738,814 728,808 728,820" fill="#7C3AED"/>
+  <rect x="740" y="784" width="440" height="60" rx="10" fill="#F5F3FF" stroke="#7C3AED" stroke-opacity="0.65"/>
+  <text x="760" y="809" font-size="13.5" font-weight="700" fill="#6D28D9">잔여 예산 확보</text>
+  <text x="760" y="830" font-size="10.5" fill="#5B6472">진입 지연을 줄이려면 하류의 사전 준비가 필요 — DP-C4와 연동</text>
+
+  <text x="625" y="874" font-size="10.5" fill="#94A3B8" text-anchor="middle">세 축 모두 같은 변수에서 파생 — 한 방향의 이득이 곧 반대 방향의 손실</text>
+
+  <!-- right panel: misdispatch asymmetry -->
+  <rect x="1220" y="585" width="630" height="310" rx="14" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="1248" y="618" font-size="15.5" font-weight="700" fill="#111827">오분기의 비대칭 비용 — 정확도를 단일 지표로 다룰 수 없다</text>
+
+  <!-- misdispatch A -->
+  <rect x="1248" y="642" width="180" height="30" rx="15" fill="#F0FDFA" stroke="#5EEAD4"/>
+  <text x="1338" y="661" font-size="11" fill="#0F766E" text-anchor="middle">Quick Action 발화</text>
+  <path d="M1436,657 L1494,657" stroke="#64748B" stroke-width="2" marker-end="url(#aM)"/>
+  <text x="1465" y="647" font-size="9.5" fill="#5B6472" text-anchor="middle">오분기</text>
+  <rect x="1502" y="642" width="200" height="30" rx="15" fill="#F1F5F9" stroke="#CBD5E1"/>
+  <text x="1602" y="661" font-size="11" fill="#334155" text-anchor="middle">일반 태스크 경로로 유입</text>
+  <text x="1248" y="696" font-size="11.5" fill="#5B6472">→ 수 초 지연 · 불필요한 LLM 토큰 소모 — <tspan font-weight="700" fill="#334155">성능 손실 (회복 가능)</tspan></text>
+
+  <!-- misdispatch B -->
+  <rect x="1248" y="722" width="180" height="30" rx="15" fill="#F5F3FF" stroke="#C4B5FD"/>
+  <text x="1338" y="741" font-size="11" fill="#6D28D9" text-anchor="middle">일반 태스크 발화</text>
+  <path d="M1436,737 L1494,737" stroke="#D97706" stroke-width="2" marker-end="url(#aA)"/>
+  <text x="1465" y="727" font-size="9.5" fill="#B45309" text-anchor="middle">오분기</text>
+  <rect x="1502" y="722" width="200" height="30" rx="15" fill="#FFFBEB" stroke="#F59E0B"/>
+  <text x="1602" y="741" font-size="11" fill="#B45309" text-anchor="middle">Quick Action 경로로 유입</text>
+  <text x="1248" y="776" font-size="11.5" fill="#5B6472">→ 의도와 다른 행동이 확인 없이 즉시 실행 — <tspan font-weight="700" fill="#B45309">안전 문제 (회복 곤란)</tspan></text>
+
+  <line x1="1248" y1="800" x2="1822" y2="800" stroke="#E2E8F0"/>
+
+  <text x="1248" y="830" font-size="12.5" font-weight="700" fill="#111827">→ 속도 · 정확도 · 안전을 하나의 분기 설계가 동시에 감당해야 한다</text>
+  <text x="1248" y="854" font-size="11" fill="#5B6472">오류의 두 방향이 다른 종류의 대가를 치르므로, 빠르기만 한 분기도 정확하기만 한 분기도 답이 아님</text>
+  <text x="1248" y="876" font-size="11" fill="#5B6472">지연 축소 수단(사전 준비·상시 대기)은 메모리 비용으로 전가 — 상주·격리 모델(DP-C4)과 직결</text>
+
+  <!-- conclusion strip -->
+  <rect x="70" y="925" width="1780" height="64" rx="12" fill="#F1F5F9" stroke="#CBD5E1"/>
+  <text x="960" y="952" font-size="14.5" font-weight="700" text-anchor="middle"><tspan fill="#111827">속도 · 정확도 · 소유권 · 안전이 분기 지점 하나에 얽혀 있다 → </tspan><tspan fill="#0D9488">QA 우선순위 판단이 필요한 트레이드오프 지점</tspan></text>
+  <text x="960" y="976" font-size="11.5" fill="#5B6472" text-anchor="middle">DP-C1의 통합 계약이 분기 지점의 후보 위치를 규정한다 → 다음 장 : DP-C2 후보안 비교</text>
+</svg>
