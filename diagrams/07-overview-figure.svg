@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="630" viewBox="0 0 460 630" font-family="'Malgun Gothic','Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="hero" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#28477a"/>
+      <stop offset="1" stop-color="#1f3864"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ============ GOAL 1 (HERO) : autonomous web control ============ -->
+  <rect x="50" y="18" width="360" height="176" rx="16" fill="url(#hero)"/>
+  <circle cx="74" cy="42" r="12" fill="#1f3864" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="74" y="47" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">1</text>
+  <!-- monitor + browser + cursor + AI badge -->
+  <g stroke="#ffffff" stroke-width="2.4" fill="none" stroke-linejoin="round">
+    <rect x="74" y="78" width="84" height="58" rx="6" fill="#ffffff" fill-opacity="0.08"/>
+    <line x1="74" y1="96" x2="158" y2="96"/>
+    <line x1="116" y1="136" x2="116" y2="148"/>
+    <line x1="100" y1="148" x2="132" y2="148"/>
+  </g>
+  <circle cx="84" cy="87" r="2.2" fill="#9db4dc"/><circle cx="92" cy="87" r="2.2" fill="#9db4dc"/><circle cx="100" cy="87" r="2.2" fill="#9db4dc"/>
+  <path d="M118 106 l0 22 l6 -6 l4 9 l4 -2 l-4 -9 l8 0 z" fill="#ffffff"/>
+  <circle cx="152" cy="82" r="13" fill="#4f79c7" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="152" y="86" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">AI</text>
+  <text x="180" y="96" font-size="19" font-weight="700" fill="#ffffff">웹 브라우저 자율 조작</text>
+  <text x="180" y="122" font-size="13" fill="#c5d2e8">음성·자연어로 위임하면</text>
+  <text x="180" y="142" font-size="13" fill="#c5d2e8">에이전트가 태스크까지 완료</text>
+
+  <!-- ============ GOAL 2 : Headless browser ============ -->
+  <rect x="50" y="214" width="360" height="172" rx="16" fill="#f7f9fc" stroke="#c7d0de" stroke-width="1.5"/>
+  <circle cx="74" cy="238" r="12" fill="#ffffff" stroke="#1f3864" stroke-width="1.5"/>
+  <text x="74" y="243" text-anchor="middle" font-size="13" font-weight="700" fill="#1f3864">2</text>
+  <!-- background window + foreground window with gear -->
+  <rect x="90" y="266" width="70" height="48" rx="5" fill="#ffffff" stroke="#aab8cc" stroke-width="2"/>
+  <rect x="76" y="280" width="70" height="50" rx="5" fill="#ffffff" stroke="#1f3864" stroke-width="2.4"/>
+  <line x1="76" y1="292" x2="146" y2="292" stroke="#1f3864" stroke-width="2.4"/>
+  <circle cx="84" cy="286" r="2" fill="#8497b0"/><circle cx="91" cy="286" r="2" fill="#8497b0"/><circle cx="98" cy="286" r="2" fill="#8497b0"/>
+  <!-- gear -->
+  <g stroke="#1f3864" stroke-width="2" fill="none">
+    <circle cx="111" cy="311" r="8"/>
+    <line x1="111" y1="299" x2="111" y2="303"/><line x1="111" y1="319" x2="111" y2="323"/>
+    <line x1="99" y1="311" x2="103" y2="311"/><line x1="119" y1="311" x2="123" y2="311"/>
+    <line x1="102.5" y1="302.5" x2="105" y2="305"/><line x1="117" y1="317" x2="119.5" y2="319.5"/>
+    <line x1="119.5" y1="302.5" x2="117" y2="305"/><line x1="105" y1="317" x2="102.5" y2="319.5"/>
+  </g>
+  <circle cx="111" cy="311" r="2.5" fill="#1f3864"/>
+  <text x="180" y="284" font-size="18" font-weight="700" fill="#1f3864">Headless 브라우저 지원</text>
+  <text x="180" y="310" font-size="13" fill="#6b7a90">Background에서</text>
+  <text x="180" y="330" font-size="13" fill="#6b7a90">태스크 처리 수행</text>
+
+  <!-- ============ GOAL 3 : Agentic module interface ============ -->
+  <rect x="50" y="406" width="360" height="172" rx="16" fill="#f7f9fc" stroke="#c7d0de" stroke-width="1.5"/>
+  <circle cx="74" cy="430" r="12" fill="#ffffff" stroke="#1f3864" stroke-width="1.5"/>
+  <text x="74" y="435" text-anchor="middle" font-size="13" font-weight="700" fill="#1f3864">3</text>
+  <!-- hub: central agent connected to surrounding modules -->
+  <g stroke="#8497b0" stroke-width="2">
+    <line x1="118" y1="492" x2="84" y2="466"/>
+    <line x1="118" y1="492" x2="152" y2="466"/>
+    <line x1="118" y1="492" x2="118" y2="524"/>
+  </g>
+  <rect x="104" y="478" width="28" height="28" rx="7" fill="#1f3864"/>
+  <text x="118" y="497" text-anchor="middle" font-size="9" font-weight="700" fill="#ffffff">A</text>
+  <circle cx="84" cy="464" r="9" fill="#ffffff" stroke="#1f3864" stroke-width="2"/>
+  <circle cx="152" cy="464" r="9" fill="#ffffff" stroke="#1f3864" stroke-width="2"/>
+  <circle cx="118" cy="528" r="9" fill="#ffffff" stroke="#1f3864" stroke-width="2"/>
+  <text x="180" y="476" font-size="18" font-weight="700" fill="#1f3864">Agentic 모듈 인터페이스</text>
+  <text x="180" y="502" font-size="13" fill="#6b7a90">AIOS 내 다른 에이전트</text>
+  <text x="180" y="522" font-size="13" fill="#6b7a90">모듈과 상호작용</text>
+
+  <!-- caption -->
+  <text x="230" y="612" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1f3864">On-Device 하네스 기반 AI Web Agent 설계</text>
+</svg>
