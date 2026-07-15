@@ -99,6 +99,9 @@
 
 ## 2. 후보안
 
+![후보 A′ vs B 구조 비교 다이어그램](../diagrams/08-dp-c8-loop-structures.drawio)
+![후보별 컴포넌트 설계 — 정적 구조 + 실행 흐름](../diagrams/09-dp-c8-component-view.drawio)
+
 ### 후보 A′ — 단일 루프 + 명시적 계획 + 컴팩션
 
 하나의 LLM이 `생각 → 행동 → 관찰`을 단일 누적 컨텍스트에서 반복하되, 첫 스텝에서 계획을

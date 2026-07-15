@@ -1,0 +1,106 @@
+<mxfile host="app.diagrams.net" agent="Claude" version="24.0.0">
+  <diagram id="dp-c8-loop-structures" name="DP-C8 Loop Structures">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" value="경계·범례" style="" parent="0" />
+        <mxCell id="layA" value="후보 A′" style="" parent="0" />
+        <mxCell id="layB" value="후보 B" style="" parent="0" />
+
+        <!-- ===== 제목 ===== -->
+        <mxCell id="title" value="DP-C8 — 에이전트 루프 구조 후보 비교: A′(단일 루프 + 명시적 계획 + 컴팩션) vs B(Planner-Executor)" style="text;html=1;fontSize=18;fontStyle=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="40" y="10" width="1100" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 패널 경계 ===== -->
+        <mxCell id="panelA" value="후보 A′ — 단일 루프 + 명시적 계획 + 컴팩션 (계획 = 조언)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=1.5;verticalAlign=top;align=left;fontSize=13;fontStyle=1;spacingTop=6;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="40" y="60" width="730" height="760" as="geometry" />
+        </mxCell>
+        <mxCell id="panelB" value="후보 B — Planner-Executor (계획 = 제어 흐름)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=1.5;verticalAlign=top;align=left;fontSize=13;fontStyle=1;spacingTop=6;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="810" y="60" width="750" height="760" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 후보 A′ ============ -->
+        <mxCell id="aGoalIn" value="사용자 목표&#10;(argot 위임)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=11;" parent="layA" vertex="1">
+          <mxGeometry x="70" y="110" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="aLLM" value="&lt;b&gt;단일 LLM 루프 (3.5 Flash)&lt;/b&gt;&#10;매 스텝: 전체 컨텍스트 입력&#10;→ 계획 체크오프/수정 + 다음 행동 1개" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=3;fontSize=11;" parent="layA" vertex="1">
+          <mxGeometry x="430" y="110" width="300" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="aCtx" value="단일 누적 컨텍스트" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;verticalAlign=top;align=left;fontSize=12;fontStyle=1;spacingTop=6;spacingLeft=8;" parent="layA" vertex="1">
+          <mxGeometry x="70" y="190" width="310" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="aGoal" value="목표" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=11;" parent="layA" vertex="1">
+          <mxGeometry x="90" y="225" width="270" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="aPlan" value="&lt;b&gt;계획(todo) — 명시적 산출물, 고정·갱신&lt;/b&gt;&#10;⚠ 같은 모델이 소유·수정 (조언)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;fontSize=11;" parent="layA" vertex="1">
+          <mxGeometry x="90" y="270" width="270" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="aSum" value="요약 (과거 관찰의 치환본)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=11;" parent="layA" vertex="1">
+          <mxGeometry x="90" y="335" width="270" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="aObsOld" value="관찰 N-1 (DOM/AX)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=11;" parent="layA" vertex="1">
+          <mxGeometry x="90" y="385" width="270" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="aObsNew" value="관찰 N — 최신 (DOM/AX)&#10;⚠ 주입 텍스트가 계획 수정 권한과 동일 컨텍스트" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=11;" parent="layA" vertex="1">
+          <mxGeometry x="90" y="435" width="270" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="aCompact" value="&lt;b&gt;컴팩션 (요약 치환)&lt;/b&gt;&#10;요약 호출 비용 · 캐시 prefix 무효화&#10;· 정보 손실 위험 (§7-7)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=11;" parent="layA" vertex="1">
+          <mxGeometry x="430" y="300" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="aWeb" value="&lt;b&gt;웹 페이지&lt;/b&gt;&#10;신뢰 불가 콘텐츠 — 주입 텍스트 포함 가능" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;dashed=1;fontSize=11;" parent="layA" vertex="1">
+          <mxGeometry x="430" y="640" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="aNote" value="&lt;b&gt;잔존 실패 양식 (§3)&lt;/b&gt;&#10;done 오판 · 계획 자기수정(합리화·주입 설득)&#10;· 컴팩션 손실 — 계획이 조언에 머무는 대가" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#888888;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layA" vertex="1">
+          <mxGeometry x="70" y="640" width="310" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="aE1" value="목표 기록 (1회)" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="layA" source="aGoalIn" target="aGoal" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="aE2" value="전체 컨텍스트 입력&#10;(매 스텝 반복 청구)" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;fontSize=10;exitX=1;exitY=0.1;entryX=0;entryY=0.6;" parent="layA" source="aCtx" target="aLLM" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="aE3" value="계획 작성·체크오프·수정" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;fontSize=10;exitX=0;exitY=0.9;entryX=1;entryY=0.5;" parent="layA" source="aLLM" target="aPlan" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="aE4" value="행동 1개&#10;(click/type/…)" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;fontSize=10;exitX=0.85;exitY=1;entryX=0.85;entryY=0;" parent="layA" source="aLLM" target="aWeb" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="aE5" value="관찰 (DOM/AX) 유입" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;fontSize=10;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" parent="layA" source="aWeb" target="aObsNew" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="aE6" value="임계 초과 시" style="endArrow=classic;html=1;rounded=0;dashed=1;strokeColor=#000000;fontSize=10;exitX=1;exitY=0.5;entryX=0;entryY=0.75;" parent="layA" source="aObsOld" target="aCompact" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="aE7" value="요약으로 치환" style="endArrow=classic;html=1;rounded=0;dashed=1;strokeColor=#000000;fontSize=10;exitX=0;exitY=0.25;entryX=1;entryY=0.5;" parent="layA" source="aCompact" target="aSum" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- ============ 후보 B ============ -->
+        <mxCell id="bGoalIn" value="사용자 목표&#10;(argot 위임)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=11;" parent="layB" vertex="1">
+          <mxGeometry x="840" y="110" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bPlanner" value="&lt;b&gt;Planner (3.5 Flash, thinking↑)&lt;/b&gt;&#10;목표 → 단계 열 분해&#10;태스크당 1회 + 재계획 시" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=3;fontSize=11;" parent="layB" vertex="1">
+          <mxGeometry x="840" y="190" width="280" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="bPlan" value="&lt;b&gt;봉인된 계획 (제어 흐름)&lt;/b&gt;&#10;1. 검색 → 2. 가격 수집·비교 → 3. 최저가 선택&#10;→ 4. 담기 → 5. 결제 확인&#10;— Executor 수정 불가(읽기 전용)&#10;— 페이지 텍스트가 닿지 않음" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;fontSize=11;" parent="layB" vertex="1">
+          <mxGeometry x="840" y="330" width="280" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="bOrch" value="&lt;b&gt;단계 진행 오케스트레이션 (코드)&lt;/b&gt;&#10;현재 단계 결정 — 건너뛰기 구조적 불가" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=11;" parent="layB" vertex="1">
+          <mxGeometry x="840" y="520" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="bExec" value="&lt;b&gt;Executor (단계별 작은 루프)&lt;/b&gt;&#10;격리 컨텍스트:&#10;계획 요약 + 현재 단계 지시 + 현 단계 관찰만&#10;&#10;이전 단계 관찰 미보유 — 결과 요약만 수신&#10;계획 수정 권한 없음" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=3;fontSize=11;" parent="layB" vertex="1">
+          <mxGeometry x="1230" y="330" width="300" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="bWeb" value="&lt;b&gt;웹 페이지&lt;/b&gt;&#10;신뢰 불가 콘텐츠 — 주입 텍스트 포함 가능" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;dashed=1;fontSize=11;" parent="layB" vertex="1">
+          <mxGeometry x="1230" y="640" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="bNote" value="&lt;b&gt;봉인 효과 (§6 각주)&lt;/b&gt;&#10;주입 텍스트가 계획에 닿지 않음&#10;→ 인젝션 방어 기반 (DP-C6 연동)&#10;&#10;&lt;b&gt;성패 조건 (§6 R3)&lt;/b&gt;: 재계획 트리거 ·&#10;의도 봉인 · 계획 입도 규약" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#888888;align=left;verticalAlign=top;spacing=6;fontSize=11;" parent="layB" vertex="1">
+          <mxGeometry x="840" y="640" width="310" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="bE1" value="목표 (관찰 유입 전 봉인&#10;— 의도 봉인)" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="layB" source="bGoalIn" target="bPlanner" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bE2" value="단계 열 출력·봉인" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="layB" source="bPlanner" target="bPlan" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bE3" value="제어 흐름" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="layB" source="bPlan" target="bOrch" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bE4" value="현재 단계 지시&#10;(+ 계획 요약)" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;fontSize=10;exitX=1;exitY=0.5;entryX=0;entryY=0.8;" parent="layB" source="bOrch" target="bExec" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bE5" value="단계 완료/실패 보고&#10;(정보 계약)" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;fontSize=10;exitX=0;exitY=0.35;entryX=1;entryY=0.2;" parent="layB" source="bExec" target="bOrch" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bE6" value="행동 / 관찰&#10;(현 단계만)" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeColor=#000000;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="layB" source="bExec" target="bWeb" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bE7" value="재계획 트리거: 단계 실패 K회 · 계획 불일치 보고" style="endArrow=classic;html=1;rounded=0;dashed=1;strokeColor=#000000;fontSize=10;exitX=0.5;exitY=0;entryX=1;entryY=0.5;" parent="layB" source="bExec" target="bPlanner" edge="1">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1380" y="160" /><mxPoint x="1180" y="160" /></Array></mxGeometry>
+        </mxCell>
+
+        <!-- ===== 핵심 차이 범례 ===== -->
+        <mxCell id="legend" value="&lt;b&gt;핵심 차이 (§1.1 두 축)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;b&gt;계획의 소유·변경 권한&lt;/b&gt; — A′: 조언 (행동을 결정하는 같은 모델이 수정 → done 오판·자기수정 잔존) | B: 제어 흐름 (코드가 단계 진행, Executor 읽기 전용 → 구조적 강제·봉인)&#10;&lt;b&gt;컨텍스트의 수명&lt;/b&gt; — A′: 누적 + 요약 치환 (즉석 적응 유리, 컴팩션 손실 위험) | B: 단계 단위 격리·폐기 (정보 계약으로 목적 있는 압축, 재계획 왕복 필요)&#10;&lt;hr size=&quot;1&quot;&gt;굵은 실선: LLM 추론 주체 · 회색 상자: 비-LLM 메커니즘/데이터 · 점선 상자: 신뢰 불가 외부 · 점선 화살표: 조건부 경로" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#888888;align=left;verticalAlign=top;spacing=8;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="40" y="845" width="1520" height="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
