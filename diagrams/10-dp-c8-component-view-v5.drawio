@@ -1,0 +1,311 @@
+<mxfile host="app.diagrams.net" agent="Claude" version="24.0.0">
+  <diagram id="dp-c8-component-view-v5" name="DP-C8 Component View v5 (Loop-Ordered + Cloud LLM)">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1980" pageHeight="1210" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="lb" value="레이어 밴드" style="" parent="0" />
+        <mxCell id="lc" value="컴포넌트" style="" parent="0" />
+        <mxCell id="lf" value="실행 흐름" style="" parent="0" />
+        <mxCell id="ln" value="주석·범례" style="" parent="0" />
+
+        <!-- ===== 제목 / 패널 헤더 / 구분선 ===== -->
+        <mxCell id="title" value="DP-C8 — 후보별 루프 컴포넌트 설계 (계층 = 루프 순서: 관찰 → 추론 → 행동)" style="text;html=1;fontSize=18;fontStyle=1;align=left;" parent="ln" vertex="1">
+          <mxGeometry x="50" y="14" width="1300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hdrA" value="후보 A′ — 단일 루프 + 명시적 계획 + 컴팩션" style="text;html=1;fontSize=14;fontStyle=1;align=left;fontColor=#5B4FE5;" parent="ln" vertex="1">
+          <mxGeometry x="200" y="58" width="600" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="hdrB" value="후보 B — Planner-Executor" style="text;html=1;fontSize=14;fontStyle=1;align=left;fontColor=#5B4FE5;" parent="ln" vertex="1">
+          <mxGeometry x="1080" y="58" width="600" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="divider" value="" style="endArrow=none;dashed=1;html=1;strokeColor=#BBBBBB;strokeWidth=2;" parent="ln" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="1050" y="95" as="sourcePoint" /><mxPoint x="1050" y="1000" as="targetPoint" /></mxGeometry>
+        </mxCell>
+
+        <!-- ===== 레이어 밴드 (루프 순서) ===== -->
+        <mxCell id="bandL1" value="" style="rounded=0;html=1;fillColor=#F7F6FE;strokeColor=#DDDDDD;" parent="lb" vertex="1">
+          <mxGeometry x="50" y="95" width="1900" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="bandL2" value="" style="rounded=0;html=1;fillColor=#F0FBF9;strokeColor=#DDDDDD;" parent="lb" vertex="1">
+          <mxGeometry x="50" y="205" width="1900" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="bandL3" value="" style="rounded=0;html=1;fillColor=#F7F6FE;strokeColor=#DDDDDD;" parent="lb" vertex="1">
+          <mxGeometry x="50" y="345" width="1900" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="bandL4" value="" style="rounded=0;html=1;fillColor=#F0FBF9;strokeColor=#DDDDDD;" parent="lb" vertex="1">
+          <mxGeometry x="50" y="565" width="1900" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="bandL5" value="" style="rounded=0;html=1;fillColor=#F7F6FE;strokeColor=#DDDDDD;" parent="lb" vertex="1">
+          <mxGeometry x="50" y="785" width="1900" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="bandL6" value="" style="rounded=0;html=1;fillColor=#F5F5F5;strokeColor=#DDDDDD;" parent="lb" vertex="1">
+          <mxGeometry x="50" y="905" width="1900" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="lblL1" value="태스크&#10;(진입 · 종료)" style="text;html=1;fontSize=11;fontStyle=1;align=left;verticalAlign=top;fontColor=#5B4FE5;" parent="lb" vertex="1">
+          <mxGeometry x="58" y="101" width="135" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="lblL2" value="관찰 (Perception)&#10;— 루프의 시작" style="text;html=1;fontSize=11;fontStyle=1;align=left;verticalAlign=top;fontColor=#0E8E7C;" parent="lb" vertex="1">
+          <mxGeometry x="58" y="211" width="135" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="lblL3" value="상태 · 컨텍스트" style="text;html=1;fontSize=11;fontStyle=1;align=left;verticalAlign=top;fontColor=#5B4FE5;" parent="lb" vertex="1">
+          <mxGeometry x="58" y="351" width="135" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lblL4" value="추론 · 결정&#10;(Reasoning)&#10;+ Cloud LLM 호출" style="text;html=1;fontSize=11;fontStyle=1;align=left;verticalAlign=top;fontColor=#0E8E7C;" parent="lb" vertex="1">
+          <mxGeometry x="58" y="571" width="135" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lblL5" value="행동 (Action)" style="text;html=1;fontSize=11;fontStyle=1;align=left;verticalAlign=top;fontColor=#5B4FE5;" parent="lb" vertex="1">
+          <mxGeometry x="58" y="791" width="135" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lblL6" value="환경&#10;(외부 · 신뢰 불가)" style="text;html=1;fontSize=11;fontStyle=1;align=left;verticalAlign=top;fontColor=#666666;" parent="lb" vertex="1">
+          <mxGeometry x="58" y="911" width="135" height="44" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 후보 A′ · 태스크 ============ -->
+        <mxCell id="aTask" value="&lt;b&gt;태스크 인터페이스&lt;/b&gt; — 목표 수신 · 결과 보고" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#8C8C8C;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="430" y="117" width="330" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 후보 A′ · 관찰 ============ -->
+        <mxCell id="aObs" value="&lt;b&gt;관찰 파이프라인&lt;/b&gt;" style="rounded=0;html=1;whiteSpace=wrap;verticalAlign=top;spacingTop=4;fillColor=#FFFFFF;strokeColor=#5B4FE5;strokeWidth=2;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="380" y="225" width="330" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="aObs1" value="스냅샷 수신" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="aObs" vertex="1">
+          <mxGeometry x="12" y="46" width="148" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="aObs2" value="경량 표현 변환" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="aObs" vertex="1">
+          <mxGeometry x="170" y="46" width="148" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="aBadge" value="&lt;b&gt;↻ 에이전트 루프 (A′)&lt;/b&gt;&#10;②~⑦ 태스크 완료까지 반복&#10;관찰(②③) → 조립(④) → 추론(⑤) → 행동(⑥⑦)&#10;판정(계속·완료·중단)은 루프 컨트롤러 · 계획은 매 스텝 수정 가능" style="rounded=1;html=1;whiteSpace=wrap;dashed=1;align=left;spacing=8;fillColor=#F0FBF9;strokeColor=#14B8A6;fontSize=10;" parent="ln" vertex="1">
+          <mxGeometry x="760" y="225" width="250" height="95" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 후보 A′ · 상태 ============ -->
+        <mxCell id="aCtxStore" value="&lt;b&gt;단일 누적 컨텍스트 (상태)&lt;/b&gt;&#10;목표 · 계획 · 요약 · 관찰 누적&#10;— 전체가 매 스텝 추론 입력" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#FFFFFF;strokeColor=#14B8A6;strokeWidth=2;fontSize=10;" parent="lc" vertex="1">
+          <mxGeometry x="220" y="365" width="210" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="aPlanTool" value="&lt;b&gt;계획 도구&lt;/b&gt; — ⚠ 호출 주체 = 추론 LLM" style="rounded=0;html=1;whiteSpace=wrap;verticalAlign=top;spacingTop=4;fillColor=#FFFFFF;strokeColor=#5B4FE5;strokeWidth=2;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="460" y="362" width="270" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="aPlan1" value="작성·수정" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="aPlanTool" vertex="1">
+          <mxGeometry x="12" y="44" width="120" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="aPlan2" value="체크오프" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="aPlanTool" vertex="1">
+          <mxGeometry x="140" y="44" width="118" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="aCtxMgr" value="&lt;b&gt;컨텍스트 매니저&lt;/b&gt;" style="rounded=0;html=1;whiteSpace=wrap;verticalAlign=top;spacingTop=4;fillColor=#FFFFFF;strokeColor=#5B4FE5;strokeWidth=2;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="460" y="460" width="270" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="aCtx1" value="프롬프트 조립" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="aCtxMgr" vertex="1">
+          <mxGeometry x="12" y="44" width="120" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="aCtx2" value="토큰 카운터" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="aCtxMgr" vertex="1">
+          <mxGeometry x="140" y="44" width="118" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="aCompact" value="&lt;b&gt;컴팩터&lt;/b&gt;" style="rounded=0;html=1;whiteSpace=wrap;verticalAlign=top;spacingTop=4;fillColor=#FFFFFF;strokeColor=#5B4FE5;strokeWidth=2;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="770" y="362" width="240" height="186" as="geometry" />
+        </mxCell>
+        <mxCell id="aComp1" value="임계 감시" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="aCompact" vertex="1">
+          <mxGeometry x="12" y="40" width="216" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="aComp2" value="과거 관찰 → 요약 치환" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="aCompact" vertex="1">
+          <mxGeometry x="12" y="88" width="216" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="aComp3" value="원본 보존" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="aCompact" vertex="1">
+          <mxGeometry x="12" y="140" width="216" height="36" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 후보 A′ · 추론 ============ -->
+        <mxCell id="aLLM" value="&lt;b&gt;추론 스텝 (LLM 어댑터)&lt;/b&gt;&#10;전체 누적 컨텍스트 — 매 스텝 반복" style="rounded=0;html=1;whiteSpace=wrap;verticalAlign=top;spacingTop=4;fillColor=#FFFFFF;strokeColor=#5B4FE5;strokeWidth=2;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="220" y="595" width="250" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="aLLM1" value="요청 구성" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="aLLM" vertex="1">
+          <mxGeometry x="12" y="96" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="aLLM2" value="응답 수신" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="aLLM" vertex="1">
+          <mxGeometry x="130" y="96" width="108" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="aCloud" value="&lt;b&gt;Cloud LLM&lt;/b&gt;&#10;(외부 서비스)" style="shape=cloud;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#8C8C8C;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="520" y="610" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="aLoop" value="&lt;b&gt;루프 컨트롤러 (코드)&lt;/b&gt;" style="rounded=0;html=1;whiteSpace=wrap;verticalAlign=top;spacingTop=4;fillColor=#FFFFFF;strokeColor=#5B4FE5;strokeWidth=2;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="770" y="595" width="240" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="aLoop1" value="완료 판정" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="aLoop" vertex="1">
+          <mxGeometry x="10" y="42" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aLoop2" value="최대 스텝 판정" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="aLoop" vertex="1">
+          <mxGeometry x="10" y="78" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aLoop3" value="오류 재시도 정책" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="aLoop" vertex="1">
+          <mxGeometry x="10" y="114" width="220" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 후보 A′ · 행동 ============ -->
+        <mxCell id="aAct" value="&lt;b&gt;행동 실행기&lt;/b&gt;" style="rounded=0;html=1;whiteSpace=wrap;verticalAlign=top;spacingTop=4;fillColor=#FFFFFF;strokeColor=#5B4FE5;strokeWidth=2;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="380" y="800" width="330" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="aAct1" value="출력 파싱" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="aAct" vertex="1">
+          <mxGeometry x="12" y="42" width="148" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aAct2" value="도구 분기·실행" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="aAct" vertex="1">
+          <mxGeometry x="170" y="42" width="148" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 후보 A′ · 환경 ============ -->
+        <mxCell id="aEnv" value="&lt;b&gt;환경&lt;/b&gt; — 브라우저 · 웹 페이지 (외부 · 신뢰 불가)" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#8C8C8C;dashed=1;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="260" y="922" width="560" height="62" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 후보 A′ · 흐름 ============ -->
+        <mxCell id="aE1" value="① 목표 수신 · 기록" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=0;exitY=0.5;entryX=0.5;entryY=0;" parent="lf" source="aTask" target="aCtxStore" edge="1">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="325" y="147" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="aE2" value="② 환경 스냅샷&#10;(관찰 — 스텝의 시작)" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#14B8A6;strokeWidth=2;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" parent="lf" source="aEnv" target="aObs" edge="1">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="210" y="953" /><mxPoint x="210" y="272" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="aE3" value="③ 경량 표현 추가&#10;⚠ 외부 텍스트 유입" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#14B8A6;strokeWidth=2;exitX=0.2;exitY=1;entryX=0.7;entryY=0;" parent="lf" source="aObs" target="aCtxStore" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="aE4" value="④ 컨텍스트 조립&#10;(목표+계획+요약+관찰)" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=1;exitY=0.75;entryX=0;entryY=0.5;" parent="lf" source="aCtxStore" target="aCtxMgr" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="aE5" value="⑤ 조립된 컨텍스트 → 추론 스텝" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=0.1;exitY=1;entryX=0.6;entryY=0;" parent="lf" source="aCtxMgr" target="aLLM" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="aE5a" value="⑤a 호출: 전체 누적 컨텍스트&#10;응답: 계획 갱신 + 행동 1개" style="endArrow=classic;startArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=1;exitY=0.4;entryX=0;entryY=0.4;" parent="lf" source="aLLM" target="aCloud" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="aE5b" value="⑤b 계획 갱신 기록" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=0.9;exitY=0;entryX=0;entryY=0.5;" parent="lf" source="aLLM" target="aPlanTool" edge="1">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="445" y="406" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="aE5c" value="계획 고정" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#14B8A6;exitX=0;exitY=0.5;entryX=1;entryY=0.25;" parent="lf" source="aPlanTool" target="aCtxStore" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="aE6" value="⑥ 행동 결정 → 실행" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=0.4;exitY=1;entryX=0.2;entryY=0;" parent="lf" source="aLLM" target="aAct" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="aE7" value="⑦ 환경 조작 → 다음 스텝(②)" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="lf" source="aAct" target="aEnv" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="aE8" value="실행 결과 → 스텝 판정" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=1;exitY=0.2;entryX=0.2;entryY=1;" parent="lf" source="aAct" target="aLoop" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="aE9" value="⑧ 완료 시 결과 보고" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=1;exitY=0.3;entryX=1;entryY=0.5;" parent="lf" source="aLoop" target="aTask" edge="1">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1022" y="640" /><mxPoint x="1022" y="147" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="aEc1" value="임계 초과 시: 과거 관찰 요약 치환 (조건부)" style="endArrow=classic;html=1;rounded=0;dashed=1;fontSize=10;strokeColor=#444444;exitX=0.3;exitY=0;entryX=0.85;entryY=0;" parent="lf" source="aCompact" target="aCtxStore" edge="1">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="842" y="350" /><mxPoint x="398" y="350" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="aEc2" value="요약 호출 (조건부)" style="endArrow=classic;html=1;rounded=0;dashed=1;fontSize=10;strokeColor=#444444;exitX=0;exitY=0.85;entryX=1;entryY=0.35;" parent="lf" source="aCompact" target="aCloud" edge="1">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="745" y="520" /><mxPoint x="745" y="652" /></Array></mxGeometry>
+        </mxCell>
+
+        <!-- ============ 후보 B · 태스크 ============ -->
+        <mxCell id="bTask" value="&lt;b&gt;태스크 인터페이스&lt;/b&gt; — 목표 수신 · 결과 보고" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#8C8C8C;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="1300" y="117" width="330" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 후보 B · 관찰 ============ -->
+        <mxCell id="bObs" value="&lt;b&gt;관찰 파이프라인&lt;/b&gt; — 현 단계 관찰만" style="rounded=0;html=1;whiteSpace=wrap;verticalAlign=top;spacingTop=4;fillColor=#FFFFFF;strokeColor=#5B4FE5;strokeWidth=2;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="1250" y="225" width="330" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="bObs1" value="스냅샷 수신" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="bObs" vertex="1">
+          <mxGeometry x="12" y="46" width="148" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="bObs2" value="경량 표현 변환" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="bObs" vertex="1">
+          <mxGeometry x="170" y="46" width="148" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="bBadge" value="&lt;b&gt;↻ 단계 루프 (B)&lt;/b&gt;&#10;④~⑫ 단계마다 반복&#10;관찰(⑥⑦)→추론(⑧)&#10;→행동(⑨⑩)→보고(⑪)&#10;진행은 코드가 결정" style="rounded=1;html=1;whiteSpace=wrap;dashed=1;align=left;spacing=6;fillColor=#F0FBF9;strokeColor=#14B8A6;fontSize=9;" parent="ln" vertex="1">
+          <mxGeometry x="1090" y="225" width="148" height="95" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 후보 B · 상태 ============ -->
+        <mxCell id="bPlanStore" value="&lt;b&gt;봉인된 계획 (상태)&lt;/b&gt;&#10;단계 열 · 단계 상태&#10;— Executor 읽기 전용" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#FFFFFF;strokeColor=#14B8A6;strokeWidth=2;fontSize=10;" parent="lc" vertex="1">
+          <mxGeometry x="1090" y="365" width="240" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="bCkpt" value="&lt;b&gt;체크포인트 (상태)&lt;/b&gt;&#10;단계 경계 스냅샷&#10;· 중단 후 재개" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#FFFFFF;strokeColor=#14B8A6;strokeWidth=2;fontSize=10;" parent="lc" vertex="1">
+          <mxGeometry x="1390" y="380" width="240" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="bCloud" value="&lt;b&gt;Cloud LLM&lt;/b&gt;&#10;(외부 서비스)" style="shape=cloud;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#8C8C8C;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="1690" y="385" width="180" height="115" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 후보 B · 추론 ============ -->
+        <mxCell id="bPlanner" value="&lt;b&gt;Planner&lt;/b&gt;&#10;관찰 유입 前 1회 실행 (+재계획)" style="rounded=0;html=1;whiteSpace=wrap;verticalAlign=top;spacingTop=4;fillColor=#FFFFFF;strokeColor=#5B4FE5;strokeWidth=2;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="1090" y="585" width="250" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="bPl1" value="목표 → 단계 열 분해" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="bPlanner" vertex="1">
+          <mxGeometry x="10" y="84" width="112" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="bPl2" value="재계획 핸들러" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="bPlanner" vertex="1">
+          <mxGeometry x="132" y="84" width="108" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="bOrch" value="&lt;b&gt;단계 오케스트레이터 (코드)&lt;/b&gt;" style="rounded=0;html=1;whiteSpace=wrap;verticalAlign=top;spacingTop=4;fillColor=#FFFFFF;strokeColor=#5B4FE5;strokeWidth=2;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="1400" y="585" width="250" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="bOr1" value="단계 상태머신" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="bOrch" vertex="1">
+          <mxGeometry x="10" y="48" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bOr2" value="실패 카운터" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="bOrch" vertex="1">
+          <mxGeometry x="10" y="84" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bOr3" value="재계획 트리거 정책" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="bOrch" vertex="1">
+          <mxGeometry x="10" y="120" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bExec" value="&lt;b&gt;Executor&lt;/b&gt;" style="rounded=0;html=1;whiteSpace=wrap;verticalAlign=top;spacingTop=4;fillColor=#FFFFFF;strokeColor=#5B4FE5;strokeWidth=2;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="1690" y="585" width="220" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="bEx1" value="격리 컨텍스트 조립&#10;(계획 요약+단계 지시+현 단계 관찰)" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="bExec" vertex="1">
+          <mxGeometry x="10" y="36" width="200" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="bEx2" value="단계 미니 루프 실행" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="bExec" vertex="1">
+          <mxGeometry x="10" y="84" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="bEx3" value="보고 채널 — 계획 수정 권한 없음" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="bExec" vertex="1">
+          <mxGeometry x="10" y="124" width="200" height="34" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 후보 B · 행동 ============ -->
+        <mxCell id="bAct" value="&lt;b&gt;행동 실행기&lt;/b&gt;" style="rounded=0;html=1;whiteSpace=wrap;verticalAlign=top;spacingTop=4;fillColor=#FFFFFF;strokeColor=#5B4FE5;strokeWidth=2;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="1300" y="800" width="330" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="bAct1" value="출력 파싱" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="bAct" vertex="1">
+          <mxGeometry x="12" y="42" width="148" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bAct2" value="도구 분기·실행" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FAFAFA;strokeColor=#B0B0B0;fontSize=9;" parent="bAct" vertex="1">
+          <mxGeometry x="170" y="42" width="148" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 후보 B · 환경 ============ -->
+        <mxCell id="bEnv" value="&lt;b&gt;환경&lt;/b&gt; — 브라우저 · 웹 페이지 (외부 · 신뢰 불가)" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#8C8C8C;dashed=1;fontSize=11;" parent="lc" vertex="1">
+          <mxGeometry x="1130" y="922" width="560" height="62" as="geometry" />
+        </mxCell>
+
+        <!-- ============ 후보 B · 흐름 ============ -->
+        <mxCell id="bE1" value="① 목표 수신&#10;(관찰 유입 前 — 계획 먼저)" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=0;exitY=0.5;entryX=0;entryY=0.4;" parent="lf" source="bTask" target="bPlanner" edge="1">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1082" y="147" /><mxPoint x="1082" y="649" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="bE2" value="② 계획 생성 호출 (thinking↑)&#10;응답: 단계 열" style="endArrow=classic;startArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=0.9;exitY=0;entryX=0;entryY=0.95;" parent="lf" source="bPlanner" target="bCloud" edge="1">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1315" y="560" /><mxPoint x="1660" y="560" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="bE3" value="③ 계획 봉인&#10;(재계획 시 갱신)" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#14B8A6;exitX=0.3;exitY=0;entryX=0.3;entryY=1;" parent="lf" source="bPlanner" target="bPlanStore" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bE4" value="④ 다음 단계 읽기&#10;(읽기 전용)" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#14B8A6;exitX=1;exitY=0.6;entryX=0;entryY=0.25;" parent="lf" source="bPlanStore" target="bOrch" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bE5" value="⑤ 단계 지시 + 계획 요약" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=1;exitY=0.25;entryX=0;entryY=0.25;" parent="lf" source="bOrch" target="bExec" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bE6" value="⑥ 환경 스냅샷&#10;(단계 내 관찰 — 먼저)" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#14B8A6;strokeWidth=2;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" parent="lf" source="bEnv" target="bObs" edge="1">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1915" y="953" /><mxPoint x="1915" y="272" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="bE7" value="⑦ 현 단계 관찰만 → 격리 컨텍스트&#10;(외부 텍스트는 여기까지 — 계획 수정 경로 없음)" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#14B8A6;strokeWidth=2;exitX=1;exitY=0.8;entryX=0.85;entryY=0;" parent="lf" source="bObs" target="bExec" edge="1">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1877" y="301" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="bE8" value="⑧ 스텝 추론 호출 (thinking↓)&#10;응답: 행동" style="endArrow=classic;startArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=0.5;exitY=0;entryX=0.7;entryY=1;" parent="lf" source="bExec" target="bCloud" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bE9" value="⑨ 행동 결정 → 실행" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=0.25;exitY=1;entryX=1;entryY=0.3;" parent="lf" source="bExec" target="bAct" edge="1">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1745" y="825" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="bE10" value="⑩ 환경 조작 → ⑥ 재관찰&#10;(단계 미니 루프 ⑥~⑩)" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=0.5;exitY=1;entryX=0.55;entryY=0;" parent="lf" source="bAct" target="bEnv" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bE11" value="⑪ 단계 보고:&#10;완료/실패/계획 불일치" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=0;exitY=0.75;entryX=1;entryY=0.75;" parent="lf" source="bExec" target="bOrch" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bE12" value="⑫ 단계 경계 스냅샷&#10;→ 다음 단계(④)" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#14B8A6;exitX=0.3;exitY=0;entryX=0.5;entryY=1;" parent="lf" source="bOrch" target="bCkpt" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bE13" value="⑬ 재계획: 실패 K회 · 불일치 (조건부)" style="endArrow=classic;html=1;rounded=0;dashed=1;fontSize=10;strokeColor=#444444;exitX=0;exitY=0.35;entryX=1;entryY=0.35;" parent="lf" source="bOrch" target="bPlanner" edge="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bE14" value="⑭ 전체 완료 보고" style="endArrow=classic;html=1;rounded=0;fontSize=10;strokeColor=#444444;exitX=1;exitY=0.06;entryX=1;entryY=0.75;" parent="lf" source="bOrch" target="bTask" edge="1">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1665" y="595" /><mxPoint x="1665" y="162" /></Array></mxGeometry>
+        </mxCell>
+
+        <!-- ===== 요약 노트 ===== -->
+        <mxCell id="aNote" value="&lt;b&gt;동적 관점 (A′)&lt;/b&gt; — 관찰이 스텝의 시작: ②③ 관찰 → ④ 조립 → ⑤ 추론(⑤a Cloud LLM 호출: 전체 컨텍스트를 매 스텝 반복 전송) → ⑥⑦ 행동, 태스크 완료까지 반복(컴팩션은 조건부). 계획은 매 스텝 수정 가능 → 즉석 적응(강점).&#10;⚠ 구조적 위험: 외부 텍스트 유입(③)과 계획 수정(⑤b)이 같은 누적 컨텍스트·같은 추론에서 만남 — done 오판 · 계획 자기수정 · 컴팩션 손실. 매 스텝 전체 재전송 → 스텝 수에 따라 입력 토큰 누적 증가." style="rounded=0;html=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#888888;align=left;verticalAlign=top;spacing=8;fontSize=11;" parent="ln" vertex="1">
+          <mxGeometry x="200" y="1015" width="830" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="bNote" value="&lt;b&gt;동적 관점 (B)&lt;/b&gt; — 계획(①~③)은 관찰 유입 前 확정(봉인, thinking↑ 1회). 각 단계도 관찰 먼저: ⑥⑦ 관찰 → ⑧ 추론(thinking↓ · 격리 컨텍스트만 전송) → ⑨⑩ 행동 미니 루프, ⑪ 보고 후 진행은 코드가 결정 → 건너뛰기·done 오판 구조적 차단.&#10;외부 텍스트(⑦)는 단계 격리 컨텍스트까지만 도달 — 계획 수정 경로 없음. Executor 컨텍스트는 단계마다 조립·폐기(누적 없음). 성패 조건: 재계획 트리거 · 계획 입도." style="rounded=0;html=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#888888;align=left;verticalAlign=top;spacing=8;fontSize=11;" parent="ln" vertex="1">
+          <mxGeometry x="1070" y="1015" width="860" height="92" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 범례 ===== -->
+        <mxCell id="legend" value="&lt;b&gt;범례&lt;/b&gt; — &lt;b&gt;보라 실선 상자&lt;/b&gt;: DP-C8 루프 컴포넌트 · &lt;b&gt;내부 소형 상자&lt;/b&gt;: 하위 모듈(책임 분해) · &lt;b&gt;청록 원통&lt;/b&gt;: 상태 저장 · &lt;b&gt;구름&lt;/b&gt;: 외부 LLM 서비스 — 양방향 화살표 = 호출·응답 · &lt;b&gt;청록 굵은 화살표&lt;/b&gt;: 관찰(Perception) 경로 — 루프는 여기서 시작 · &lt;b&gt;검정 화살표&lt;/b&gt;: 추론·행동 경로 · &lt;b&gt;점선 화살표&lt;/b&gt;: 조건부 경로 · &lt;b&gt;점선 상자&lt;/b&gt;: 외부 환경(신뢰 불가) · &lt;b&gt;↻ 배지&lt;/b&gt;: 루프 범위 · 계층 순서 = 루프 순서 (관찰 → 상태 → 추론 → 행동 → 환경 → 측면 화살표로 재관찰)" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#888888;align=left;verticalAlign=top;spacing=8;fontSize=11;" parent="ln" vertex="1">
+          <mxGeometry x="50" y="1117" width="1880" height="64" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
