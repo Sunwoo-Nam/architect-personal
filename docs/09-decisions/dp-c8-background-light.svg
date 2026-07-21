@@ -1,0 +1,222 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3200" height="1800" viewBox="0 0 1600 900" font-family="Pretendard, 'Noto Sans KR', 'Malgun Gothic', sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="9" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#64748B"/>
+    </marker>
+  </defs>
+
+  <!-- ===== 배경 ===== -->
+  <rect x="0" y="0" width="1600" height="900" fill="#FFFFFF"/>
+
+  <!-- ===== 헤더 ===== -->
+  <rect x="40" y="24" width="88" height="38" rx="8" fill="#0F172A"/>
+  <text x="84" y="49" text-anchor="middle" font-size="17" font-weight="700" fill="#FFFFFF">DP-C8</text>
+  <text x="144" y="45" font-size="26" font-weight="700" fill="#0F172A">에이전트 루프 구조 <tspan font-size="15" font-weight="400" fill="#64748B">— 배경 (Background)</tspan></text>
+  <text x="144" y="70" font-size="14.5" fill="#475569">계획의 소유 구조와 컨텍스트 수명 = 다단계 웹 태스크 성공률의 결정 변수</text>
+  <text x="1560" y="40" text-anchor="end" font-size="11.5" fill="#64748B">선행 결정: BD-1 자율 서브에이전트 · DP-C2 Quick Action 분리</text>
+  <text x="1560" y="60" text-anchor="end" font-size="11.5" fill="#64748B">QAS 1순위: E2E 태스크 성공률</text>
+  <line x1="40" y1="86" x2="1560" y2="86" stroke="#E2E8F0" stroke-width="1.5"/>
+
+  <!-- ===== 01 에이전트 루프 ===== -->
+  <rect x="40" y="100" width="740" height="204" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="56" y="114" width="27" height="27" rx="6" fill="#0F172A"/>
+  <text x="69.5" y="133" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">01</text>
+  <text x="92" y="133" font-size="16.5" font-weight="700" fill="#0F172A">에이전트 루프 <tspan font-size="12.5" font-weight="400" fill="#64748B">— 구조와 두 설계 변수</tspan></text>
+
+  <rect x="100" y="150" width="150" height="44" rx="10" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1.5"/>
+  <text x="175" y="168" text-anchor="middle" font-size="14" font-weight="700" fill="#0F172A">관찰</text>
+  <text x="175" y="186" text-anchor="middle" font-size="9.5" fill="#64748B">DOM/AX 스냅샷</text>
+  <line x1="250" y1="172" x2="294" y2="172" stroke="#64748B" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="300" y="150" width="150" height="44" rx="10" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1.5"/>
+  <text x="375" y="168" text-anchor="middle" font-size="14" font-weight="700" fill="#0F172A">추론</text>
+  <text x="375" y="186" text-anchor="middle" font-size="9.5" fill="#64748B">클라우드 LLM</text>
+  <line x1="450" y1="172" x2="494" y2="172" stroke="#64748B" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="500" y="150" width="150" height="44" rx="10" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1.5"/>
+  <text x="575" y="168" text-anchor="middle" font-size="14" font-weight="700" fill="#0F172A">행동</text>
+  <text x="575" y="186" text-anchor="middle" font-size="9.5" fill="#64748B">브라우저 조작</text>
+  <path d="M 575 194 V 218 H 175 V 198" fill="none" stroke="#64748B" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="375" y="234" text-anchor="middle" font-size="10.5" fill="#64748B">환경 응답 반영 ↻ 목표 달성까지 반복</text>
+
+  <rect x="56" y="246" width="336" height="48" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="68" y="263" font-size="12" font-weight="700" fill="#0F172A">컨텍스트 — 루프의 유일한 상태</text>
+  <text x="68" y="277" font-size="9.8" fill="#64748B">무상태 LLM의 입력 전체 · 스텝당 수천~수만 토큰 관찰 적재</text>
+  <text x="68" y="290" font-size="10" font-weight="700" fill="#B45309">설계 변수 ① 컨텍스트의 수명 — 보존·폐기 정책</text>
+  <rect x="408" y="246" width="336" height="48" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="420" y="263" font-size="12" font-weight="700" fill="#0F172A">계획 — 목표와 행동의 정렬 구조</text>
+  <text x="420" y="277" font-size="9.8" fill="#64748B">매 스텝의 국소 결정을 전역 목표에 정렬 (→ 02)</text>
+  <text x="420" y="290" font-size="10" font-weight="700" fill="#B45309">설계 변수 ② 계획의 소유권 — 수정 권한의 위치</text>
+
+  <!-- ===== 02 계획의 역할 ===== -->
+  <rect x="800" y="100" width="760" height="204" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="816" y="114" width="27" height="27" rx="6" fill="#0F172A"/>
+  <text x="829.5" y="133" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">02</text>
+  <text x="852" y="133" font-size="16.5" font-weight="700" fill="#0F172A">계획의 역할 <tspan font-size="12.5" font-weight="400" fill="#64748B">— 국소 결정과 전역 목표의 연결</tspan></text>
+
+  <rect x="816" y="150" width="200" height="44" rx="10" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1.5"/>
+  <text x="916" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">국소 결정 (매 스텝)</text>
+  <text x="916" y="186" text-anchor="middle" font-size="10" fill="#64748B">현재 화면 기준 다음 행동 선택</text>
+  <rect x="1344" y="150" width="200" height="44" rx="10" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1.5"/>
+  <text x="1444" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">전역 목표 (태스크)</text>
+  <text x="1444" y="186" text-anchor="middle" font-size="10" fill="#64748B">"최저가로 주문해줘"</text>
+  <line x1="1016" y1="172" x2="1132" y2="172" stroke="#F59E0B" stroke-width="2"/>
+  <line x1="1228" y1="172" x2="1344" y2="172" stroke="#F59E0B" stroke-width="2"/>
+  <rect x="1136" y="152" width="88" height="40" rx="20" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+  <text x="1180" y="177" text-anchor="middle" font-size="14.5" font-weight="700" fill="#92400E">계획</text>
+
+  <rect x="816" y="206" width="232" height="46" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="828" y="224" font-size="12" font-weight="700" fill="#0F172A">① 목표 보존</text>
+  <text x="828" y="242" font-size="10" fill="#64748B">조건("최저가")을 단계로 고정 · 희석 방지</text>
+  <rect x="1064" y="206" width="232" height="46" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="1076" y="224" font-size="12" font-weight="700" fill="#0F172A">② 진행 추적</text>
+  <text x="1076" y="242" font-size="10" fill="#64748B">수행·잔여 단계 관리 · 완료 판정 근거</text>
+  <rect x="1312" y="206" width="232" height="46" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="1324" y="224" font-size="12" font-weight="700" fill="#0F172A">③ 행동 정합성 기준선</text>
+  <text x="1324" y="242" font-size="10" fill="#64748B">행동-목적 부합 판별 기준 (DP-C6 전제)</text>
+
+  <rect x="816" y="264" width="728" height="26" rx="6" fill="#0F172A"/>
+  <text x="1180" y="282" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">쟁점: 계획의 유무가 아니라 — 소유 주체와 집행 강도</text>
+
+  <!-- ===== 03 실패 요인 ===== -->
+  <rect x="40" y="318" width="1520" height="290" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="56" y="332" width="27" height="27" rx="6" fill="#0F172A"/>
+  <text x="69.5" y="351" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">03</text>
+  <text x="92" y="351" font-size="16.5" font-weight="700" fill="#0F172A">다단계 웹 태스크의 실패 요인 <tspan font-size="12.5" font-weight="400" fill="#64748B">— 관통 시나리오 기준 3개 유형</tspan></text>
+
+  <!-- 관통 시나리오 : 실제 화면 목업 -->
+  <rect x="56" y="368" width="380" height="222" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="70" y="390" font-size="11" font-weight="700" fill="#64748B">관통 시나리오</text>
+  <rect x="70" y="398" width="352" height="24" rx="6" fill="#FFFFFF" stroke="#CBD5E1"/>
+  <text x="80" y="415" font-size="12" font-weight="700" fill="#0F172A">"쿠팡에서 이 드라마 DVD를 최저가로 주문해줘"</text>
+
+  <!-- 브라우저 프레임 -->
+  <rect x="70" y="430" width="352" height="150" rx="6" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5"/>
+  <rect x="70" y="430" width="352" height="22" rx="6" fill="#F1F5F9"/>
+  <rect x="70" y="444" width="352" height="8" fill="#F1F5F9"/>
+  <line x1="70" y1="452" x2="422" y2="452" stroke="#CBD5E1"/>
+  <circle cx="82" cy="441" r="3" fill="#CBD5E1"/>
+  <circle cx="92" cy="441" r="3" fill="#CBD5E1"/>
+  <rect x="104" y="435" width="150" height="12" rx="6" fill="#FFFFFF" stroke="#CBD5E1"/>
+  <text x="110" y="444.5" font-size="8" fill="#64748B">검색: 드라마 DVD</text>
+  <text x="414" y="444.5" text-anchor="end" font-size="8" fill="#94A3B8">결과 12개</text>
+
+  <!-- 결과 1 : 광고 -->
+  <rect x="78" y="458" width="336" height="34" rx="5" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <rect x="86" y="464" width="22" height="22" rx="3" fill="#E2E8F0"/>
+  <rect x="116" y="465" width="26" height="12" rx="3" fill="#FEF3C7" stroke="#F59E0B"/>
+  <text x="129" y="474" text-anchor="middle" font-size="7.5" font-weight="700" fill="#92400E">광고</text>
+  <text x="148" y="474" font-size="9.5" fill="#334155">드라마 DVD 세트</text>
+  <text x="116" y="486" font-size="8" fill="#94A3B8">최상단 노출</text>
+  <text x="406" y="480" text-anchor="end" font-size="13" font-weight="700" fill="#0F172A">₩19,900</text>
+
+  <!-- 결과 2 -->
+  <rect x="78" y="496" width="336" height="34" rx="5" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <rect x="86" y="502" width="22" height="22" rx="3" fill="#E2E8F0"/>
+  <text x="116" y="517" font-size="9.5" fill="#334155">드라마 DVD 세트</text>
+  <text x="406" y="518" text-anchor="end" font-size="13" font-weight="700" fill="#0F172A">₩15,500</text>
+
+  <!-- 결과 3 : 실제 최저가 -->
+  <rect x="78" y="534" width="336" height="34" rx="5" fill="#F0FDFA" stroke="#0D9488" stroke-width="2"/>
+  <rect x="86" y="540" width="22" height="22" rx="3" fill="#CCFBF1"/>
+  <text x="116" y="553" font-size="9.5" fill="#334155">드라마 DVD 세트</text>
+  <text x="116" y="565" font-size="8" font-weight="700" fill="#0D9488">실제 최저가 · 3번째 위치</text>
+  <text x="406" y="556" text-anchor="end" font-size="13" font-weight="700" fill="#0D9488">₩12,900</text>
+
+  <!-- 카드 F1 -->
+  <rect x="452" y="368" width="352" height="222" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+  <rect x="452" y="368" width="352" height="26" rx="10" fill="#475569"/>
+  <rect x="452" y="382" width="352" height="12" fill="#475569"/>
+  <text x="466" y="386" font-size="10.5" font-weight="700" fill="#FFFFFF">설계 변수 ① — 컨텍스트의 수명</text>
+  <text x="466" y="414" font-size="13.5" font-weight="700" fill="#0F172A">목표 통제력 저하</text>
+  <text x="466" y="429" font-size="9.5" fill="#64748B">관찰 누적에 따른 목표 신호 비중 축소</text>
+  <line x1="466" y1="437" x2="790" y2="437" stroke="#E2E8F0"/>
+  <text x="466" y="452" font-size="9.8" font-weight="700" fill="#334155">발생 기제</text>
+  <text x="466" y="467" font-size="9.3" fill="#475569">· 스텝당 수천~수만 토큰 관찰이 컨텍스트에 적재</text>
+  <text x="466" y="481" font-size="9.3" fill="#475569">· 목표 조건 대비 관찰 비중 지속 증가</text>
+  <text x="466" y="500" font-size="9.8" font-weight="700" fill="#334155">초기 발현 — 조건 희석</text>
+  <text x="466" y="515" font-size="9.3" fill="#475569">· "최저가" 조건이 대량 관찰 대비 극소 비중</text>
+  <text x="466" y="529" font-size="9.3" fill="#475569">· 가격 비교 단계 생략 → 광고 ₩19,900 선택</text>
+  <text x="466" y="548" font-size="9.8" font-weight="700" fill="#334155">후기 발현 — 지시 준수율 저하</text>
+  <text x="466" y="563" font-size="9.3" fill="#475569">· 10만+ 토큰 구간: 동일 페이지 재방문 · 이탈</text>
+  <text x="466" y="577" font-size="9.3" fill="#475569">· 대책(요약 치환)은 근거 ₩12,900 유실 위험</text>
+
+  <!-- 카드 F2 -->
+  <rect x="822" y="368" width="352" height="222" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+  <rect x="822" y="368" width="352" height="26" rx="10" fill="#475569"/>
+  <rect x="822" y="382" width="352" height="12" fill="#475569"/>
+  <text x="836" y="386" font-size="10.5" font-weight="700" fill="#FFFFFF">설계 변수 ② — 계획의 소유권</text>
+  <text x="836" y="414" font-size="13.5" font-weight="700" fill="#0F172A">완료 오판 · 계획 자기수정</text>
+  <text x="836" y="429" font-size="9.5" fill="#64748B">작성·수행·판정 주체의 동일성</text>
+  <line x1="836" y1="437" x2="1160" y2="437" stroke="#E2E8F0"/>
+  <text x="836" y="452" font-size="9.8" font-weight="700" fill="#334155">발생 기제</text>
+  <text x="836" y="467" font-size="9.3" fill="#475569">· 계획 작성·수행·완료 판정이 단일 LLM에 집중</text>
+  <text x="844" y="481" font-size="9.3" fill="#64748B">→ 독립 검증자 부재</text>
+  <text x="836" y="495" font-size="9.3" fill="#475569">· 판정 근거 = 자신의 직전 출력</text>
+  <text x="844" y="509" font-size="9.3" fill="#64748B">→ 자기일관성 편향: 자기 선언의 무비판 수용</text>
+  <text x="836" y="523" font-size="9.3" fill="#475569">· 완료 기준이 자연어 서술 → 검증 술어 부재</text>
+  <text x="844" y="537" font-size="9.3" fill="#64748B">→ "가격 비교"의 대상 범위 미규정 · 해석 자유</text>
+  <text x="836" y="551" font-size="9.3" fill="#475569">· 계획도 동일 컨텍스트 내 텍스트 → 수정 자유</text>
+  <line x1="836" y1="559" x2="1160" y2="559" stroke="#E2E8F0"/>
+  <text x="836" y="574" font-size="9.3" fill="#475569">발현: 상단 3개만 확인 후 "비교 완료" 처리 ·</text>
+  <text x="836" y="586" font-size="9.3" fill="#475569">"품절 다수" 사유로 최저가 조건 하향</text>
+
+  <!-- 카드 F3 -->
+  <rect x="1192" y="368" width="352" height="222" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+  <rect x="1192" y="368" width="352" height="26" rx="10" fill="#475569"/>
+  <rect x="1192" y="382" width="352" height="12" fill="#475569"/>
+  <text x="1206" y="386" font-size="10.5" font-weight="700" fill="#FFFFFF">설계 변수 ② — 계획의 소유권</text>
+  <text x="1206" y="414" font-size="13.5" font-weight="700" fill="#0F172A">계획-현실 괴리</text>
+  <text x="1206" y="429" font-size="9.5" fill="#64748B">사전 수립 계획의 가정 붕괴</text>
+  <line x1="1206" y1="437" x2="1530" y2="437" stroke="#E2E8F0"/>
+  <text x="1206" y="452" font-size="9.8" font-weight="700" fill="#334155">발생 기제</text>
+  <text x="1206" y="467" font-size="9.3" fill="#475569">· 계획 수립 시점 = 관찰 이전</text>
+  <text x="1214" y="481" font-size="9.3" fill="#64748B">→ 사이트 구조를 가정에 기반해 단계화</text>
+  <text x="1206" y="495" font-size="9.3" fill="#475569">· 웹 환경: 팝업 · 동적 로딩 · 개인화 · A/B 노출</text>
+  <text x="1214" y="509" font-size="9.3" fill="#64748B">→ 사전 예측 가능성 제한</text>
+  <line x1="1206" y1="519" x2="1530" y2="519" stroke="#E2E8F0"/>
+  <text x="1206" y="534" font-size="9.8" font-weight="700" fill="#334155">발현</text>
+  <text x="1206" y="549" font-size="9.3" fill="#475569">· 가격이 상세 페이지에만 노출되는 구조</text>
+  <text x="1214" y="563" font-size="9.3" fill="#64748B">→ "검색 결과에서 가격 수집" 단계 무효화</text>
+  <text x="1206" y="577" font-size="9.3" fill="#475569">· 재계획 경로 부재 시 공회전 · 스텝 소진</text>
+
+  <!-- ===== 04 설계 접근 ===== -->
+  <rect x="40" y="622" width="1520" height="162" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="56" y="636" width="27" height="27" rx="6" fill="#0F172A"/>
+  <text x="69.5" y="655" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">04</text>
+  <text x="92" y="655" font-size="16.5" font-weight="700" fill="#0F172A">설계 접근 <tspan font-size="12.5" font-weight="400" fill="#64748B">— 실패 요인의 결정 변수 환원 · 각 요인의 발생 구간 표시</tspan></text>
+
+  <rect x="56" y="672" width="1220" height="100" rx="12" fill="none" stroke="#F59E0B" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="1264" y="766" text-anchor="end" font-size="10" font-weight="700" fill="#B45309">결정 대상</text>
+
+  <text x="80" y="702" font-size="12" font-weight="700" fill="#334155">축 ① · 컨텍스트의 수명</text>
+  <text x="520" y="702" text-anchor="end" font-size="11" font-weight="700" fill="#0D9488">누적 · 요약 치환</text>
+  <line x1="534" y1="698" x2="1080" y2="698" stroke="#CBD5E1" stroke-width="3"/>
+  <circle cx="534" cy="698" r="6.5" fill="#0D9488"/>
+  <circle cx="1080" cy="698" r="6.5" fill="#7C3AED"/>
+  <text x="1094" y="702" font-size="11" font-weight="700" fill="#7C3AED">단계 격리 · 폐기</text>
+  <text x="534" y="717" font-size="9.5" fill="#0D9488">▲ 목표 통제력 저하</text>
+
+  <text x="80" y="748" font-size="12" font-weight="700" fill="#334155">축 ② · 계획의 소유권</text>
+  <text x="520" y="748" text-anchor="end" font-size="11" font-weight="700" fill="#0D9488">조언</text>
+  <line x1="534" y1="744" x2="1080" y2="744" stroke="#CBD5E1" stroke-width="3"/>
+  <circle cx="534" cy="744" r="6.5" fill="#0D9488"/>
+  <circle cx="1080" cy="744" r="6.5" fill="#7C3AED"/>
+  <text x="1094" y="748" font-size="11" font-weight="700" fill="#7C3AED">제어 흐름</text>
+  <text x="534" y="763" font-size="9.5" fill="#0D9488">▲ 완료 오판 · 계획 자기수정</text>
+  <text x="1080" y="763" text-anchor="end" font-size="9.5" fill="#7C3AED">계획-현실 괴리 ▲</text>
+
+  <rect x="1296" y="672" width="248" height="100" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="1312" y="694" font-size="10.5" font-weight="700" fill="#64748B">환원 결과</text>
+  <text x="1312" y="716" font-size="11" fill="#334155">축 ② 양단에 상반된 실패 요인</text>
+  <text x="1312" y="732" font-size="11" fill="#334155">— 조언 측: 오판 · 자기수정</text>
+  <text x="1312" y="748" font-size="11" fill="#334155">— 제어 측: 계획-현실 괴리</text>
+  <text x="1312" y="766" font-size="11" font-weight="700" fill="#0F172A">단일 극단으로 완결 불가</text>
+
+  <!-- ===== 결론 스트립 ===== -->
+  <rect x="40" y="796" width="1520" height="46" rx="10" fill="#FFFBEB" stroke="#F59E0B" stroke-width="1.5"/>
+  <text x="800" y="816" text-anchor="middle" font-size="14" font-weight="700" fill="#92400E">세 실패 요인을 모두 차단하는 극단은 없음 — 확률적 완화 vs 구조적 보장의 트레이드오프 → 후보안 비교 (다음 장)</text>
+  <text x="800" y="834" text-anchor="middle" font-size="10.5" fill="#A16207">선행 실측: 장기 컨텍스트 계획 준수율 · 태스크 분포 · LLM 왕복 시간 (§7)</text>
+
+  <!-- ===== 푸터 ===== -->
+  <text x="40" y="872" font-size="9.5" fill="#94A3B8">Tizen TV AI Web Agent — ADS · DP-C8 배경장</text>
+  <text x="1560" y="872" text-anchor="end" font-size="9.5" fill="#94A3B8">2026-07</text>
+</svg>
