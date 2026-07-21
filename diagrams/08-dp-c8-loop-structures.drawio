@@ -97,7 +97,7 @@
         </mxCell>
 
         <!-- ===== 핵심 차이 범례 ===== -->
-        <mxCell id="legend" value="&lt;b&gt;핵심 차이 (§1.1 두 축)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;b&gt;계획의 소유·변경 권한&lt;/b&gt; — A′: 조언 (행동을 결정하는 같은 모델이 수정 → done 오판·자기수정 잔존) | B: 제어 흐름 (코드가 단계 진행, Executor 읽기 전용 → 구조적 강제·봉인)&#10;&lt;b&gt;컨텍스트의 수명&lt;/b&gt; — A′: 누적 + 요약 치환 (즉석 적응 유리, 컴팩션 손실 위험) | B: 단계 단위 격리·폐기 (정보 계약으로 목적 있는 압축, 재계획 왕복 필요)&#10;&lt;hr size=&quot;1&quot;&gt;굵은 실선: LLM 추론 주체 · 회색 상자: 비-LLM 메커니즘/데이터 · 점선 상자: 신뢰 불가 외부 · 점선 화살표: 조건부 경로" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#888888;align=left;verticalAlign=top;spacing=8;fontSize=11;" parent="1" vertex="1">
+        <mxCell id="legend" value="&lt;b&gt;핵심 차이 (§1.4 두 축)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;b&gt;계획의 소유·변경 권한&lt;/b&gt; — A′: 조언 (행동을 결정하는 같은 모델이 수정 → done 오판·자기수정 잔존) | B: 제어 흐름 (코드가 단계 진행, Executor 읽기 전용 → 구조적 강제·봉인)&#10;&lt;b&gt;컨텍스트의 수명&lt;/b&gt; — A′: 누적 + 요약 치환 (즉석 적응 유리, 컴팩션 손실 위험) | B: 단계 단위 격리·폐기 (정보 계약으로 목적 있는 압축, 재계획 왕복 필요)&#10;&lt;hr size=&quot;1&quot;&gt;굵은 실선: LLM 추론 주체 · 회색 상자: 비-LLM 메커니즘/데이터 · 점선 상자: 신뢰 불가 외부 · 점선 화살표: 조건부 경로 · 스텝 순서(양 후보 공통): 관찰 → 컨텍스트 조립 → LLM 추론 → 행동 (§1.1)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#888888;align=left;verticalAlign=top;spacing=8;fontSize=11;" parent="1" vertex="1">
           <mxGeometry x="40" y="845" width="1520" height="120" as="geometry" />
         </mxCell>
       </root>
