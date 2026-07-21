@@ -179,7 +179,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 본 절은 향후 작성될 항목의 목차다.
 
-- **6.6 QA 시나리오 카탈로그** — [H, H] leaf를 SEI 6-part 형식으로 풀어 쓰고, ATAM 워크숍 입력으로 사용. *(본 사이클 작성, 아래 6.6 참조)*
+- **6.6 QA 시나리오 카탈로그** — 전체 30개 leaf를 SEI 6-part 형식으로 풀어 쓰고([H,H]·[H,M]·[M,*] 3그룹, QAS-001~030), ATAM 워크숍 입력으로 사용. *(작성됨, 아래 6.6 참조)*
 - **6.7 QA 간 트레이드오프** — 충돌 지점 식별 및 7·9장 위임. *(작성됨, 아래 6.7 참조)*
 - **6.8 Open Questions** — 본 장 내부 미결 사항. 5장 Open Questions와 별개로 관리. *(작성됨, 아래 6.8 참조)*
 
@@ -187,15 +187,25 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 ## 6.6 QA 시나리오 카탈로그
 
-본 절은 6.3.1의 [H, H] 핵심 leaf를 SEI 6-part 형식(Source / Stimulus / Artifact / Environment / Response / Response Measure)으로 풀어 쓴다. 각 시나리오는 5장 NFR을 정량 기준으로 인용하며, 8장(Views)·9장(ADR)·10장(ATAM)의 직접 입력으로 사용된다.
+본 절은 6.2.2 Utility Tree의 **전체 30개 leaf**를 SEI 6-part 형식(Source / Stimulus / Artifact / Environment / Response / Response Measure)으로 풀어 쓴다. 각 시나리오는 5장 NFR을 정량 기준으로 인용하며, 8장(Views)·9장(ADR)·10장(ATAM)의 직접 입력으로 사용된다. 시나리오는 6.3의 우선순위 분류를 따라 세 그룹으로 배치하며, QAS 번호와 leaf(NFR)는 1:1로 대응한다.
+
+- **6.6.1 [H, H] 핵심 시나리오** — QAS-001~011 (6.3.1의 아키텍처 결정 핵심 후보)
+- **6.6.2 [H, M] 시나리오** — QAS-012~019 (6.3.2의 표준 기법 적용 영역)
+- **6.6.3 [M, *] 시나리오** — QAS-020~030 (6.3.3의 표준 운영 영역)
 
 표기:
 - **Mapped NFR**: 본 시나리오를 정량화하는 NFR ID
 - **Mapped QA leaf**: 6.2.2 Utility Tree 상의 위치 (Quality Attribute — 정련)
 
+세 그룹 모두 동일한 6-part 형식으로 기술하여 ATAM 워크숍에서 우선순위와 무관하게 참조 가능하게 한다. 단, **[H, H] 그룹만 7·9장 핵심 결정의 1차 입력**이 되며, 나머지 두 그룹은 표준 기법·운영으로 달성한다(6.3 참조). TBD 수치는 해당 NFR·ADR 위치를 그대로 인용한다.
+
 ---
 
-### QAS-001 단순 명령 1초 이내 응답 (Quick Action)
+### 6.6.1 [H, H] 핵심 시나리오
+
+6.3.1의 아키텍처 결정 핵심 후보 11개다.
+
+#### QAS-001 단순 명령 1초 이내 응답 (Quick Action)
 
 - **Source**: 사용자 (End User)
 - **Stimulus**: 사용자가 단순 명령(채널 변경, 날씨 조회 등 Quick Action 후보)의 발화를 종료함
@@ -208,7 +218,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 ---
 
-### QAS-002 슬립 복귀 1초 이내 가용
+#### QAS-002 슬립 복귀 1초 이내 가용
 
 - **Source**: TV 플랫폼 (전원 상태 변화 이벤트)
 - **Stimulus**: TV가 슬립 모드에서 복귀함
@@ -221,7 +231,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 ---
 
-### QAS-003 복잡 태스크 카테고리별 End-to-end 완료 시간
+#### QAS-003 복잡 태스크 카테고리별 End-to-end 완료 시간
 
 - **Source**: 사용자 (End User)
 - **Stimulus**: 사용자가 복잡한 태스크(검색·예약·구매 등)를 요청함
@@ -234,7 +244,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 ---
 
-### QAS-004 메모리 풋프린트 예산 준수 (전 라인업 공통)
+#### QAS-004 메모리 풋프린트 예산 준수 (전 라인업 공통)
 
 - **Source**: 시스템 운영 자체 (자원 점유)
 - **Stimulus**: 에이전트가 일반적인 태스크를 수행 중임
@@ -247,7 +257,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 ---
 
-### QAS-005 세션당 토큰 비용 예산 준수
+#### QAS-005 세션당 토큰 비용 예산 준수
 
 - **Source**: 사용자 (1개 태스크 세션 요청 발생)
 - **Stimulus**: 사용자가 1개 태스크 세션(요청 ~ 완료)을 수행함
@@ -260,7 +270,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 ---
 
-### QAS-006 에이전트 오류의 상위 시스템 격리
+#### QAS-006 에이전트 오류의 상위 시스템 격리
 
 - **Source**: 에이전트 하네스 내부 결함 (crash, 무한 루프, OOM 등)
 - **Stimulus**: 에이전트 하네스에 복구 불가능한 오류가 발생함
@@ -273,7 +283,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 ---
 
-### QAS-007 프롬프트 인젝션 탐지
+#### QAS-007 프롬프트 인젝션 탐지
 
 - **Source**: 외부 웹 콘텐츠 (악의적·비정상 페이지)
 - **Stimulus**: 인젝션 패턴이 포함된 외부 웹 콘텐츠를 에이전트가 처리함
@@ -286,7 +296,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 ---
 
-### QAS-008 의도 해석 정확도
+#### QAS-008 의도 해석 정확도
 
 - **Source**: 사용자 (외부 ASR이 전사한 발화)
 - **Stimulus**: 시스템이 외부 ASR로부터 전사된 사용자 발화를 입력으로 수신함
@@ -299,7 +309,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 ---
 
-### QAS-009 태스크 완료 성공률
+#### QAS-009 태스크 완료 성공률
 
 - **Source**: 사용자 (End User)
 - **Stimulus**: 사용자가 표준 시나리오(검색·예약·구매 등)에 해당하는 태스크를 요청함
@@ -312,7 +322,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 ---
 
-### QAS-010 시뮬레이션 모드 커버리지·재현 결정성
+#### QAS-010 시뮬레이션 모드 커버리지·재현 결정성
 
 - **Source**: QA 엔지니어 (또는 CI 시스템)
 - **Stimulus**: 자동화 회귀 테스트 스위트를 실행함
@@ -325,7 +335,7 @@ Utility (Tizen TV AI Web Agent의 효용)
 
 ---
 
-### QAS-011 사용자 개입 시 에이전트 동작 중지
+#### QAS-011 사용자 개입 시 에이전트 동작 중지
 
 - **Source**: 사용자 (End User)
 - **Stimulus**: 에이전트가 태스크를 실행하는 중 사용자가 취소 또는 직접 조작 개입(제어권 회수)을 입력함
@@ -335,6 +345,261 @@ Utility (Tizen TV AI Web Agent의 효용)
 - **Response Measure**: 개입 입력 ~ 중지(추가 비가역 부작용 차단)까지 P95 ≤ **TBD ms** (NFR-034 참조)
 - **Mapped NFR**: NFR-034
 - **Mapped QA leaf**: Performance — 응답성 (사용자 개입 중지) [H, H]
+
+---
+
+### 6.6.2 [H, M] 시나리오
+
+품질 가치는 높으나 산업 표준 기법으로 달성 가능한 8개다(6.3.2). 표준 적용 + 검증 게이트가 핵심이며, 아키텍처 결정을 새로 만들기보다 기성 패턴을 정확히 적용하는 것이 목표다.
+
+#### QAS-012 복잡 태스크 첫 피드백 1초 이내
+
+- **Source**: 사용자 (End User)
+- **Stimulus**: 사용자가 복잡한 태스크(구매·예약 등) 명령의 발화를 종료함
+- **Artifact**: 에이전트 하네스 진입 경로, 진행 상태 표시기(Generative UI), 첫 피드백 렌더러
+- **Environment**: 정상 운영, 정상 네트워크, Cloud LLM API 정상 응답
+- **Response**: 시스템이 첫 진행 단계(예: "검색 중...")를 사용자에게 표시하여 명령 수신을 확인시킴
+- **Response Measure**: 발화 종료 ~ 최초 피드백 표시까지 ≤ **1.0초** (NFR-002 참조)
+- **Mapped NFR**: NFR-002
+- **Mapped QA leaf**: Performance — 응답성 [H, M]
+
+---
+
+#### QAS-013 백그라운드 CPU 점유·영상 프레임 드롭 없음
+
+- **Source**: 시스템 운영 자체 (자원 점유), 동시 VOD 시청 컨텍스트
+- **Stimulus**: 에이전트가 백그라운드에서 태스크를 수행 중이며, 사용자가 동시에 VOD를 시청 중임
+- **Artifact**: 에이전트 하네스, 브라우저 제어 파이프라인, 미디어 재생 파이프라인(공존)
+- **Environment**: 정상 운영, VOD 재생 중, 전 라인업 공통 CPU 예산
+- **Response**: 시스템이 CPU를 점유하며 동작하되 동시 재생 영상 품질을 저해하지 않음
+- **Response Measure**: 백그라운드 평균 CPU 점유율 ≤ **15%** (전 라인업 공통), 영상 프레임 드롭 = **0** (NFR-007 참조)
+- **Mapped NFR**: NFR-007
+- **Mapped QA leaf**: Performance — 자원 효율 [H, M]
+
+---
+
+#### QAS-014 네트워크 끊김 후 체크포인트 재개
+
+- **Source**: 네트워크 환경 (TV Wi-Fi 불안정)
+- **Stimulus**: 진행 중인 태스크 중 네트워크가 끊겼다가 30초 이내 재연결됨
+- **Artifact**: 에이전트 루프(체크포인트 관리), 세션 상태 저장소, 재개 핸들러
+- **Environment**: 정상 운영 중 일시적 네트워크 단절, TV Wi-Fi 환경
+- **Response**: 시스템이 태스크를 처음부터 재시작하지 않고 마지막 안정 체크포인트에서 재개함
+- **Response Measure**: 30초 이내 재연결 시 재개 성공률 ≥ **90%** (NFR-010 참조)
+- **Mapped NFR**: NFR-010
+- **Mapped QA leaf**: Availability — 복원력 [H, M]
+
+---
+
+#### QAS-015 샌드박스 경계 준수·권한 최소화
+
+- **Source**: 시스템 자체 동작 (정상·비정상 입력 포함)
+- **Stimulus**: 시스템이 동작 중이며 태스크가 브라우저·시스템 API 권한을 요구함
+- **Artifact**: Web Runtime 샌드박스 경계, 권한 관리자(요청·해제), 정적 분석·런타임 모니터
+- **Environment**: 정상 및 비정상 입력, Tizen Web Runtime CTS 평가 환경
+- **Response**: 시스템이 샌드박스 경계 내에서만 자원에 접근하고, 태스크에 필요한 최소 권한만 보유하며 종료 후 불필요 권한을 해제함
+- **Response Measure**: 샌드박스 위반 시도 = **0건** (정적 분석 + 런타임 모니터링), Tizen Web Runtime CTS 통과, 태스크 종료 후 불필요 권한 잔존 = **0건** (NFR-012 참조)
+- **Mapped NFR**: NFR-012
+- **Mapped QA leaf**: Security — 경계 통제 [H, M]
+
+---
+
+#### QAS-016 외부 호출자 인증·권한 검증
+
+- **Source**: 외부 에이전트 플랫폼 (argot 등 Skill 호출자)
+- **Stimulus**: 외부 에이전트 플랫폼이 Skill 호출 요청을 보냄 (인증·무인증 요청 혼재)
+- **Artifact**: Skill 호출 인터페이스, 인증 핸들러(OAuth 2.0 / mTLS), 권한 스코프 검증기
+- **Environment**: 정상 운영, 외부 호출 인터페이스 노출, 인증/무인증 요청 혼재
+- **Response**: 시스템이 호출자를 인증하고 허가된 범위 내 요청만 처리하며, 무인증 요청은 거부함
+- **Response Measure**: 인증 방식 **OAuth 2.0 또는 mTLS**, 토큰 만료 ≤ **1시간**, 무인증 요청 거부율 = **100%** (NFR-015 참조)
+- **Mapped NFR**: NFR-015
+- **Mapped QA leaf**: Security — 경계 통제 [H, M]
+
+---
+
+#### QAS-017 PII 기본 보존 기간·만료 삭제
+
+- **Source**: 시스템 운영 자체 (데이터 수명주기), 규제 요건(GDPR/PIPA)
+- **Stimulus**: 시스템이 PII 가능 데이터(음성 전사·DOM 스냅샷·화면 콘텐츠)를 저장하고 보존 기간이 만료됨
+- **Artifact**: 데이터 보존 관리자, 만료 스케줄러, 삭제 실행기
+- **Environment**: 정상 운영, 사용자 보존 설정 반영, GDPR Art.5(1)(e)·PIPA 제21조 파기 의무 적용
+- **Response**: 시스템이 보존 기간 만료 시 해당 데이터를 자동 삭제함
+- **Response Measure**: 기본 보존 기간 ≤ **90일** (사용자 단축 가능), 만료 후 자동 삭제 ≤ **24시간** (NFR-017 참조)
+- **Mapped NFR**: NFR-017
+- **Mapped QA leaf**: Privacy — 보존 통제 [H, M]
+
+---
+
+#### QAS-018 클라우드 전송 PII 탐지·마스킹
+
+- **Source**: 시스템 자체 (LLM 호출 페이로드 생성)
+- **Stimulus**: 시스템이 클라우드 LLM API 호출을 위해 요청 페이로드를 구성함
+- **Artifact**: 온디바이스 PII 탐지·마스킹 전처리기, 자격증명 제거기, 컨텍스트 추출기
+- **Environment**: 정상 운영, 외부 Cloud LLM API 전송 직전, 정기 페이로드 audit 병행
+- **Response**: 시스템이 페이로드에서 PII를 식별·마스킹하고 자격증명을 제거한 뒤 전송함
+- **Response Measure**: 자동 PII 탐지 벤치마크 커버리지 ≥ **95%** (탐지 항목 100% 마스킹), 자격증명 전송 사고 = **0건**, 정기 audit 미탐 PII ≤ **1%** (NFR-018 참조)
+- **Mapped NFR**: NFR-018
+- **Mapped QA leaf**: Privacy — 데이터 최소화 [H, M]
+
+---
+
+#### QAS-019 WCAG 2.2 AA 준수 (GenUI 산출물 포함)
+
+- **Source**: 시스템 자체 (UI 출력), 고령 사용자·규제 요건
+- **Stimulus**: 시스템이 사용자에게 UI(Generative UI 인터페이스 산출물 포함)를 출력함
+- **Artifact**: 전체 UI 컴포넌트, Generative UI 인터페이스 산출물, 접근성 검사 파이프라인(axe-core 등)
+- **Environment**: 정상 운영, 자동 검사 + 수동 검수 평가 환경
+- **Response**: 시스템이 출력하는 UI가 WCAG 2.2 Level AA 기준을 충족함
+- **Response Measure**: WCAG 2.2 AA 자동 검사 위반 = **0건** (GenUI 산출물 포함 전 컴포넌트), 수동 검수 통과 (NFR-022 참조)
+- **Mapped NFR**: NFR-022
+- **Mapped QA leaf**: Accessibility — 표준 준수 [H, M]
+
+---
+
+### 6.6.3 [M, *] 시나리오
+
+표준 도구·관행으로 달성하며 본 장 우선순위는 낮으나, 12장(로드맵)·운영 단계에서 챙겨야 할 11개다(6.3.3). ATAM 워크숍의 완전성 확보를 위해 동일 형식으로 기술한다.
+
+#### QAS-020 진행 상황 표시 갱신 주기
+
+- **Source**: 시스템 자체 (진행 상태 발행)
+- **Stimulus**: 에이전트가 다단계 태스크를 실행 중임
+- **Artifact**: 에이전트 루프(step 이벤트 발행), 진행 상태 표시기(Generative UI)
+- **Environment**: 정상 운영, 다단계 태스크 진행 중
+- **Response**: 시스템이 각 step마다 현재 단계 표시를 갱신함 (heartbeat)
+- **Response Measure**: 매 **step별** 진행 상황 갱신 (정지 구간 없이 지속) (NFR-003 참조)
+- **Mapped NFR**: NFR-003
+- **Mapped QA leaf**: Performance — 응답성 [M, L]
+
+---
+
+#### QAS-021 외부 Skill 호출 라우팅 오버헤드
+
+- **Source**: 외부 에이전트 플랫폼 (Skill 호출자)
+- **Stimulus**: 외부 에이전트 플랫폼이 Skill 호출 요청을 보냄
+- **Artifact**: Skill 호출 인터페이스, 인증·라우팅 계층, 태스크 디스패처
+- **Environment**: 정상 운영, 본 시스템이 Sub-Agent로 호출되는 시나리오
+- **Response**: 시스템이 요청을 수신·인증·라우팅하여 실제 태스크 실행을 시작함
+- **Response Measure**: 인증·라우팅 오버헤드 ≤ **500ms** (NFR-004 참조)
+- **Mapped NFR**: NFR-004
+- **Mapped QA leaf**: Performance — 응답성 [M, M]
+
+---
+
+#### QAS-022 HITL 응답 후 태스크 재개 시간
+
+- **Source**: 사용자 (HITL 확인 응답)
+- **Stimulus**: 사용자가 HITL 확인 화면에서 응답(승인 또는 거절)을 입력함
+- **Artifact**: HITL 게이트, 에이전트 루프 재개 핸들러, 도구 호출 파이프라인
+- **Environment**: 정상 운영, HITL 확인 대기 상태에서 사용자 응답 도착
+- **Response**: 시스템이 입력을 처리하고 다음 단계 동작을 시작함 (또는 태스크를 안전하게 중단함)
+- **Response Measure**: HITL 응답 ~ 다음 동작 시작까지 P95 ≤ **500ms** (NFR-028 참조)
+- **Mapped NFR**: NFR-028
+- **Mapped QA leaf**: Performance — 응답성 [M, L]
+
+---
+
+#### QAS-023 영구 저장소 풋프린트 예산 준수
+
+- **Source**: 시스템 운영 자체 (영구 데이터 축적)
+- **Stimulus**: 시스템이 일정 기간 운영되며 이력·캐시·트레이스 등 영구 데이터를 축적함
+- **Artifact**: 영구 저장소 관리자, 이력·캐시·트레이스 저장소, 보존·정리 정책
+- **Environment**: 장기 운영, 전 라인업 공통 디스크 예산
+- **Response**: 시스템이 영구 저장소를 점유하되 상한을 초과하지 않음 (초과 전 정리·회전)
+- **Response Measure**: 누적 영구 저장소 ≤ **TBD MB (ADR-XXX)** (전 라인업 공통, NFR-029 참조)
+- **Mapped NFR**: NFR-029
+- **Mapped QA leaf**: Performance — 자원 효율 [M, M]
+
+---
+
+#### QAS-024 SKU 간 태스크 성공률 동등성
+
+- **Source**: 시스템 운영 (라인업 배포)
+- **Stimulus**: 동일 등급 라인업의 서로 다른 SKU(개별 판매 모델)에서 동일한 태스크를 수행함
+- **Artifact**: 에이전트 루프 전체, SKU별 HW 추상화 계층
+- **Environment**: 동일 등급 내 복수 SKU, 표준 시나리오 벤치마크 (응답 시간은 HW 차로 자연 변동 → 측정 제외)
+- **Response**: 시스템이 각 SKU에서 태스크를 실행함
+- **Response Measure**: 동일 등급 내 SKU 간 **태스크 성공률** 편차 ≤ **5%** (NFR-011 참조)
+- **Mapped NFR**: NFR-011
+- **Mapped QA leaf**: Compatibility — 라인업 일관성 [M, M]
+
+---
+
+#### QAS-025 데이터 주체 권리 행사 응답 시간
+
+- **Source**: 사용자 (데이터 주체)
+- **Stimulus**: 사용자가 개인정보 열람·삭제·이전을 요청함
+- **Artifact**: 데이터 주체 권리 처리기, PII 인덱스·저장소, 완료 알림 채널
+- **Environment**: 정상 운영, GDPR Art.12(3)·PIPA 제35조 권리 행사, 운영팀 연계
+- **Response**: 시스템이 해당 요청을 처리하고 완료 알림을 제공함
+- **Response Measure**: 열람·이전 ≤ **30일**, 삭제 ≤ **7일** (NFR-019 참조)
+- **Mapped NFR**: NFR-019
+- **Mapped QA leaf**: Privacy — 데이터 주체 권리 [M, L]
+
+---
+
+#### QAS-026 공개 인터페이스 하위 호환성 유지
+
+- **Source**: 통합 소비자 (ARGO 개발팀 / 향후 외부 에이전트 플랫폼)
+- **Stimulus**: 본 시스템이 공개 인터페이스(Skill 호출 API·결과 반환 스키마)의 메이저 버전을 변경함
+- **Artifact**: 공개 인터페이스(Skill API·결과 스키마), 버전 라우터, 하위호환 어댑터
+- **Environment**: 메이저 버전 전환기, 이전 버전 통합 클라이언트 잔존
+- **Response**: 시스템이 이전 메이저 버전 인터페이스 호출도 정상 처리함
+- **Response Measure**: 이전 메이저 버전 지원 기간 ≥ **12개월** (또는 다음 메이저 릴리스 + 6개월 중 더 긴 쪽) (NFR-023 참조)
+- **Mapped NFR**: NFR-023
+- **Mapped QA leaf**: Modifiability — 인터페이스 안정성 [M, L]
+
+---
+
+#### QAS-027 영역 간 모듈 결합도
+
+- **Source**: 개발팀 (SW 개발팀)
+- **Stimulus**: 개발팀이 한 기능 영역(VUI·에이전트 코어·브라우저 제어·콘텐츠 파이프라인 등)의 내부 구현을 변경함
+- **Artifact**: 영역 간 공개 인터페이스, 의존성 그래프, 정적 분석 도구
+- **Environment**: 개발·CI 환경, 정적 분석 게이트
+- **Response**: 변경이 다른 영역의 코드 수정을 강제하지 않음 (공개 인터페이스만을 통해 의존)
+- **Response Measure**: 영역 간 비공개 심볼 참조 = **0건** (정적 분석 기준) (NFR-024 참조)
+- **Mapped NFR**: NFR-024
+- **Mapped QA leaf**: Modifiability — 모듈 결합도 [M, M]
+
+---
+
+#### QAS-028 독립 배포·롤백 가능성
+
+- **Source**: 배포 담당자 / 운영 (결함·보안 이슈 발생)
+- **Stimulus**: 운영 중 결함 또는 보안 취약점이 발견되어 수정본이 준비됨
+- **Artifact**: 독립 배포 단위(에이전트 하네스), OTA/앱스토어형 업데이트 채널, 버전 관리·롤백 메커니즘
+- **Environment**: 운영 중, 전체 펌웨어 릴리스 주기와 분리된 배포 채널
+- **Response**: 시스템이 전체 펌웨어와 분리된 경로로 수정본을 다운로드·적용하며, 실패 시 이전 버전으로 롤백함
+- **Response Measure**: 전체 펌웨어와 **독립적으로 버전 관리·다운로드·롤백** 가능 (펌웨어 재빌드 불요 = **100%**), 수정본 게시 리드타임 ≤ **TBD (ADR-XXX)** (긴급 보안 패치 별도 SLA, NFR-035 참조)
+- **Mapped NFR**: NFR-035
+- **Mapped QA leaf**: Modifiability — 배포성 [M, M]
+
+---
+
+#### QAS-029 Mock 격리 단위 테스트
+
+- **Source**: 개발자 (단위 테스트 실행)
+- **Stimulus**: 개발자가 단일 영역의 단위 테스트를 실행함
+- **Artifact**: 각 기능 경계의 Mock/Stub 인터페이스, 단위 테스트 하네스, CI 러너
+- **Environment**: CI·로컬 개발 환경, 외부 서비스·네트워크 차단
+- **Response**: 테스트가 다른 영역·외부 서비스 의존 없이 격리되어 실행됨
+- **Response Measure**: 단위 테스트 외부 의존성(네트워크·디스크·시스템 호출) = **0%**, Mock 커버리지 ≥ **95%** (NFR-026 참조)
+- **Mapped NFR**: NFR-026
+- **Mapped QA leaf**: Testability — 격리 테스트 [M, L]
+
+---
+
+#### QAS-030 에이전트 트레이스 보존·조회
+
+- **Source**: 운영팀 (사후 분석), 시스템 (트레이스 생성)
+- **Stimulus**: 시스템이 태스크를 실행하며 트레이스를 생성하고, 이후 운영팀이 사후 분석을 위해 조회함
+- **Artifact**: 트레이스 수집기, 트레이스 저장소, 조회 인터페이스
+- **Environment**: 정상 운영, 사용자 신고 ~ 사후 분석 기간, NFR-018 PII 마스킹 정책 적용
+- **Response**: 트레이스가 저장되어 보존 기간 내 조회 가능함
+- **Response Measure**: 보존 기간 ≥ **30일**, 조회 응답 P95 ≤ **5s** (NFR-027 참조)
+- **Mapped NFR**: NFR-027
+- **Mapped QA leaf**: Observability — 추적성 [M, L]
 
 ---
 
