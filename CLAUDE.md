@@ -27,10 +27,10 @@ docs/
     00-overview.md               ✅ 작성 완료 (※ 일부 내용 outdated, 별도 정리 예정)
     01-functional/
       00-overview.md             ✅ 작성 완료 (※ area code 가정, outdated)
-      draft.md                   ✅ 작성 완료 (FR-001~033 순차·area 코드 미배정)
+      draft.md                   ✅ 작성 완료 (FR-001~040 순차·결번 유지·area 코드 미배정)
       use-cases.md               ✅ 작성 완료 (UC 카탈로그, 결번 유지)
     02-non-functional/
-      draft.md                   ✅ 작성 완료 (NFR 30건, 결번 유지·area 코드 미배정)
+      draft.md                   ✅ 작성 완료 (NFR 32건, 결번 유지·area 코드 미배정)
     03-test-cases.md             ✅ 작성 완료 (TC 카탈로그)
     04-compliance-matrix.md      ✅ 작성 완료 (규제 의무↔실현 매핑, 단일 진실원)
   06-quality-attributes.md       ✅ Utility Tree·QA 시나리오(6.6)·트레이드오프(6.7)·Open Questions(6.8) 작성

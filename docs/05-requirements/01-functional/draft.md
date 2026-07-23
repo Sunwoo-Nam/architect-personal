@@ -11,6 +11,8 @@
 > **범위 제외 (AI 생성·출처 표시)**: 구 FR-014(AI 생성 콘텐츠 표시) 삭제 — FR-014는 현재 결번. 사유: ① "AI 생성 표시"는 본 draft가 다루는 에이전트 하네스의 동작이 아니라 Generative UI(GNUI) 렌더러의 표시 책임이며, ② Source로 인용된 3.2.8(구 3.2.5)의 "광고성 표시 의무" Concern은 *광고/협찬 고지* 의무로 "AI 생성 고지"와 다른 규제 도메인이라 VoC 매핑이 잘못되어 있었음. 표시·라벨링 FR은 GNUI area에서 별도로 다룬다.
 >
 > **범위 제외 (Generative Web Page, GWP)**: 구 FR-034~038(GWP 적용 판정·트리거, 콘텐츠 추출·재구성, D-pad 포커스 네비게이션, 원본 토글, 의도 힌트 전달) 삭제 — FR-034~038은 현재 결번. GWP(페이지 자체 재가공 서비스)가 과제 범위에서 제외됨에 따라 관련 FR 전체를 제거했다(1장 Out-of-Scope 참조). 연동 삭제: NFR-031~033, 구 UC-08·28·29(현재 UC는 2026-07 재번호됨), 2장 시나리오 5~7.
+>
+> **신설 (2026-07 보호자 제한)**: FR-039·FR-040 신설 — 3.3.1 "가구 공유 환경: 자녀 보호·연령별 콘텐츠 경계" VoC의 매핑 누락 해소. 화자 식별(멀티프로필)은 범위 외를 유지하므로, 집행 앵커는 **기기 수준 플랫폼 보호자 제한 설정**(시청 등급·제한 상태)이다. 결번(FR-034~038)은 유지하며 신규 번호는 039부터 부여. 연동 신설: NFR-036, QAS-031, TC-NFR-36, 컴플라이언스 매트릭스 #12.
 
 ---
 
@@ -266,6 +268,7 @@
   - *KO*: 시스템은 외부 에이전트 플랫폼이 본 시스템을 Skill 또는 Sub-Agent로 등록·호출할 수 있도록 버전 관리된 표준 호출 인터페이스를 노출해야 한다.
 - **Source**: ARGO 개발팀 (3.2.2, 참조 소비자) — cf. 3.6 외부 Agent 플랫폼(제약)
 - **Priority**: **Should**
+- **Related NFR**: `NFR-037` (표준 규약 준수·무수정 연결/교체)
 
 ---
 
@@ -349,6 +352,38 @@
 
 ---
 
+### FR-039 보호자 제한 모드에서의 콘텐츠 경계 준수
+
+- **Statement** *(State-driven)*:
+  - *EN*: While parental restriction mode is active on the device, the system shall not access, retrieve, summarize, or display content exceeding the configured age rating, and shall stop the current step and notify the user when such content is encountered during task execution.
+  - *KO*: 기기의 보호자 제한 모드가 활성화된 동안, 시스템은 설정된 연령 등급을 초과하는 콘텐츠에 접근·조회·요약·표시하지 않아야 하며, 태스크 수행 중 그러한 콘텐츠를 만나면 해당 단계를 중단하고 사용자에게 통지해야 한다.
+- **Source**: 일반 사용자 (3.3.1 — 가구 공유 환경: 자녀 보호·연령별 콘텐츠 경계), 보안 · 컴플라이언스팀 (3.2.8)
+- **Priority**: **Must**
+- **Acceptance Criteria**:
+  1. 제한 모드 상태와 연령 등급은 플랫폼 보호자 제한 설정에서 조회한다 (플랫폼 설정 인터페이스는 외부 의존 가정 — 화자 단위 연령 식별은 범위 외).
+  2. 등급 초과 콘텐츠로의 직접 탐색·조회 요청은 거부하고 사유를 통지한다.
+  3. 다단계 태스크 수행 중 등급 초과 콘텐츠에 도달하면 해당 단계를 중단하며, 우회 경로로 재시도하지 않는다.
+  4. 에이전트는 제한 모드의 해제·변경을 수행하지 않는다 (해제는 플랫폼 설정 경로 전용).
+- **Related NFR**: `NFR-036` (보호자 제한 모드 차단 실효성)
+
+---
+
+### FR-040 보호자 제한 모드에서의 구매·결제 차단
+
+- **Statement** *(State-driven)*:
+  - *EN*: While parental restriction mode is active on the device, the system shall refuse to initiate or continue any purchase, subscription, or payment task, and shall inform the user that the task is blocked by the parental restriction settings.
+  - *KO*: 기기의 보호자 제한 모드가 활성화된 동안, 시스템은 구매·구독·결제 태스크의 시작·진행을 거부해야 하며, 보호자 제한 설정에 의해 해당 태스크가 차단됨을 사용자에게 안내해야 한다.
+- **Source**: 일반 사용자 (3.3.1 — 가구 공유 환경: 자녀 보호·연령별 콘텐츠 경계), 보안 · 컴플라이언스팀 (3.2.8)
+- **Priority**: **Must**
+- **Acceptance Criteria**:
+  1. 제한 모드 중 구매·구독·결제 의도로 분류된 태스크는 계획 단계에서 즉시 거부된다 — FR-005의 확인 단계에 도달하지 않는다 (확인·인증에 의한 예외 허용 없음, 전면 차단).
+  2. 다단계 태스크 진행 중 결제 단계에 도달한 경우에도 그 시점에 중단되며, 장바구니 담기 후 결제 유도 등 우회 경로에도 동일하게 적용된다.
+  3. Quick Action 경로(FR-003a)에서도 동일한 차단이 적용된다.
+  4. 차단 시 사유(보호자 제한 설정)를 통지하되, 에이전트를 통한 제한 해제 경로는 제공하지 않는다.
+- **Related NFR**: `NFR-036` (보호자 제한 모드 차단 실효성)
+
+---
+
 ## 요약
 
 | 번호 | 제목 | Source | Priority |
@@ -385,3 +420,11 @@
 | FR-031 | 토큰 사용량·응답 지연·비용 계측 및 노출 | 3.2.4, 3.2.1 | Should |
 | FR-032 | 에이전트 실행 환경 시뮬레이션 모드 | 3.2.4 | Should |
 | FR-033 | 에이전트 행동 이유 설명 (Explainability) | 3.2.5, 3.3.2 | Should |
+| FR-039 | 보호자 제한 모드에서의 콘텐츠 경계 준수 | 3.3.1, 3.2.8 | Must |
+| FR-040 | 보호자 제한 모드에서의 구매·결제 차단 | 3.3.1, 3.2.8 | Must |
+
+---
+
+## Open Questions
+
+1. **보호자 제한 모드 미설정 시 기본 콘텐츠 정책** — 제한 모드가 설정되지 않은 기기에서 성인 콘텐츠 접근 태스크를 무필터로 둘지, 기본 확인(HITL)을 요구할지 미정. 결정 위치: 7장 Solution Strategy / UX 정책 (필요시 ADR).

@@ -65,7 +65,7 @@ v1(16개) → v2(9개, Concern 중첩 기준 병합)를 거쳐, v3에서는 **RA
   - 본 시스템의 실패가 상위 Main Agent / GenUI Renderer로 전파되지 않는 **격리·폴백 전략**과, argot의 컨텍스트·세션 모델을 침해하지 않는 경계
   - Main Agent, GenUI Renderer, 본 시스템이 고정된 TV 자원 예산 안에서 공존할 때의 자원·진입점 분배
   - 본 시스템이 전달하는 콘텐츠를 카드·UI로 렌더링하는 **GenUI 인터페이스 계약**의 일관성과 진행 상황 실시간 피드백 표현
-  - 호출 계약을 **표준 인터페이스(MCP tool spec, Agent Protocol 등) 형태로 노출**할 때의 보안 경계·버저닝 정책 (외부 에이전트 플랫폼이 향후 동일 인터페이스로 호출할 가능성을 참조 소비자로서 대표)
+  - 호출 계약을 **표준 인터페이스(MCP tool spec, Agent Protocol 등) 형태로 노출**할 때의 보안 경계·버저닝 정책 (외부 에이전트 플랫폼이 향후 동일 인터페이스로 호출할 가능성을 참조 소비자로서 대표) — 그리고 규약을 준수하는 Skill/Sub-Agent 모듈은 Main Agent 측 **코드 수정 없이 등록·연결·교체 가능**해야 한다는 플랫폼 운영 요구
 - **관련 Architectural View**
   - Context View (본 시스템의 상위 소비자로서의 Main Agent · GenUI Renderer)
   - Logical View (본 시스템이 외부에 제공하는 공개 인터페이스)
